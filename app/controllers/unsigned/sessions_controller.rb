@@ -1,5 +1,5 @@
 class Unsigned::SessionsController < Unsigned::BaseController
-  
+
   def create
     @user = (User.where("login.email" => params[:email]).first)
     if @user and  @user.verified and  @user.login.authenticate(params[:password])
