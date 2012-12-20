@@ -1,0 +1,2 @@
+module Unsigned::SearchHelper
+end

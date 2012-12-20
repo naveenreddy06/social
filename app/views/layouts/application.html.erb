@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relay Fan</title>
+    <%= stylesheet_link_tag    "bootstrap_and_overrides", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= render "bg_style" %>
+  </head>
+  <body>
+    <div class="container-fluid">
+	  <div class="row-fluid">
+		<%= render "bg_image" %>
+        <%= yield %>
+     </div>
+   </div>
+  </body>
+</html>
+

@@ -1,0 +1,16 @@
+<div class="span20" style="padding-top: 30px;">
+  <div class="well span4" style="background-color:#ebf3f8;">
+	 <%= form_tag do %>
+	   Refine Search : <br><br>
+	   <%= select_tag :filter, options_for_select(fetch_filters) %>
+	   <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
+	 <% end %>
+  </div>
+  <div class="span15 offset1">
+   <%= render "shared/search/search_form"%>
+   <% @results.each do |result| %>
+    <%= result.inspect %><br>
+   <% end %>
+   <%= paginate @results %>
+  </div>
+</div>

@@ -1,0 +1,386 @@
+@import "bootstrap.css";
+@import "jquery.ui.datepicker.css";
+@import "timepicker.css";
+
+
+body {
+  background-color:#2E4174;
+  background-size:100%;
+  margin:0px;
+}
+
+.navbar-inner {
+  background-color:red;
+}
+
+a.home_page {
+  font-style: normal;
+  color:#ffffff;
+  filter:Glow(color=#ff0000, strength=12);
+}
+li.home_page {
+  list-style-type: none;
+  padding: 10px;
+}
+
+a.disabled
+{
+    color: grey;
+    pointer-events: none;
+    cursor: default;
+}
+.accordion-heading .accordion-toggle {
+   padding: 0px;
+
+  // background-color: #BAD3FB;
+
+}
+
+.accordion-inner {
+  font-size:14px;
+}
+
+#change_pass {
+  font-size:80%;
+}
+
+div.transbox
+  {
+  width:400px;
+  min-height:270px;
+  margin-bottom: 20px;
+  border-radius: 5px ;
+  background-color:black;
+  opacity:0.8;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
+  }
+
+  div.transbox2
+  {
+  width:400px;
+  min-height:150px;
+  border-radius: 5px ;
+  background-color:black;
+  opacity:0.8;
+  filter:alpha(opacity=60); /* For IE8 and earlier */
+  }
+
+.homepage_background{
+       max-width: 1000px;
+       max-height: 1000px;
+     }
+
+.alert {
+  width:360px;
+  padding: 20px;
+
+  border-color: red;
+  background-color: white;
+
+
+
+  }
+
+.form_css { margin: 20px;
+padding: 4px 50px;
+ }
+
+
+.hero-unit {
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 100%;
+  line-height: 15px;
+  background-color: #ffffff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unit-main {
+  padding: 10px 0px 0px 60px;
+  height: 1000px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+
+}
+
+
+
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+}
+
+.hero-unit p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+}
+
+/*
+ .searchbar {
+    background: white url("/img/relayimg/search_icon.png") right no-repeat;
+    padding-left: 17px;
+    width:200px
+}
+*/
+
+.frt{
+  float:right;
+}
+
+.nav-icons {
+  float:left;
+  padding:10px;
+}
+
+.setting-icons {
+  float:left;
+  padding:0px;
+}
+
+
+
+
+ul {
+list-style:none;
+}
+
+ .sortable li, {
+      list-style: none;
+      border: 1px solid #CCC;
+      background: #F6F6F6;
+      font-family: "Tahoma";
+      color: #1C94C4;
+      margin: 10px;
+      padding: 5px;
+      height: 22px;
+                        width:200px;
+    }
+
+.anchor
+{
+  color:blue;
+}
+
+.noborder, .noborder tr, .noborder th, .noborder td {
+    border: none;
+}
+
+.post_type_drop
+{
+  background: #F6F6F6;
+  width: 150px;
+  font-style:italic;
+  height:30px;
+
+}
+
+.feed p
+{
+ font-size:14px;
+}
+
+.boxscroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.searchbar_homepage {
+    background: white url("search_icon.png") right no-repeat;
+    padding-left: 17px;
+    width:380px;
+
+
+}
+
+
+/* Override and classes used for Hover effect for dropdown  menu in feeds to delete or hide post*/
+
+
+
+ul.cssMenu, ul.cssMenu ul
+{
+	list-style:none;
+	margin:0; padding:0;
+	position: relative;
+
+}
+
+ul.cssMenu ul
+{
+        display:none; /*initially menu item is hidden*/
+         float:right;
+         width:100px;
+         min-height:30px;
+         border-radius: 2px ;
+         background-color:black;
+         opacity:0.8;
+         text-align: center;
+         filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+
+/* Hover effect for menu in feeds to delete or hide post*/
+ul.cssMenu li:hover > ul
+{
+	display:block;
+}
+.common_link_font{
+  font-size:12px;
+}
+.span_content{
+  font-size:12px;
+}
+/*#####################################################################*/
+
+
+/*
+  Image slider in wall page and circle wall page css
+*/
+span,applet,object,iframe,a,abbr,acronym,em,font,img { margin:0; padding:0; border:0; outline:0; font-weight:inherit; font-style:inherit; font-size:100%; font-family:inherit; vertical-align:baseline; }
+:focus { outline:0; }
+a:active { outline:none; }
+
+#container {
+  margin-left: auto ;
+  margin-right: auto ;
+  width:800px;
+  height:315px;
+  position:relative;
+}
+
+/*
+  Slideshow
+*/
+
+#slides {
+  position:relative;
+  z-index:100;
+}
+
+/*
+  Slides container
+  Important:
+  Set the width of your slides container
+  Set to display none, prevents content flash
+*/
+
+.slides_container {
+  float:left;
+  width:800px;
+  height:315px;
+  overflow:hidden;
+  position:relative;
+  display:none;
+}
+
+/*
+  Each slide
+  Important:
+  Set the width of your slides
+  If height not specified height will be set by the slide content
+  Set to display block
+*/
+
+.slides_container a {
+  width:800px;
+  height:315px;
+  display:block;
+}
+
+.slides_container a img {
+  display:block;
+}
+
+/*
+  Pagination
+*/
+
+.pagination {
+  margin:20px -5px 30px;
+  width:100px;
+}
+
+.pagination li {
+  float:left;
+  margin:15px 1px;
+  list-style:none;
+}
+
+.pagination li a {
+  display:block;
+  width:12px;
+  height:0;
+  padding-top:12px;
+  background-image:url(/img/pagination.png);
+  background-position:0 0;
+  float:left;
+  overflow:hidden;
+}
+
+.pagination li.current a {
+  background-position:0 -12px;
+}
+
+.deal
+{text-decoration:none;color:white;}
+.deal:hover
+{text-decoration:underline;color:white;}
+
+
+/*#####################################################################*/
+
+/*
+  on hover zoom images
+*/
+
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width: none;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box;}
+
+/*
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#000;}
+#colorbox{}
+    #cboxContent{margin-top:20px;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{border:5px solid #fff; background:#fff;}
+        #cboxTitle{position:absolute; top:-20px; left:0; color:#ccc;}
+        #cboxCurrent{position:absolute; top:-20px; right:0px; color:#ccc;}
+        #cboxSlideshow{position:absolute; top:-20px; right:90px; color:#fff;}
+        #cboxPrevious{position:absolute; top:50%; left:5px; margin-top:-32px; background:url(images/controls.png) no-repeat top left; width:28px; height:65px; text-indent:-9999px;}
+        #cboxPrevious:hover{background-position:bottom left;}
+        #cboxNext{position:absolute; top:50%; right:5px; margin-top:-32px; background:url(images/controls.png) no-repeat top right; width:28px; height:65px; text-indent:-9999px;}
+        #cboxNext:hover{background-position:bottom right;}
+        #cboxLoadingOverlay{background:#000;}
+        #cboxLoadingGraphic{background:url(/img/relayimg/load.gif) no-repeat center center;}
+        #cboxClose{position:absolute; top:5px; right:5px; display:block; background:url(/img/relayimg/controls.png) no-repeat top center; width:38px; height:19px; text-indent:-9999px;}
+        #cboxClose:hover{background-position:bottom center;}
+
+
+.date
+{
+  font-size:11px;
+}
+

@@ -1,0 +1,24 @@
+development:
+  sessions:
+
+    default:
+
+      database: random_lives_development
+
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+
+production:
+  sessions:
+
+    default:
+
+      database: random_lives_production
+
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+
