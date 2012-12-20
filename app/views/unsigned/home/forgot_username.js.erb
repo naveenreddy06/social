@@ -1,0 +1,7 @@
+<% if !@login.nil? %>
+   $("#uname").replaceWith("<div id='uname'> <h5><%= @login.email %> </h5> </div>");
+<% else %>
+   $("#uname").replaceWith("<div id='uname'> <%= escape_javascript(render(:partial => "shared/flash_messages")) %> <%= escape_javascript(render(:partial => "home/forgot_username_form")) %> </div>");
+<% end %>
+
+

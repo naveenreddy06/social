@@ -1,0 +1,6 @@
+<% if @user and @user.verified %>
+   $("#errors_forgot_password").replaceWith("<div id='errors_forgot_password'><%=escape_javascript(render(:partial => 'home/account_com_update'))%> </div>");
+<% else %>
+   <% @errors = "Not found." %>
+   $("#errors_forgot_password").replaceWith("<div id='errors_forgot_password'><%=escape_javascript(render(:partial => 'home/account_com_update'))%> </div>");
+<% end %>
