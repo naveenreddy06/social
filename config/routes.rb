@@ -5,6 +5,7 @@ Relayfan::Application.routes.draw do
   namespace :unsigned do
     resources :home
     resources :search, :only => [:index]
+    resources :sessions, :only => [:create]
   end
   
 end

@@ -1,4 +1,4 @@
-<div id="form_login">
+<div id="form_login" style="margin-top: 3%">
     <div class="span5">
        <span style="float:right;"><%= link_to(image_tag("/img/homepage_logo.png"), root_path) %></span><br><br><br><br>
        <ul style="float: right; text-align: left ">
@@ -16,14 +16,15 @@
      <div class="transbox">
        <div class= "form_css"><br/>
          <label style="color:white; font-size :200%">Welcome</label><br/>
+         <%= render "unsigned/shared/form" %>
          <span style="color:white";>Trouble logging in the site ?</span><%= link_to 'Click here', "#" %>
        </div>
      </div>
-     <div class="transbox2">
+     <div class="transbox">
        <div class="form_css"><br/>
          <label style="font-size :120%; color :white">Connect,Circle,Chronicle & Relay.</label><br/>
          <a href="#">Learn</a><span style="color:white";> what's cool about us?</span> <br/><br/>
-         <%= link_to 'Sign Up.', "#", :class => "btn btn-info " %>
+         <%= link_to 'Sign Up', "#", :class => "btn btn-info " %>
        </div>
      </div>
     </div>

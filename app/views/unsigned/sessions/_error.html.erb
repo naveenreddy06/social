@@ -1,0 +1,28 @@
+<div id="form_login">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <br><br>
+      <div class="span5">
+        <img style="float: right" src="/img/homepage_logo.png" /><br><br><br><br>
+        <ul style="float: right; text-align: left ">
+    	  <li class="home_page"><a href="#" class="home_page"> About us </a></li>
+          <li class="home_page"><a href="#" class="home_page"> Terms </a></li>
+          <li class="home_page"><a href="#" class="home_page"> Privacy & Cookies </a></li>
+          <li class="home_page"><a href="#" class="home_page"> Help Center </a></li>
+          <li class="home_page"><a href="#" class="home_page"> What's New </a></li>
+          <li class="home_page"><a href="#" class="home_page"> Feed back </a></li>
+        </ul>
+      </div>
+      <div class="span12">
+        <div class="transbox">
+          <div class="alert" style="color :red";>
+            <strong>Errors!</strong> <%= @errors %>
+          </div>
+          <div class= "form_css">
+	        <%= render "unsigned/shared/form" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

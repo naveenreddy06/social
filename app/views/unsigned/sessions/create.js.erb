@@ -1,0 +1,7 @@
+<% if !session[:user_id].nil?  %>
+  <% take_me_to = session[:coming_from].nil? ? "/" : session[:coming_from] %>
+  <% session[:coming_from] = nil %>
+  window.location.href = "<%= take_me_to %>";
+<% else %>
+  $("#form_login").replaceWith("<div id='form_login'><%= escape_javascript(render(:partial => 'unsigned/sessions/error')) %></div>");
+<% end %>
