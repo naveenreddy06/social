@@ -1,0 +1,21 @@
+
+<div id="div_notice">
+<script type="text/javascript">
+   setTimeout(function () { $("#message").fadeOut(); }, 3000);
+</script>
+
+  <%if !flash[:notice].blank? || !flash[:error].blank? %>
+   <table class="table" id="message">
+    <%if !flash[:notice].blank? %>
+      <tr class="success">
+      	<td><%= flash[:notice] %></td>
+    <% end %>
+      </tr>
+    <% if !flash[:error].blank? %>
+      <tr class="error">
+      	<td><%= flash[:error] %></td>
+      </tr>
+    <%end%>
+   </table>
+  <% end %>
+ </div>
