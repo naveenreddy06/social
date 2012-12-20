@@ -1,0 +1,23 @@
+<div class="span4 hero-unit" adjustHeight="true">
+    <h6 style="color :#696969"><img src="/assets/Account_settings.png"/> <b>Account Settings</b></label>
+    <div class="accordion" id="account-management">
+       <% cnt = 1 %>
+       <% account_setting_hash.keys.each do |ky| %>
+         <div class="accordion-group" style="border: 0px">
+           <div class="accordion-heading">
+             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#account-management" href="#account_<%= cnt %>" accord-main="accord">
+               <h6> <i class=" icon-chevron-right"></i><%= ky %></h6>
+             </a>
+           </div>
+           <div id="account_<%= cnt %>" class="accordion-body collapse">
+             <div class="accordion-inner">
+               <% account_setting_hash[ky].each do |val| %>
+                 <small><%= link_to val, "#", :remote => true %></small><br/>
+               <% end %>
+             </div>
+           </div>
+         </div>
+        <% cnt += 1 %>
+      <% end %>
+    </div>
+</div>
