@@ -3,7 +3,7 @@
 	     <br><br>
          <h3>Join Now-It's free </h3>
          <div class="well well-small">User Info-</div><br>
-           <%= simple_form_for( @user, :url => "#", :html => { :class => "form-horizontal" }) do |f| %>
+           <%= simple_form_for( @user, :url => create_user_unsigned_home_index_path, :html => { :class => "form-horizontal" }) do |f| %>
              <%= f.input :first_name, :label => 'First Name' %>
              <%= f.input :last_name, :label => 'Last Name' %>
              <%= f.association :user_type, :collection => UserType.all, :label => 'User Type' %>

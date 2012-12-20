@@ -9,9 +9,9 @@
       You have successfully signed up to RelayFan.<br/>
     </p>
     <p>
-      To verify to the site, just follow this link:  <%=  verify_email_users_url(:token => @user.verification_token, :host =>"www.relayfan.com" ) %>.
+      To verify to the site, just follow this link:  <%=  verify_email_unsigned_home_index_url(:token => @user.verification_token, :host =>"www.relayfan.com" ) %>.
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Thanks for joining!</p>
   </body>
 </html>
 

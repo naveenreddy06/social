@@ -11,13 +11,17 @@ class Unsigned::HomeController < Unsigned::BaseController
   end
 
   def resend_email
-
+    
   end
 
   def resend_email_click
     @user = (User.where("login.email" => params[:email]).first)
-    @user.send_verification if @user
-      redirect_to registered_successfully_home_index_path
+    if @user
+      @user.send_verification 
+      redirect_to registered_successfully_unsigned_home_index_path
+    else
+      render :action => :resend_email
+    end
   end
 
   def register
@@ -83,6 +87,26 @@ class Unsigned::HomeController < Unsigned::BaseController
   def set_password
     @user = User.where("verification_token" => params[:token]).first
   end
+  
+  def create_user
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to registered_successfully_unsigned_home_index_path
+    else
+      render register_unsigned_home_index_path 
+    end
+  end
+  
+  def verify_email
+    user = User.where("verification_token" => params[:token]).first
+    if user
+      user.verified = true
+      user.save(:validate => false)
+      render  verified_unsigned_home_index_path
+    else
+     render "unsigned/home/index"
+    end
+  end
 
   private
 
@@ -91,19 +115,4 @@ class Unsigned::HomeController < Unsigned::BaseController
       redirect_to root_path
     end
   end
-
-  def about_us
-  end
-  def terms
-  end
-  def privacy_cookies
-  end
-  def help_center
-  end
-  def whats_new
-  end
-  def feed_back
-  end
-  
-  
 end
