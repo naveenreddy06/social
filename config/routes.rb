@@ -1,7 +1,7 @@
 Relayfan::Application.routes.draw do
-  
+
   root :to => 'unsigned::home#index'
-  
+
   namespace :unsigned do
     resources :home do
       collection do
@@ -12,5 +12,9 @@ Relayfan::Application.routes.draw do
     resources :search, :only => [:index]
     resources :sessions, :only => [:create]
   end
-  
+
+  namespace :signed do
+    resources :users, :except => [:new, :create]
+  end
+
 end
