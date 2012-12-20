@@ -15,6 +15,7 @@ Relayfan::Application.routes.draw do
 
   namespace :signed do
     resources :users, :except => [:new, :create]
+    resources :feeds
   end
 
 end

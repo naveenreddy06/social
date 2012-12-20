@@ -1,0 +1,2 @@
+module Signed::FeedsHelper
+end
