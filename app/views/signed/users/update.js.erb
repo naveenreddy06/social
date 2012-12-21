@@ -1,0 +1,3 @@
+$("#pjax-container").html("<%= escape_javascript(render('signed/users/manage_forms/'+ params[:partial_name])) %>");
+
+$("#div_notice").replaceWith("<%= escape_javascript(render('shared/flash_messages')) %>");
