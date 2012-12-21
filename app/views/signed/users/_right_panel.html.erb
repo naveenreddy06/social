@@ -1,13 +1,11 @@
-<td class="span6">
- <div id="pjax-container" class="hero-unit" adjustTd=true>
-  <%= case params[:form_type] 
-    when "general"
+<div id="pjax-container" class="hero-unit" adjustTd=true>
+ <%= case params[:form_type] 
+   when "general"
      render "signed/users/manage_forms/general"
-    when "status"
+   when "status"
      render "signed/users/manage_forms/status"
-    else
+   else
      render "signed/users/manage_forms/general"
-    end
-  %>
- </div>
-</td>
+   end
+ %>
+</div>
