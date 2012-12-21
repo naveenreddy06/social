@@ -1,0 +1,18 @@
+<h3> General Profile Settings </h3>
+
+  <%= simple_form_for [:signed, current_user], :remote => true  do |user| %>
+     <%= hidden_field_tag :partial_name, '', :value => "edit_general" %>
+     <%= user.input :display_name, :label => 'Display Name' %>
+     <%= user.association :user_type, :collection => UserType.all , :label => 'User Type'  %>
+   <%= user.fields_for :login do |login|  %>
+     <label>Password:</label>
+     <a href="#" id="change_pass"> change password </a>
+     <div class="pass_fields">
+       <%= login.input :password, :label => 'Password'  %>
+       <%= login.input :password_confirmation  %>
+     </div>
+   <% end %>
+     <%= user.input :time_zone,:label => 'Time Zone' %>
+     <%= user.submit "Update",:class => 'btn-primary' %>
+  <% end %>
+

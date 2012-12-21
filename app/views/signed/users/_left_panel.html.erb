@@ -1,4 +1,4 @@
-<div class="span4 hero-unit" adjustHeight="true">
+<div adjustHeight="true">
     <h6 style="color :#696969"><img src="/assets/Account_settings.png"/> <b>Account Settings</b></label>
     <div class="accordion" id="account-management">
        <% cnt = 1 %>
@@ -12,7 +12,7 @@
            <div id="account_<%= cnt %>" class="accordion-body collapse">
              <div class="accordion-inner">
                <% account_setting_hash[ky].each do |val| %>
-                 <small><%= link_to val, "#", :remote => true %></small><br/>
+                 <small><a href="?form_type=<%= val.downcase %>"><%= val %></a></small><br/>
                <% end %>
              </div>
            </div>

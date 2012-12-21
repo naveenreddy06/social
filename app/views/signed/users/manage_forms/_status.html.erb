@@ -1,0 +1,17 @@
+<% current_user.build_account_setting if current_user.account_setting.nil? %>
+  <h3> Status Profile Settings </h3>
+  <%= simple_form_for [:signed, current_user], :remote => true do |user| %>
+    <%= hidden_field_tag :partial_name, '', :value => "edit_status" %>
+    <%= user.fields_for :account_setting do |f|  %>
+      <%= f.input :about_me, :label => 'Briefly about me:' %>
+      <%= f.input :address, :label => 'Address' %>
+      <%= f.input :country_name, :label => 'Country' %>
+      <%= f.input :state_name, :label => 'State' %>
+      <%= f.input :city, :label => 'City' %>
+      <%= f.input :postal_code, :label => 'ZIP/Postal code' %>
+    <% end %>
+    <%= user.input :phone, :label => 'Phone #' %>
+    <input type="checkbox"/> Recieve sms messages<br />
+    <%= user.button :submit ,"Update",:class => 'btn-primary' %>
+  <% end %>
+
