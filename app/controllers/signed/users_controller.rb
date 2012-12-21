@@ -7,9 +7,10 @@ class Signed::UsersController < Signed::BaseController
   def update
    @user = User.find(params[:id])
    if @user.update_attributes(params[:user])
+    flash[:notice] = "updated"
    end
   end
-  
+
   def manage
     case params[:form_type]
      when "edit_wall_profile"
@@ -19,7 +20,7 @@ class Signed::UsersController < Signed::BaseController
         render :layout => false
     end
   end
-  
+
   def account_form
     render :text => params[:form_type]
   end

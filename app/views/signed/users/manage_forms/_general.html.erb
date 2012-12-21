@@ -8,7 +8,7 @@
 
   });
 </script>
-
+<%= render "shared/flash_messages"%>
 <h3> General Profile Settings </h3>
 
   <%= simple_form_for [:signed, current_user], :html => {:class => 'form-horizontal'}, :remote => true  do |user| %>
