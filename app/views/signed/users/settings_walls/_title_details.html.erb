@@ -1,0 +1,21 @@
+<script>
+  current_id = '<%= @wall_detail.id %>';
+  $('a[delete_id = "delete"]').each(function() {
+    alert(this)
+  });
+
+</script>
+
+<div id= "title_detail">
+  <span style="font-size:19px">Create Wall - About me list</span>
+  <h6>$ Create 'About me' information<h6>
+  <%= simple_form_for @wall_detail,:html => { :class => "form-horizontal" }, :url =>  add_walls_signed_users_path, :remote => true do |fd| %>
+    <%= hidden_field_tag :partial_name, '', :value => "edit_wall_profile" %>
+    <%= hidden_field_tag :id, '', :value => @wall_detail.id %>
+    <%= fd.input :title ,:id => "title_id",:class => "field" %>
+    <%= fd.input :priority , :as => :hidden, :input_html => { :value => (  current_user.wall.nil? ?  1 : current_user.wall.wall_details.count + 1 ) } %>
+    <%= fd.input :details, :as => :text, :input_html => { :cols => 50, :rows => 3 } %>
+    <%= fd.submit "Add",:class => 'btn-primary',:style => "margin-left:180px" %>
+  <% end %>
+</div>
+
