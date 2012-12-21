@@ -6,17 +6,10 @@
 	        <%= image_tag feed.user.profile_image_thumb %>
 	      </div>
 	      <div class="span13">
-	        <% display_name = feed.user.display_name.blank? ? feed.user.first_name.capitalize + " "+ current_user.last_name.capitalize : feed.user.display_name.capitalize %>
-	         <%= link_to display_name, "#", :style => "" %><br>
-	         <% if feed.created_at.to_date == Date.today %>
-	           <%= feed.created_at.strftime("%l:%M%p").to_s %>
-	         <% elsif feed.created_at.to_date == Date.today-1 %>
-	           <%= feed.created_at.strftime("Yesterday %l:%M%p").to_s %>
-	         <% else %>
-	           <%= feed.created_at.to_date.strftime("%b %d, %Y").to_s %>
-	         <% end %>
+	        <%= render "feed_header", :feed => feed %>
 	      </div>
-	    </div>
+	    </div><br>
+	    <%= feed.feed %><br>
 	  </div>
 	  <div class="span10">
 	    <%= render "feed_controls", :feed => feed %>
