@@ -9,13 +9,13 @@ class Signed::UsersController < Signed::BaseController
    if @user.update_attributes(params[:user])
    end
   end
-  
+
   def manage
     if request.headers['X-PJAX']
         render :layout => false
       end
   end
-  
+
   def account_form
     render :text => params[:form_type]
   end
