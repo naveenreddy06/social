@@ -33,5 +33,5 @@ gem 'mongo'
 gem 'execjs'
 gem 'dalli'
 gem 'stalker'
-
+gem 'rack-pjax'
 gem "devise"

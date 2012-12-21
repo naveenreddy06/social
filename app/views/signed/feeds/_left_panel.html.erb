@@ -1,0 +1,119 @@
+<script>
+function reset_all_icons() {
+   
+   $("a[accord-main=accord]").each(function(){
+   $(this).find('i').attr('class', 'icon-chevron-right') ;
+   $(this).attr('class', 'accordion-toggle collapsed') ;
+
+ });
+ }
+ $(document).ready(function(){
+	//icon change
+    $("a[accord-main=accord]").click(function() {
+       reset_all_icons();
+       $(this).find('i').attr('class', 'icon-chevron-down');
+       $(this).attr('class', 'disabled');
+    });
+
+    <% if controller.controller_name == "posts" %>
+      $("#account").click();
+    <% elsif controller.controller_name == "messages" %>
+      $("#account_message").click();
+    <% end %>
+
+
+});
+
+</script>
+
+        <%= link_to(image_tag(current_user.profile_image), "#") %><br><br><img src="/img/relayimg/wall_(2).png" />
+        <% if current_user.display_name.blank? %>
+	   <%= link_to current_user.first_name.capitalize + " "+ current_user.last_name.capitalize, "#" %>
+        <% else %>
+           <%= link_to current_user.display_name.capitalize, walls_walls_page_index_path(:id => current_user.id) %>
+        <% end %>
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group" style="border: 0px">
+        <div class="accordion-heading">
+	  <div>
+            <a class="accordion-toggle collapsed" id="account" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" accord-main="accord">
+	    <h6><i class=" icon-chevron-right"></i>Connections </h6>
+	    </a>
+          </div>
+	</div>
+	<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+	  <div class="accordion-inner">
+	    <dl>
+             <dt><span><img src="/img/relayimg/Lists_connections.png" /><small style="margin-left:5px">Update's</small></span></dt>
+             <dd style="margin-left:20px"><small><span><%= link_to "My Posts","#",:remote => true, :class => "common_link_font" %></span><br>
+             <span><%= link_to "Latest News Feed",'#',:remote => true, :class => "common_link_font" %></span><br>
+            <br></small></dd>
+             <dt><span><img src="/img/relayimg/updates_connections.png" /><small style="margin-left:5px">Lists's</small></span></dt>
+             <dd style="margin-left:20px"><small>
+              <% current_user.connections.each do |con| %>
+                 <span><%= link_to con.category_title, "#", :remote => true, :class => "common_link_font" %></span><br>
+              <% end %>
+             </small></dd>
+           </dl>
+	  </div>
+	</div>
+      </div>
+      <div class="accordion-group" style="border: 0px">
+        <div class="accordion-heading">
+	  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" accord-main="accord">
+	  <h6> <i class=" icon-chevron-right"></i> Circles</h6>
+	  </a>
+	</div>
+	<div id="collapseTwo" class="accordion-body collapse">
+	  <div class="accordion-inner">
+            <dl>
+              <dt><small>User's</small></dt>
+	      <dd><small>
+              <% current_user.my_circles.each do |circle| %>
+                <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
+                <span><%= link_to circle.name, '#', :remote => true, :class => "common_link_font" %></span><br>
+              <% end %>
+              <br></small></dd>
+             <dt><small>Other's<br></small></dt>
+              <dd><small>
+               <% current_user.others_circles.each do |circle| %>
+                <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
+                <span><%= link_to circle.name, '#', :remote => true, :class => "common_link_font" %></span><br>
+              <% end %>
+             </small></dd>
+           </dl>
+          </div>
+	</div>
+      </div>
+      <div class="accordion-group" style="border: 0px">
+       	<div class="accordion-heading">
+	  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" accord-main="accord">
+	  <h6> <i class=" icon-chevron-right"></i>Chronicles</h6>
+	  </a>
+	</div>
+	<div id="collapseThree" class="accordion-body collapse">
+	  <div class="accordion-inner">
+	    <dl>
+            <dt><small>User's</small></dt>
+            <dd><small><% current_user.my_chronicles.each do |chronicle| %>
+            <span><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %></span>
+            <span><%= link_to chronicle.chronicle_title, '#', :remote => true, :class => "common_link_font" %></span><br>
+        <% end %><br></small></dd>
+            <dt><small>Other's<br></small></dt>
+            <dd><small>
+             <div id="other_chronicles" >
+                
+             </div>
+            </small></dd>
+            </dl>
+	  </div>
+	</div>
+      </div>
+
+
+
+
+    </div>
+
+
+

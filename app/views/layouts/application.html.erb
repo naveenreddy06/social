@@ -11,7 +11,9 @@
 	  <div class="row-fluid">
 		<%= render "bg_image" %>
 		<%= render "header" %>
-        <%= yield %>
+		<div id="pjax-container">
+          <%= yield %>
+        </div>
      </div>
    </div>
   </body>
