@@ -11,12 +11,12 @@ class Signed::UsersController < Signed::BaseController
   end
   
   def manage
-    if request.headers['X-PJAX']
-        render :layout => false
-    end
     case params[:form_type]
      when "edit_wall_profile"
        @wall_detail = WallDetail.new
+    end
+    if request.headers['X-PJAX']
+        render :layout => false
     end
   end
   
@@ -37,11 +37,11 @@ class Signed::UsersController < Signed::BaseController
   end
 
   def edit_detail
-    @wall_detail = @user.wall.wall_details.where("_id" => params[:id]).first
+    @wall_detail = current_user.wall.wall_details.where("_id" => params[:id]).first
     render :action => :add_walls
   end
   def hide_wall_detail
-    @wall_detail = @user.wall.wall_details.where("_id" => params[:wall_detail_id]).first
+    @wall_detail = current_user.wall.wall_details.where("_id" => params[:wall_detail_id]).first
     if @wall_detail and (params[:type] == 'hide')
        @wall_detail.update_attributes(:hidden => true)
     else
@@ -50,6 +50,17 @@ class Signed::UsersController < Signed::BaseController
     @wall_detail = WallDetail.new
      render :action => :add_walls
   end
+
+  def delete
+    current_user.wall.wall_details.where("_id" => params[:id]).first.destroy
+    @wall_detail = WallDetail.new
+    if params[:edit_id] == params[:id]
+     render :action => :add_walls
+    else
+     render :nothing => true
+    end
+  end
+
   #========= Circle management ==================
 
   #======== End Circle ==========================

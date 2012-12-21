@@ -1,4 +1,17 @@
+<script>
+  var current_id = '';
 
+  function delete_detail(cid) {
+    $.ajax({
+      url: "/signed/users/delete",
+      data: { edit_id : current_id, id : $(cid).attr('id') },
+      dataType: 'script'
+    });
+    $(cid).parent().parent().remove();
+  };
+
+
+</script>
   <%=render :partial=>"signed/users/settings_walls/title_details"%>
 
   <%=render :partial=>"signed/users/settings_walls/basic_information"%>
