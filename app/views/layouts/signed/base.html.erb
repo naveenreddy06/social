@@ -11,8 +11,8 @@
        <%= render "header" %>
          <table class="span21 ">
            <tr>
-	         <td class="span1"><%= render "signed/users/left_panel" %></td>
-	         <td class="span6"><%= render "signed/users/right_panel" %></td>
+	         <td class="span1"><%= render "left_panel" %></td>
+	         <td class="span6"><%= yield %></td>
            </tr>
          </table>
      </div>
