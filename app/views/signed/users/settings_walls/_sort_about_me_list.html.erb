@@ -1,0 +1,44 @@
+<%= javascript_include_tag "jquery.sortable" %>
+<script>
+  $(document).ready( function(){
+    $('.sortable').sortable({
+      connectWith: '.connected'
+    });
+
+
+    $('.set_bend').mouseleave(function() {
+     setOrder();
+    });
+
+    setOrder = function() {
+      arr = [];
+      $('.set_bend').each(function() {
+        arr.push($(this).attr("id"));
+      });
+
+      $.ajax({
+        url: "/signed/users/set_order",
+        data: {new_order : arr },
+        dataType: 'script'
+      });
+    };
+  });
+</script>
+
+
+ <span style="font-size:19px">Sort Wall - About me list</span><br/><br/>
+ <h6> $ Drag and sort 'About' List  </h6>
+ <ul class="sortable">
+   <% arr = current_user.wall.nil? ? [] : current_user.wall.wall_details.asc(:priority) %>
+   <% arr.each  do |detail| %>
+     <span class="span_content" >
+       <li id= "<%= detail.id %>" class="set_bend">
+         <a class="anchor">{drag}</a>
+          <%= detail.title %>
+       </li>
+     </span>
+   <% end %>
+ </ul>
+
+
+
