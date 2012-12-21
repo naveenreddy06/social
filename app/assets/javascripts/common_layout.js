@@ -28,15 +28,10 @@ myHeight = document.body.clientHeight;
 
 function adjust_td() {
   
-  $("[leftPanel=true]").each(function() {	
-    $(this).attr('style', 'min-height:' + (parseInt(myHeight) - 140) + 'px;' + 'max-height:' + (parseInt(myHeight) - 140) + 'max-width:' + '251px;'+ 'min-width:' + '250px;' );
-    $(this).attr('class', 'hero-unit boxscroll');
+  $("[adjustTd=true]").each(function() {	
+    $(this).attr('style', 'min-height:' + (parseInt(myHeight) - 140) + 'px;' + 'max-height:' + (parseInt(myHeight) - 140));
   });
 
-  $("[adjustHeight=true]").each(function() {	
-    $(this).attr('style', 'min-height:' + (parseInt(myHeight) - 140) + 'px;' + 'max-height:' + (parseInt(myHeight) - 140) + 'px;' );
-    $(this).attr('class', 'hero-unit boxscroll');
-  });
 
 
 }

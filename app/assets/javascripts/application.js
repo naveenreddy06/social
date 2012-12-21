@@ -16,7 +16,6 @@
 //= require jquery.ui.datepicker
 //= require jqtimepicker
 //= require jquery.tokeninput
-//= require slides.min.jquery
 //= require jquery.colorbox-min
 //= require jquery.fullscreenr
 //= require jquery.dd.min

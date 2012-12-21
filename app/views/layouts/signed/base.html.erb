@@ -4,20 +4,17 @@
     <title>Relay Fan</title>
     <%= stylesheet_link_tag    "bootstrap_and_overrides", :media => "all" %>
     <%= javascript_include_tag "application", "common_layout" %>
-    <%= render "bg_style" %>
   </head>
   <body>
     <div class="container-fluid">
      <div class="row-fluid">
-       <%= render "bg_image" %>
        <%= render "header" %>
-       <div class="span21">
-         <table>
+         <table class="span21 ">
            <tr>
-           <div class="span4"><td><%= render "signed/users/left_panel" %></td></div>
-           <div class="span16"><td><%= yield %></td></div></tr>
+	         <td class="span1"><%= render "left_panel" %></td>
+	         <td class="span5"><%= yield %></td>
+           </tr>
          </table>
-       </div>
      </div>
    </div>
   </body>
