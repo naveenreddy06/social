@@ -25,7 +25,8 @@ function reset_all_icons() {
 });
 
 </script>
-<% display_name = current_user.display_name.blank? ? current_user.first_name.capitalize + " "+ current_user.last_name.capitalize : current_user.display_name.capitalize %>
+   <div  class="hero-unit"  adjustTd=true>
+    <% display_name = current_user.display_name.blank? ? current_user.first_name.capitalize + " "+ current_user.last_name.capitalize : current_user.display_name.capitalize %>
     <%= link_to display_name, "#" %>
 
     <div class="accordion" id="accordion2">
@@ -108,6 +109,6 @@ function reset_all_icons() {
 	    </div>
       </div>
     </div>
-
+   </div>
 
 
