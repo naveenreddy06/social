@@ -1,0 +1,25 @@
+<div class="hero-unit" adjustTd=true>
+   <div class="row-fluid">
+	  <div class="span11">
+		<div class="row-fluid">
+		  <div class="span6">
+	        <%= image_tag feed.user.profile_image_thumb %>
+	      </div>
+	      <div class="span13">
+	        <% display_name = feed.user.display_name.blank? ? feed.user.first_name.capitalize + " "+ current_user.last_name.capitalize : feed.user.display_name.capitalize %>
+	         <%= link_to display_name, "#", :style => "" %><br>
+	         <% if feed.created_at.to_date == Date.today %>
+	           <%= feed.created_at.strftime("%l:%M%p").to_s %>
+	         <% elsif feed.created_at.to_date == Date.today-1 %>
+	           <%= feed.created_at.strftime("Yesterday %l:%M%p").to_s %>
+	         <% else %>
+	           <%= feed.created_at.to_date.strftime("%b %d, %Y").to_s %>
+	         <% end %>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="span10">
+	    <%= render "feed_controls", :feed => feed %>
+	  </div>
+   </div>
+</div>
