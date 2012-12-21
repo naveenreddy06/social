@@ -12,7 +12,7 @@
            <div id="account_<%= cnt %>" class="accordion-body collapse">
              <div class="accordion-inner">
                <% account_setting_hash[ky].each do |val| %>
-                 <small><a href="?form_type=<%= val.downcase %>"><%= val %></a></small><br/>
+                 <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
                <% end %>
              </div>
            </div>
