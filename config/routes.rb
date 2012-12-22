@@ -16,10 +16,9 @@ Relayfan::Application.routes.draw do
   namespace :signed do
     resources :users, :except => [:new, :create, :edit] do
      collection do
-      get "manage", "account_form", "edit_detail", "hide_wall_detail", "delete", "set_order", "destroy_image"
-      post "add_walls"
-      put "add_walls"
-      put "add_photos"
+      get "manage", "account_form", "edit_detail", "hide_wall_detail", "delete", "set_order", "destroy_image", "edit_category", "delete"
+      post "add_walls", "add_category_title"
+      put "add_walls", "add_photos", "add_category_title"
      end
     end
     resources :feeds

@@ -12,8 +12,10 @@ class Signed::UsersController < Signed::BaseController
   end
 
   def manage
-
-       @wall_detail = WallDetail.new
+   @wall_detail = WallDetail.new
+   if params[:form_type] == "manage_connections"
+     @connection = Connection.new
+   end
 
     if request.headers['X-PJAX']
         render :layout => false
@@ -101,6 +103,35 @@ class Signed::UsersController < Signed::BaseController
   #======== End Chronicle =======================
 
   #========= Connection management ==============
+  def add_category_title
+    begin
+     @connection = current_user.connections.where("_id" => params[:id]).first
+       if @connection
+  	 @connection.update_attributes(params[:connection])
+       else
+        @connection = current_user.connections.create(params[:connection])
+        current_user.save
+       end
+     @connection = Connection.new
+    rescue
+     render :nothing => true
+   end
+  end
 
+  def edit_category
+    @connection = current_user.connections.where("_id" => params[:id]).first
+    render :action => :add_category_title
+  end
+
+  def delete
+    @connection = current_user.connections.where("_id" => params[:id]).first
+    if @connection and (params[:type] == "hide")
+      @connection.update_attributes(:hidden => true)
+    else
+      @connection.update_attributes(:hidden => false)
+    end
+    @connection = Connection.new
+      render :action => :add_category_title
+  end
   #======== End Connection ======================
 end

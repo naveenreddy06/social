@@ -1,0 +1,27 @@
+<div id="edit_category_title">
+ <table border="2" class="tab">
+   <tr>
+     <th><div style="background-color:rgb(188,209,245)">Title &nbsp; &nbsp; &nbsp;</div></th>
+     <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
+   </tr>
+
+  <% (current_user.connections.nil? ? [] : current_user.connections).each do |connection| %>
+   <tr>
+     <div id="category_id">
+       <td><span class="span_content" > <%=connection.category_title %></span></td>
+      <td>
+          <%=link_to "Rename",edit_category_signed_users_path(:id => connection.id, :partial_name => "manage_connections"),:remote => true, :class => "common_link_font" %>
+          <% if connection.hidden %>
+            <%=link_to "show","#", :onclick => "delete_detail(this, 'show')", :id => connection.id, :class => "common_link_font" %>
+          <% else %>
+           <%=link_to "Hide","#", :onclick => "delete_detail(this, 'hide')", :id => connection.id, :class => "common_link_font" %>
+          <% end %>
+      </td>
+      </div>
+   </tr>
+   <% end %>
+ </table>
+</div>
+
+
+
