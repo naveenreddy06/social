@@ -1,0 +1,47 @@
+<div class="hero-unit" adjustTd=true>
+  <span  style="color:#1B7AE0;font-weight:bold">
+    <% if @user.display_name.blank? %>
+      <%= @user.first_name.capitalize + " " + @user.last_name.capitalize %>
+    <% else %>
+      <%= @user.display_name.capitalize %>
+    <% end %>
+  </span></br></br>
+
+  <div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+      <% if @user.banner_images.count == 0 %>
+        <div class="active item">
+          <img src="/img/default_banner_image.jpg" />
+        </div>
+      <% else %>
+        <% @user.banner_images.each do |bi| %>
+          <div class="item">
+            <%= image_tag bi.banner_image_url(:banner_image) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+             <!-- Carousel nav -->
+             
+         <a  href="#myCarousel" data-slide="prev">&lsaquo; </a>
+         <a  href="#myCarousel"  data-slide="next">&rsaquo;</a>
+  </div>
+
+                                
+  <div>About me</div>
+  <table>
+    <% @details = @user.wall.nil? ? [] : @user.wall.wall_details.asc(:priority) %>
+    <% @details.each do |detail| %>
+      <% unless detail.hidden and @user.id != current_user.id %>
+        <tr>
+         <td><%= detail.title %></td>
+         <td><%= detail.details %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+                
+</div>
+
+
+ 
