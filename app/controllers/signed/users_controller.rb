@@ -71,8 +71,27 @@ class Signed::UsersController < Signed::BaseController
     end
    end
     render :nothing => true
- end
+  end
 
+  def add_photos
+    if current_user.update_attributes(params[:user])
+     flash[:notice] = "updated"
+    else
+     # Put flash[:error] if required.
+    end
+    render :action =>  :add_walls
+  end
+
+  def destroy_image
+    image = ''
+    if params[:img_type] == "banner"
+      image = BannerImage.where("_id" => params[:id])
+    elsif params[:img_type] == "profile"
+      image = ProfileImage.where("_id" => params[:id])
+    end
+    image.destroy
+    render :action =>  :add_walls
+  end
   #========= Circle management ==================
 
   #======== End Circle ==========================
