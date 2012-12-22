@@ -9,7 +9,7 @@
 
   <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner">
-      <% if @user.banner_images.count == 0 %>
+      <% if @user.banner_images.count != 0 %>
         <div class="active item">
           <img src="/img/default_banner_image.jpg" />
         </div>
@@ -26,17 +26,22 @@
          <a  href="#myCarousel" data-slide="prev">&lsaquo; </a>
          <a  href="#myCarousel"  data-slide="next">&rsaquo;</a>
   </div>
+
+                                
+  <div>About me</div>
+  <table>
+    <% @details = @user.wall.nil? ? [] : @user.wall.wall_details.asc(:priority) %>
+    <% @details.each do |detail| %>
+      <% unless detail.hidden and @user.id != current_user.id %>
+        <tr>
+         <td><%= detail.title %></td>
+         <td><%= detail.details %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+                
 </div>
 
 
- <table class="noborder span15">
-   <%  @details = @user.wall.nil? ? [] : @user.wall.wall_details.asc(:priority) %>
-        <% @details.each do |detail| %>
-         <% unless detail.hidden and @user.id != current_user.id %>
-          <tr>
-            <td valign="top" style="min-width:150px;color:grey;font-weight:bold"> <span class="span_content"><%= detail.title %></span></td>
-            <td style="font-style:normal;color:black;text-align:justify"> <span class="span_content"><%= detail.details %></span></td>
-          </tr>
-         <% end %>
-        <% end %>
-       </table>
+ 
