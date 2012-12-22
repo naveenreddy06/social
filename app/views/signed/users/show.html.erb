@@ -9,7 +9,7 @@
 
   <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner">
-      <% if @user.banner_images.count != 0 %>
+      <% if @user.banner_images.count == 0 %>
         <div class="active item">
           <img src="/img/default_banner_image.jpg" />
         </div>
