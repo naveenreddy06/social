@@ -130,8 +130,31 @@ class Signed::UsersController < Signed::BaseController
     else
       @connection.update_attributes(:hidden => false)
     end
-    @connection = Connection.new
-      render :action => :add_category_title
+
+    render :action => :add_category_title
   end
+
+
+  def block
+    if @friendrequest = UserFriend.where(:user_id => current_user.id , :friend_id => params[:id]).first
+      @friendrequest.update_attributes("block" => "true")
+    end
+    render :action => :add_category_title
+  end
+
+   def unblock
+     if @friendrequest = UserFriend.where(:user_id => current_user.id , :friend_id => params[:id]).first
+       @friendrequest.update_attributes("block" => nil)
+     end
+     render :action => :add_category_title
+  end
+
+  def connection_types
+    if @friendrequest = UserFriend.where(:user_id => current_user.id , :friend_id => params[:friend_id]).first
+       @friendrequest.update_attributes("connection_id" => params[:conn_id])
+    end
+    render :action => :add_category_title
+  end
+
   #======== End Connection ======================
 end
