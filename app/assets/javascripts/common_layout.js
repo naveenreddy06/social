@@ -9,3 +9,7 @@ function unifyHeights() {
 $(document).ready(function(){
     unifyHeights();
 });
+
+$(window).resize(function() {
+   unifyHeights();
+});
