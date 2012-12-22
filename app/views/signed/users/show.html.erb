@@ -1,0 +1,59 @@
+<div class="hero-unit" adjustTd=true>
+  <span  style="color:#1B7AE0;font-weight:bold">
+    <% if @user.display_name.blank? %>
+      <%= @user.first_name.capitalize + " " + @user.last_name.capitalize %>
+    <% else %>
+      <%= @user.display_name.capitalize %>
+    <% end %>
+  </span></br></br>
+
+  <div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+      <% if @user.banner_images.count == 0 %>
+        <div class="active item">
+          <img src="/img/default_banner_image.jpg" />
+        </div>
+      <% else %>
+        <div class="active item">
+            <%= image_tag @user.banner_images.first.banner_image_url(:banner_image) %>
+         </div>
+         <% count = 0 %>
+         <% @user.banner_images.each do |bi| %>
+           <% count += 1 %>
+           <% if count != 1 %>
+             <div class="item">
+               <%= image_tag bi.banner_image_url(:banner_image) %>
+             </div>
+           <% end %>
+          <% end %>
+      <% end %>
+    </div>
+             <!-- Carousel nav -->
+
+        <a  href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a  href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+
+  <div class="span6 offset11">
+    <% if @user != current_user %>
+      <%= render "signed/users/wall_user_follow_connect", :user => @user %>
+     <% end %>
+  </div><br><br><br>
+
+  <!-- hard coded max-width according to the image width -->
+  <div class="well well-small" style="max-width:800px;"><h6>My Social Factor</h6></div>
+  <div class="well well-small" style="max-width:800px;"><h6>About Me</h6></div>
+
+  <table>
+    <% @details = @user.wall.nil? ? [] : @user.wall.wall_details.asc(:priority) %>
+    <% @details.each do |detail| %>
+      <% unless detail.hidden and @user.id != current_user.id %>
+        <tr>
+         <td><h6><%= detail.title %>:</h6></td>
+         <td><%= detail.details %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+</div>
