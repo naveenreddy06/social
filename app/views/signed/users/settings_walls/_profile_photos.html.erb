@@ -1,0 +1,47 @@
+<%= javascript_include_tag "jquery.iframe-transport","jquery.remotipart" %>
+<%if current_user.banner_images.count <=  9 %>
+  <% current_user.banner_images.build %>
+<% end %>
+
+<%if current_user.profile_images.count == 0 %>
+  <% current_user.profile_images.build %>
+<% end %>
+
+<h4>Update Wall & Profile Photos</h4><br>
+  <h5> Add Wall photos</h5>
+ <%= simple_form_for current_user, :url => add_photos_signed_users_path, :remote => true do |user| %>
+  <div  style="background-color:#D3D3D3;min-width:800px;max-width:801px">
+    <h6> Add Wall Banner photo </h6>
+        <%= hidden_field_tag :partial_name, '', :value => "profile_photos" %>
+        <%= user.fields_for :banner_images do |bi| %>
+           <% if bi.object.new_record? %>
+
+               <% if current_user.banner_images.count == 0 %>
+                   <img  src="/img/default_banner_image_thumb.jpg"/>
+                   <%= bi.input :banner_image, :as => :file, label:false %>
+                <% else %>
+                  <%= bi.input :banner_image, :as => :file, label:false %>
+                <% end %>
+            <% else %>
+
+                <%= image_tag bi.object.banner_image_url(:banner_image_thumb) %>
+                <%= link_to "delete", destroy_image_signed_users_path(:id => bi.object.id, :img_type => "banner", :partial_name => "profile_photos") , :remote => true, :class => "common_link_font" %><br>
+           <% end %>
+        <% end %>
+  </div><br><br>
+
+   <div  style="background-color:#D3D3D3;min-width:800px;max-width:801px;">
+     <h6> Add Profile photo </h6>
+       <%= user.fields_for :profile_images do |pi| %>
+         <% if pi.object.new_record? %>
+              <img  src="/img/default_profile_image_thumb.jpg"/>
+              <%= pi.input :profile_image, :as => :file, label:false %>
+         <% else %>
+             <%= image_tag pi.object.profile_image_url(:profile_image_thumb) %>
+             <%= link_to "delete", destroy_image_signed_users_path(:id => pi.object.id, :img_type => "profile", :partial_name => "profile_photos") ,:remote => true, :class => "common_link_font" %><br>
+         <% end %>
+       <% end %>
+   </div><br>
+
+  <%= user.submit 'Upload',:class => 'btn-primary' %>
+  <% end %>
