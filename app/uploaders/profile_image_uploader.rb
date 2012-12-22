@@ -1,5 +1,3 @@
-require 'open-uri'
-require "digest/md5"
 require 'carrierwave/processing/mini_magick'
 class ProfileImageUploader < CarrierWave::Uploader::Base
 include CarrierWave::MiniMagick
@@ -7,7 +5,7 @@ include CarrierWave::MiniMagick
   storage :file
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   process :convert => 'png'

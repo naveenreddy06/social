@@ -1,0 +1,20 @@
+<% begin %>
+ <%= feed.deal_image.nil? ? "" : (image_tag feed.deal_images) %>
+   <% rescue %>
+      <span class="span_content">....Photo not found or removed at source..or Check URL..</span>
+<% end %>
+ 
+  <small style="font-size:100%;" >
+  	<table>
+  		<tr>
+        <td>
+          <span style="color:red;"><%= "$" + feed.feed_hash["deal_sale_price"] %>
+        </span>&nbsp;&nbsp;</td>
+      <td><span style="background-color:red;">
+          <a class="deal" href='<%= "http://"+feed.feed_hash["deal_sale_link"].gsub("http://","") %>' target='_blank'>Get Deal</a><span></td>
+      <td>&nbsp;&nbsp;<%= "expires: "+feed.feed_hash["deal_date"] %></td>
+    </tr>
+	</table>
+</small>
+
+</span>

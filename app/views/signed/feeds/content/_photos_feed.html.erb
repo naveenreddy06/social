@@ -1,0 +1,23 @@
+<script>
+$(document).ready(function(){
+				//Examples of how to assign the ColorBox event to elements
+				$(".group1").colorbox({rel:'group1'});
+
+
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+</script>
+<% begin %>
+  	<p>
+	  <a class="group1" href="<%= feed.feed_zooms %>" >
+		 <%= feed.feed_image.nil? ? "" : (image_tag feed.feed_images) %>
+	  </a>
+	</p>
+   <% rescue %>
+     <span class="span_content"> Photo not found or removed at source.</span>
+<% end %>
+<br>
