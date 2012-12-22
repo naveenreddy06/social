@@ -1,3 +1,10 @@
-<div class="span4 hero-unit" adjustHeight="true">
-	<%= render "left_panel" %>
-</div>
+<script>
+  toggleContent = function(){
+    	
+  }
+</script>
+
+<td id="feed_form"><%= render "feed_form", :feed => @feed %></td>
+<% @feeds.each do |feed| %>
+  <td style="min-width: 360px; min-width: 361px;"><%= render "feed", :feed => feed %></td>
+<% end %>

@@ -1,0 +1,8 @@
+<% begin %>
+    <% OEmbed::Providers.register_all %>
+    <% res = OEmbed::Providers.get(feed.feed_hash["video"], {:maxwidth => 360, :maxheight => 300}) %>
+    <%= res.html.html_safe %>
+<% rescue %>
+       <span class="span_content">Video not found or removed at source.</span>
+<% end %>
+<br>

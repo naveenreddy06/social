@@ -1,0 +1,28 @@
+<div id="detail_table">
+  <table border="2" class="tab">
+    <tr>
+     <th><div style="background-color:rgb(188,209,245)">Title &nbsp; &nbsp; &nbsp;</div></th>
+     <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
+    </tr>
+    <% (current_user.wall.nil? ? [] : current_user.wall.wall_details.asc(:priority)).each do |walldetail| %>
+     <tr>
+       <div id="walldetail_id">
+         <td style="height:px;"><span class="span_content"><%= walldetail.title %></span>
+         </td>
+         <td>
+            <%=link_to "Edit", edit_detail_signed_users_path(:id => walldetail.id, :partial_name =>"edit_wall_profile"), :remote => true, :class => "common_link_font" %>
+            <% if walldetail.hidden %>
+             <%=link_to "Show", hide_wall_detail_signed_users_path(:wall_detail_id => walldetail.id, :type => 'show', :partial_name =>"edit_wall_profile"), :remote => true, :class => "common_link_font" %>
+            <% else %>
+             <%=link_to "Hide", hide_wall_detail_signed_users_path(:wall_detail_id => walldetail.id, :type => 'hide', :partial_name =>"edit_wall_profile"), :remote => true, :class => "common_link_font" %>
+            <% end %>
+            <%=link_to "Delete", "#", :onclick => "delete_detail(this)", :id => walldetail.id, :class => "common_link_font" %>
+         </td>
+       </div>
+     </tr>
+    <% end %>
+  </table>
+</div>
+
+
+

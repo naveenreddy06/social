@@ -131,11 +131,9 @@ class User
   end
 
   def profile_image_thumb
-   if self.profile_images.empty?
-      "/img/default_profile_image_thumb_small.jpg"
-   else
-    self.profile_images.last.profile_image_url(:profile_image_thumb_small)
-   end
+
+     "/img/default_profile_image_thumb_small.jpg"
+
   end
 
   def profile_image_thumb_small_chronicle
