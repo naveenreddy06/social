@@ -1,0 +1,11 @@
+<% begin %>
+  <%= feed.event_image.nil? ? "" : (image_tag feed.event_images) %>
+<% rescue %>
+  <span class="span_content"> Photo not found or removed at source.</span>
+<% end %>
+
+  <b style="color:#014F87;">Event:  </b>    <%= feed.feed_hash["event_name"] %><br>
+  <b style="color:#014F87;">Details: </b>   <%= feed.feed %> <br>
+  <b style="color:#014F87;">Event time:</b> <%= feed.feed_hash["event_date"] %>
+    <%= feed.feed_hash["event_time"]  %><br>
+  <b style="color:#014F87;">Location: </b>  <%= feed.feed_hash["event_location"] %><br>
