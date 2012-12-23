@@ -1,0 +1,15 @@
+<% @feed.build_feed_image %>
+<%= simple_form_for([:signed, @feed], :remote => true) do |f| %>
+  <%= f.input :feed, :as => :text, :placeholder => 'Share Whats new.....' , label:false, :input_html => {  :rows => 3, :style => "resize: none; width:260px " } %>
+  <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+  <%= f.input :feed_type_id, :as => :hidden, :input_html => {:value => @feed.feed_type_id} %>
+
+   <p style= "color:grey;font-weight:200;font-style:italic;display:inline;font-size:13px;">< Photos</p>
+
+   <%= f.fields_for :feed_image do |fi|
+        fi.input :feedimage,:as => :file,label:false
+       end %>
+
+    <%= render "feed_channels", :f => f %>
+<% end %>
+

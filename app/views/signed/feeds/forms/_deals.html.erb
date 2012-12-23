@@ -1,0 +1,33 @@
+<% @feed.build_deal_image %>
+<%= simple_form_for([:signed, @feed], :remote => true) do |f| %>
+  <%= f.input :feed, :as => :text, :placeholder => 'Share Whats new.....' , label:false, :input_html => {  :rows => 3, :style => "resize: none; width:260px " } %>
+  <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+     <%= f.fields_for :deal_image do |di|
+        di.input :dealimage,:as => :file,label:false
+       end %>
+        <%= f.input :feed_type_id, :as => :hidden, :input_html => {:value => @feed.feed_type_id} %>
+
+    <table>
+     <%= f.fields_for :feed_hash do |fh| %>
+     <tr><td><%= fh.input :deal_sale_price, :placeholder => '< Sale Price' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %></td>
+     </tr>
+
+     <tr><td> <%= fh.input :deal_sale_link, :placeholder => '< Sale Link' ,label:false,:input_html =>{:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %></td>
+     </tr>
+
+    <tr><td> <%= fh.input :deal_date, :placeholder => '< Deal Date' , label:false, :input_html => {:class => "datepicker",:style => "color:grey;font-weight:200;font-style:italic;font-size:13px;width:190px"} %></td>
+    </tr>
+   </table>
+   <% end %>
+
+  <%= render "feed_channels", :f => f %>
+<% end %>
+
+
+<script>
+ $(document).ready(function() {
+   $(".datepicker").datepicker();
+ });
+</script>
+
+
