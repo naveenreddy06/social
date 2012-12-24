@@ -1,0 +1,23 @@
+<div id="edit_circles_title">
+  <table border="2" class="tab">
+   <h5> $ Edit Circles <h5>
+   <tr>
+     <th><div style="background-color:rgb(188,209,245)">Name &nbsp; &nbsp; &nbsp;</div></th>
+     <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
+   </tr>
+   <% (current_user.circles.nil? ? [] : current_user.circles).each do |circle| %>
+    <tr>
+     <div id="circle_id">
+       <td><span class="span_content" ><%= circle.name %></span></td>
+      <td><%=link_to "Update",edit_circles_signed_users_path(:id => circle.id, :partial_name => "manage_circles"),:remote => true, :class => "common_link_font" %>
+         <% if circle.hidden %>
+            <%= link_to "Show", hide_circle_signed_users_path(:circle_id => circle.id, :partial_name=>"manage_circles", :type => "Manage Circles", :circle_type => "show"),:remote => true, :class => "common_link_font" %>
+         <% else %>
+           <%= link_to "Hide", hide_circle_signed_users_path(:circle_id => circle.id, :partial_name=>"manage_circles", :type => "Manage Circles", :circle_type => "hide"),:remote => true, :class => "common_link_font" %>
+         <% end %>
+       </td>
+      </div>
+   </tr>
+   <% end %>
+  </table>
+</div>
