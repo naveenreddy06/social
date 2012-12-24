@@ -1,0 +1,21 @@
+<div id="edit_circle_details">
+  <table border="2" class="tab">
+   <h5> $ Basic Information <h5>
+   <tr>
+     <th><div style="background-color:rgb(188,209,245)">Title</div></th>
+     <th><div style="background-color:rgb(188,209,245)">Details </div></th>
+     <th><div style="background-color:rgb(188,209,245)">Actions</div></th>
+   </tr>
+   <% (@circle.circle_details.nil? ? [] : @circle.circle_details.asc(:priority)).each do |cd| %>
+    <tr id ="<%= cd.id %>">
+     <div id="circle_id">
+       <td><span class="span_content" ><%= cd.title %></span></td>
+       <td><span class="span_content" ><%= cd.details %></span></td>
+       <td><%= link_to "Update", get_circle_signed_users_path(:id => cd.id, :circle_id => @circle.id , :partial_name => "circle_info"), :remote => true, :class => "common_link_font" %>
+           <%= link_to 'Destroy',"#", :onclick => "delete_row('#{cd.id}', '#{@circle.id}');", :class => "common_link_font" %>
+       </td>
+      </div>
+   </tr>
+   <% end %>
+  </table>
+</div>
