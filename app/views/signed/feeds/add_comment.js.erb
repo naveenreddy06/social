@@ -1,0 +1,8 @@
+$("#new_comment_<%= @comment.feed.id %>").replaceWith("<tr id='new_comment_<%= @comment.feed.id %>'></td><td><%= escape_javascript(render 'comment', :comment => @comment ) %></tr>");
+
+$("#comment_<%= @comment.feed.id %>").attr('value', '');
+
+$("#comments_count_<%= @feed.id %>").replaceWith("<div id='comments_count_<%= @feed.id %>'><%= escape_javascript(render('comments_count', :feed => @feed)) %></div>");
+$("#comment_div").css({"border":"1px solid silver", "background-color":"rgb(231,235,242)", "height":"auto","width":"auto"});
+
+

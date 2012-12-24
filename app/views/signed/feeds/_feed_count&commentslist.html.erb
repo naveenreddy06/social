@@ -1,0 +1,26 @@
+
+  <div class="row-fluid" style="overflow : hidden;">
+      <div class="span20">
+        <div id = "comments_count_<%= feed.id %>">
+         <%= render "comments_count", :feed => feed %>
+        </div>
+              <% if feed.comments.count > 0 %>
+        <div class="hero-unit" style="background-color:rgb(231,235,242); height:auto;">
+              <% else %>
+            <div id="comment_div" class="hero-unit" >
+              <% end %>
+              <div class="row-fluid">
+                <div class="span21">
+                  <table>
+                    <tr id="new_comment_<%= feed.id %>">
+                    </tr>
+                    <% feed.comments.reverse.each do |comment| %>
+                    <%= render "comment", :comment => comment %>
+                    <% end %>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
