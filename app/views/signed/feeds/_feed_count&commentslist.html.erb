@@ -7,7 +7,7 @@
               <% if feed.comments.count > 0 %>
         <div class="hero-unit" style="background-color:rgb(231,235,242); height:auto;">
               <% else %>
-            <div id="comment_div" class="hero-unit;" >
+            <div id="comment_<%=feed.id %>" class="hero-unit;" >
               <% end %>
               <div class="row-fluid">
                 <div class="span21">

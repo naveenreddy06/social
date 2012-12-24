@@ -46,10 +46,10 @@
   function onComment(e,feed_id) {
   var key = (window.event) ? e.which : e.keyCode;
 
-    if (key == 13 && $("#comment_" + feed_id).val() != '' ) {
+    if (key == 13 && $("#comment_empty" + feed_id).val() != '' ) {
      $.ajax({
       url: "feeds/add_comment",
-      data: {feed_id:feed_id, comment:$("#comment_" + feed_id).val() },
+      data: {feed_id:feed_id, comment:$("#comment_empty" + feed_id).val() },
       dataType: 'script'
      });
         return false;
