@@ -21,9 +21,9 @@ Relayfan::Application.routes.draw do
       put "add_walls", "add_photos", "add_category_title"
      end
     end
-    resources :feeds do 
+    resources :feeds do
       collection do
-        get "fetch_form", "fetch_friends"
+        get "fetch_form", "fetch_friends", "add_comment", "cool", "favourite"
       end
     end
   end

@@ -9,10 +9,15 @@
 	        <%= render "feed_header", :feed => feed %>
 	      </div>
 	    </div><br>
-	    <%= render "feed_content", :feed => feed %>
 	  </div>
 	  <div class="span10">
 	    <%= render "feed_controls", :feed => feed %>
 	  </div>
+
    </div>
+   <%= render "feed_content", :feed => feed %><br>
+   <%= render "wow_pin_share",:feed => feed %>
+   <%= render "feed_comment", :feed => feed %>
+   <%= render "feed_count&commentslist", :feed => feed %>
+
 </div>
