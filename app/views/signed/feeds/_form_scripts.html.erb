@@ -46,10 +46,10 @@
   function onComment(e,feed_id) {
   var key = (window.event) ? e.which : e.keyCode;
 
-    if (key == 13 && $("#comment_" + feed_id).val() != '' ) {
+    if (key == 13 && $("#comment_empty" + feed_id).val() != '' ) {
      $.ajax({
-      url: "/feeds/add_comment",
-      data: {feed_id:feed_id, comment:$("#comment_" + feed_id).val() },
+      url: "feeds/add_comment",
+      data: {feed_id:feed_id, comment:$("#comment_empty" + feed_id).val() },
       dataType: 'script'
      });
         return false;
@@ -61,7 +61,7 @@
 
  function onCool(feed_id) {
     $.ajax({
-      url: "/feeds/cool",
+      url: "feeds/cool",
     data: {feed_id:feed_id },
       dataType: 'script'
     });
@@ -69,7 +69,7 @@
 
    function onFav(feed_id) {
     $.ajax({
-      url: "/feeds/favourite",
+      url: "feeds/favourite",
     data: {feed_id:feed_id, type:"feed" },
       dataType: 'script'
     });

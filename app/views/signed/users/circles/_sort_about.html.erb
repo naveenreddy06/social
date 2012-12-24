@@ -1,0 +1,43 @@
+<%= javascript_include_tag "jquery.sortable" %>
+<script>
+    var circle_id = "<%= @circle.id %>";
+    $('.sortable').sortable({
+      connectWith: '.connected'
+    });
+
+    $('.set_bend').mouseleave(function() {
+     setOrder();
+    });
+
+    setOrder = function() {
+      arr = [];
+    $('.set_bend').each(function() {
+        arr.push($(this).attr("id"));
+      });
+
+    $.ajax({
+      url: "/signed/users/set_order",
+      data: {new_order : arr, circle_id : circle_id },
+      dataType: 'script'
+      });
+    };
+
+</script>
+
+   <h3>Circle Title-Sort 'About me' List</h3><br/><br/>
+   <h5> $ Drag and sort 'About' List  </h5>
+   <ul class="sortable">
+     <% arr = @circle.circle_details.nil? ? [] : @circle.circle_details.asc(:priority) %>
+     <% arr.each  do |detail| %>
+       <span class="span_content" >
+         <li id= "<%= detail.id %>" class="set_bend">
+          <a class="anchor">{drag}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= detail.title %>
+         </li>
+       </span>
+   <% end %>
+   </ul>
+
+
+
+

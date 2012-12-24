@@ -1,0 +1,26 @@
+<div id= "title_detail">
+
+  <table class="table table-condensed">
+    <tr>
+      <th>Name </th>
+      <th>Action</th>
+    </tr>
+    <% @user_circles.each do |uc| %>
+      <tr>
+        <td>
+           <span class="span_content" ><%= image_tag uc.user.profile_image_thumb %><%= image_tag uc.user.first_name %></span>
+        </td>
+        <% if uc.approve and !uc.reject %>
+         <td>
+           <%= link_to "Approve", approve_user_signed_users_path(:id => uc.id, :circle_id => uc.circle_id), :class => "btn btn-success btn-mini", :remote => true %>
+           <%= link_to "Reject", reject_user_signed_users_path(:id => uc.id, :circle_id => uc.circle_id), :class => "btn btn-danger btn-mini", :remote => true %>
+         </td>
+        <% else %>
+         <td>
+           <%= link_to "Delete", delete_user_signed_users_path(:id => uc.id, :circle_id => uc.circle_id), :class => "btn btn-danger btn-mini", :remote => true %>
+         </td>
+        <% end %>
+      </tr>
+     <% end %>
+  </table>
+</div>

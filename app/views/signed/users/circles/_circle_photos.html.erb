@@ -1,0 +1,51 @@
+<%= javascript_include_tag "jquery.iframe-transport","jquery.remotipart" %>
+<%if @circle.circle_images.count <= 9 %>
+     <% @circle.circle_images.build %>
+<% end %>
+
+<%if @circle.circle_profile_images.count == 0 %>
+     <% @circle.circle_profile_images.build %>
+<% end %>
+
+
+<%= simple_form_for @circle, :url => add_circle_photos_signed_users_path(:id => @circle), :remote => true do |circle| %>
+   <div  style="background-color:#D3D3D3;min-width:800px;max-width:801px">
+      <h6>$ Add Wall Banner <h6>
+     <table class="noborder">
+         <%= circle.fields_for :circle_images do |ci| %>
+           <% if ci.object.new_record? %>
+               <% if @circle.circle_images.count == 0 %>
+                 <tr>
+                   <td><img  src="/img/default_banner_image_thumb.jpg"></td>
+                   <td><%= ci.input :circle_image, :as => :file, label:false %></td>
+                 </tr>
+                <% else %>
+                   <%= ci.input :circle_image, :as => :file, label:false %>
+                <% end %>
+            <% else %>
+
+                <%= image_tag ci.object.circle_image_url(:circle_image_thumb) %>
+                <%=link_to "delete", destroy_image_signed_users_path(:id => ci.object.id, :circle_id => @circle.id , :img_type => "circle_image") , :remote => true, :class => "common_link_font" %><br>
+            <% end %>
+           <% end %>
+       </table>
+      </div><br><br>
+     <div  style="background-color:#D3D3D3;min-width:800px;max-width:801px;">
+        <h6>$ Add Wall Profile <h6>
+        <table class="noborder">
+          <%= circle.fields_for :circle_profile_images do |cpi| %>
+           <% if cpi.object.new_record? %>
+             <tr>
+              <td><img  src="/img/default_profile_image_thumb.jpg"></td>
+              <td><%= cpi.input :circle_profile_image, :as => :file, label:false %></td>
+             </tr>
+           <% else %>
+            <%= image_tag cpi.object.circle_profile_image_url(:circle_profile_image_thumb) %>
+            <%=link_to "delete", destroy_image_signed_users_path(:id => cpi.object.id, :circle_id => @circle.id, :img_type => "circle_profile_image")  , :remote => true, :class => "common_link_font" %>
+           <% end %>
+          <% end %>
+        </table>
+   </div><br>
+    <%= circle.submit 'Upload'%>
+   <% end %>
+
