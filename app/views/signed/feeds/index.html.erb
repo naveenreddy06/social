@@ -1,5 +1,5 @@
 <%= render "form_scripts" %>
-<script>
+ <script>
  $(document).ready(function(){
   chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
   circleId = "<%= @circle ? @circle.id : '' %>";
@@ -10,9 +10,9 @@
  });
 </script>
 
-<td id="minTd"><%= render "max_post" %></td>
-<td id="formTd" style="display : none"><%= render "feed_type" %></td>
-<td style="display : none" id="new_td"></td>
-<% @feeds.each do |feed| %>
+ <td id="minTd"><%= render "max_post" %></td>
+ <td id="formTd" style="display : none"><%= render "feed_type" %></td>
+ <td style="display : none" id="new_td"></td>
+ <% @feeds.each do |feed| %>
   <td style="min-width: 360px; max-width: 361px;"><%= render "feed", :feed => feed %></td>
-<% end %>
+ <% end %>
