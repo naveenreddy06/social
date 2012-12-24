@@ -243,6 +243,15 @@ class Signed::UsersController < Signed::BaseController
     @user_circles = UserCircle.where(:circle_id => params[:circle_id], :admin => false, :reject => false)
     render :action => :get_members
   end
+
+  def unjoin_user
+    @circle = Circle.where("_id" => params[:circle_id]).first
+    @user_circle = UserCircle.where(:circle_id => @circle.id , :user_id => current_user.id).first
+    if @user_circle
+       @user_circle.destroy
+    end
+    session_circles
+  end
   #======== End Circle ==========================
 
   #========= Chronicle management ===============

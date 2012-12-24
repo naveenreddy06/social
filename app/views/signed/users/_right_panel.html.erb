@@ -18,6 +18,8 @@
      render "signed/users/circles/manage_circles"
    when "circle_info"
      render "signed/users/circles/circle_info"
+   when "Other's Circle Edit"
+     render "shared/unfollow_other_circles"
    else
      render "signed/users/manage_forms/general"
    end

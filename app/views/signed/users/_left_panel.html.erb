@@ -12,12 +12,17 @@
            <div id="account_<%= cnt %>" class="accordion-body collapse">
              <div class="accordion-inner">
                <% account_setting_hash[ky].each do |val| %>
-                 <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
-                  <% if ky == "Manage Circles" && val == "Other's Edit" %>
+                 <% case ky.to_s + " " + val.to_s %>
+                  <% when "Manage Circles Other's Edit" %>
+                     <small><a href="?form_type=Other's Circle Edit"><%= val %></a></small><br/>
                     <% current_user.circles.each do |c| %>
 	              <small><a href="?form_type=circle_info&id=<%= c.id %>"><%= c.name %></a></small><br>
                     <% end %>
-                  <% end %>
+                  <% when "manage_chronicles Other's Edit" %>
+                     <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
+                  <% else %>
+                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
+                <% end %>
                <% end %>
              </div>
            </div>
