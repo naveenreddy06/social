@@ -17,4 +17,8 @@ class Signed::FeedsController < Signed::BaseController
      @circle = Circle.where("_id" => params[:circle_id]).first if params[:circle_id].present?
   end
   
+  def fetch_friends
+    @friends = current_user.my_friends.collect{|f| [f.id, f.first_name ]}
+  end
+  
 end
