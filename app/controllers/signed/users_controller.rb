@@ -13,8 +13,11 @@ class Signed::UsersController < Signed::BaseController
 
   def manage
    @wall_detail = WallDetail.new
-   if params[:form_type] == "manage_connections"
+   case params[:form_type] 
+    when "manage_connections"
      @connection = Connection.new
+    when "manage_circles"
+     @circle = Circle.new
    end
 
     if request.headers['X-PJAX']
@@ -95,6 +98,36 @@ class Signed::UsersController < Signed::BaseController
     render :action =>  :add_walls
   end
   #========= Circle management ==================
+  def add_circles_title
+   begin
+     @circle = current_user.circles.where("_id" => params[:id]).first
+     if @circle
+      @circle.update_attributes(params[:circle])
+     else
+      @circle = current_user.circles.create(params[:circle])
+     end
+      @circle = Circle.new
+   rescue
+     render :nothing => true
+   end
+  end
+
+  def edit_circles
+    @circle = current_user.circles.where("_id" => params[:id]).first
+    render :action => :add_circles_title
+  end
+
+  def hide_circle
+    @circlehidden = Circle.find params[:circle_id]
+    @circle = Circle.new
+    @circle_detail = CircleDetail.new
+    if @circlehidden and (params[:circle_type] == "hide")
+      @circlehidden.update_attributes(:hidden => true)
+    else
+      @circlehidden.update_attributes(:hidden => false)
+    end
+    render :action => :add_circles_title
+  end
 
   #======== End Circle ==========================
 
