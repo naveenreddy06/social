@@ -1,0 +1,17 @@
+<script>
+  var current_id = '';
+
+  delete_detail = function(cid) {
+    $.ajax({
+      url: "/signed/users/delete_chronicle",
+      data: { edit_id : current_id, id : $(cid).attr('id') },
+      dataType: 'script'
+    });
+    $(cid).parent().parent().remove();
+  };
+</script>
+
+  <%=render :partial=>"signed/users/chronicles/create_chronicles"%>
+
+  <%=render :partial=>"signed/users/chronicles/edit_chronicles"%>
+

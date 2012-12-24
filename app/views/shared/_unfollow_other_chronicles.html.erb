@@ -1,0 +1,20 @@
+ <script>
+   function hide_chronicle(row_id){
+     $("#"+row_id).hide();
+   }
+ </script>
+
+ <h4>Manage Other Chronicle following settings</h4>
+ <table class="table table-condensed"  style="max-width:500px;">
+ 	<tr>
+   <th>Name</th>
+   <th> Unfollow </th>
+ </tr>
+  <% current_user.other_chronicles.each do |chronicle| %>
+    <tr id="row_<%= chronicle.id %>" >
+       <td style="min-width:300px;"><span class="span_content" ><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %><%= link_to chronicle.chronicle_title, "#" %></span></td>
+       <td><%= link_to "unfollow", unfollow_chronicle_signed_users_path(:id => chronicle.id, :user_id => current_user.id, :type => "unfollow"), :remote => true, :onClick => "hide_chronicle('row_#{chronicle.id}')", :class => "common_link_font" %></td>
+    </tr>
+  <% end %>
+ </table>
+
