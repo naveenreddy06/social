@@ -13,17 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require jquery.ui.datepicker
-//= require jqtimepicker
 //= require jquery.tokeninput
 //= require jquery.colorbox-min
 //= require jquery.fullscreenr
 //= require jquery.dd.min
 //=require jquery.pjax
 
-$(document).ready(function() {
-   $(".datepicker").datepicker();
-});
 
 
 

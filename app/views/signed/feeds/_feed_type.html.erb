@@ -4,24 +4,23 @@ $(document).ready(function() {
   $("#post_type_id_post_type").data("dd");
 });
 </script>
-
-<div class="hero-unit" id="span_post_type" adjustTd=true>
+<div class="hero-unit" id = "span_post_type" adjustTd=true>
     <div style = "width:300px;font-style:italic;color;font-size:14px; margin-bottom:15px;">Post Type:&nbsp;
         <select style = "width:150px;"class="post_type_drop" id="post_type_id_post_type" name="post_type_id[post_type]" onchange="fetch_form($(this).val())">
-         	<% @feed_types.each do |ft| %>
-	           <% case ft.post_type %>
-	             <% when "Update" %>
-	               <option value="<%= ft.id %>" data-image="/img/relayimg/update_feedpage.png"><%= ft.post_type %></option>
-	             <% when "Photos" %>
-	               <option value="<%= ft.id %>" data-image="/img/relayimg/photo_feedpage.png"><%= ft.post_type %></option>
-	             <% when "Videos" %>
-	               <option value="<%= ft.id %>" data-image="/img/relayimg/video_feedpage.png"><%= ft.post_type %></option>
-	             <% when "Events" %>
-	               <option value="<%= ft.id %>" data-image="/img/relayimg/event_feedpage.png"><%= ft.post_type %></option>
-	             <% when "Deals" %>
-	               <option value="<%= ft.id %>" data-image="/img/relayimg/deal.png"><%= ft.post_type %></option>
-	           <% end %>
-	         <% end %>
+         <% @feed_types.each do |ft| %>
+           <% case ft.post_type %>
+             <% when "Update" %>
+               <option value="<%= ft.id %>" data-image="/img/relayimg/update_feedpage.png"><%= ft.post_type %></option>
+             <% when "Photos" %>
+               <option value="<%= ft.id %>" data-image="/img/relayimg/photo_feedpage.png"><%= ft.post_type %></option>
+             <% when "Videos" %>
+               <option value="<%= ft.id %>" data-image="/img/relayimg/video_feedpage.png"><%= ft.post_type %></option>
+             <% when "Events" %>
+               <option value="<%= ft.id %>" data-image="/img/relayimg/event_feedpage.png"><%= ft.post_type %></option>
+             <% when "Deals" %>
+               <option value="<%= ft.id %>" data-image="/img/relayimg/deal.png"><%= ft.post_type %></option>
+           <% end %>
+         <% end %>
         </select>
       <img onclick="MinPost(this, 'minus.png')"  style="float:right;"src="/img/minus.png" /></img>
     </div>
