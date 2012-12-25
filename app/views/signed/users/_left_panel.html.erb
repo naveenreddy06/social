@@ -18,8 +18,8 @@
                     <% current_user.circles.each do |c| %>
 	              <small><a href="?form_type=circle_info&id=<%= c.id %>"><%= c.name %></a></small><br>
                     <% end %>
-                  <% when "manage_chronicles Other's Edit" %>
-                     <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
+                  <% when "Manage Chronicles Other's Edit" %>
+                     <small><a href="?form_type=Other's Chronicle Edit"><%= val %></a></small><br/>
                   <% else %>
                    <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
                 <% end %>

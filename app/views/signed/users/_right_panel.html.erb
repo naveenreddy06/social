@@ -20,6 +20,10 @@
      render "signed/users/circles/circle_info"
    when "Other's Circle Edit"
      render "shared/unfollow_other_circles"
+   when "manage_chronicles"
+     render "signed/users/chronicles/manage_chronicles"
+   when "Other's Chronicle Edit"
+     render "shared/unfollow_other_chronicles"
    else
      render "signed/users/manage_forms/general"
    end

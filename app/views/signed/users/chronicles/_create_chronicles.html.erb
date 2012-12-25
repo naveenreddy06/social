@@ -1,0 +1,23 @@
+<script>
+  current_id = '<%= @chronicle.id %>';
+  $('a[delete_id = "delete"]').each(function() {
+    alert(this)
+  });
+
+  $(document).ready(function() {
+   $(".datepicker").datepicker();
+ });
+
+</script>
+
+<div id = "create_chronicles_form">
+	<h3> Create & Edit Chronicle settings<h3>
+	<h5> $ Create New Chronicle<h5>
+		<%= simple_form_for @chronicle,:html => { :class => "form-horizontal" }, :url =>  add_chronicles_title_signed_users_path, :remote => true do |fd| %>
+       <%= fd.input :chronicle_title ,:id => "chronicle_title_id",:class => "field" %>
+       <%= fd.input :published_date,:as => :string,  :input_html => {:class => "datepicker"} %>
+       <%= fd.input :permission, :as => :select, :collection => [["Public",true],["Private", false]] ,:include_blank => false ,:label => "Permission settings"%>
+       <%= hidden_field_tag :id, '', :value => @chronicle.id %>
+       <%= fd.submit "Add",:class => 'btn-primary',:style => 'margin-left:180px;' %>
+<% end %>
+</div>

@@ -21,6 +21,8 @@ class Signed::UsersController < Signed::BaseController
     when "circle_info"
      @circle = Circle.where(:_id => params[:id].to_s).first
      @circle_detail = CircleDetail.new
+    when "manage_chronicles"
+     @chronicle = Chronicle.new
    end
 
     if request.headers['X-PJAX']
@@ -256,6 +258,41 @@ class Signed::UsersController < Signed::BaseController
 
   #========= Chronicle management ===============
 
+  def add_chronicles_title
+   begin
+     @chronicle = current_user.chronicles.where("_id" => params[:id]).first
+     if @chronicle
+      @chronicle.update_attributes(params[:chronicle])
+     else
+      @chronicle = current_user.chronicles.create(params[:chronicle])
+      current_user.save
+     end
+      @chronicle = Chronicle.new
+   rescue
+     render :nothing => true
+   end
+  end
+
+  def edit_chronicles
+    @chronicle = current_user.chronicles.where("_id" => params[:id]).first
+    render :action => :add_chronicles_title
+  end
+
+  def delete_chronicle
+    current_user.chronicles.where("_id" => params[:id]).first.destroy
+    @chronicle = Chronicle.new
+    if params[:edit_id] == params[:id]
+     render :action => :add_chronicles_title
+    else
+     render :nothing => true
+    end
+  end
+
+  def unfollow_chronicle
+    @chronicle = UserChronicle.where(:chronicle_id => params[:id], :user_id => params[:user_id]).first
+    @chronicle.destroy
+    session_user_chronicles
+  end
   #======== End Chronicle =======================
 
   #========= Connection management ==============
