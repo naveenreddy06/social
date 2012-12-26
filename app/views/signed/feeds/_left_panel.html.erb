@@ -69,14 +69,14 @@ function reset_all_icons() {
 	          <dd><small>
                <% current_user.my_circles.each do |circle| %>
                 <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
-                <span><%= link_to circle.name, '#', :class => "common_link_font" %></span><br>
+                <span><%= link_to circle.name, signed_feeds_path(:feed_type => "circle", :circle_id => circle.id ), :class => "common_link_font", :remote => true %></span><br>
                <% end %>
               <br></small></dd>
               <dt><small>Other's<br></small></dt>
               <dd><small>
                <% current_user.others_circles.each do |circle| %>
                 <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
-                <span><%= link_to circle.name, '#', :remote => true, :class => "common_link_font" %></span><br>
+                <span><%= link_to circle.name, signed_feeds_path(:feed_type => "circle", :circle_id => circle.id ), :remote => true, :class => "common_link_font" %></span><br>
               <% end %>
               </small></dd>
             </dl>

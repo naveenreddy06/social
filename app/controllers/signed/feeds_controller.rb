@@ -7,8 +7,12 @@ class Signed::FeedsController < Signed::BaseController
     @title = nil
     case params[:feed_type]
     when "latest_news_feeds"
-      @feeds = Feed.desc("created_at").where(:channels.in => session_all).limit(2).entries
+      @feeds = []
       @title = "Latest News Feed"
+    when "circle"
+      @circle = Circle.find(params[:circle_id])
+      @feeds = Feed.desc("created_at").where(:channels.in => [@circle.id.to_s]).entries
+      @title = @circle.name.capitalize
     else
       @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
     end      
