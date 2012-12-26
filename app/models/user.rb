@@ -131,9 +131,13 @@ class User
   end
 
   def profile_image_thumb
-
-     "/img/default_profile_image_thumb_small.jpg"
-
+   ret_image = ''
+   begin
+    ret_image = self.profile_images.last.profile_image_url(:profile_image_thumb_small)
+   rescue
+     ret_image = "/img/default_profile_image_thumb_small.jpg"
+   end
+   ret_image
   end
 
   def profile_image_thumb_small_chronicle
