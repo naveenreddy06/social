@@ -318,14 +318,14 @@ class Signed::UsersController < Signed::BaseController
     render :action => :add_category_title
   end
 
-  def delete
+  def delete_connection
     @connection = current_user.connections.where("_id" => params[:id]).first
     if @connection and (params[:type] == "hide")
       @connection.update_attributes(:hidden => true)
     else
       @connection.update_attributes(:hidden => false)
     end
-
+    @connection =  Connection.new
     render :action => :add_category_title
   end
 
