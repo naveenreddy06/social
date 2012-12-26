@@ -4,7 +4,14 @@ class Signed::FeedsController < Signed::BaseController
   before_filter :set_flashes_to_null, :check_authentication
 
   def index
-    @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
+    @title = nil
+    case params[:feed_type]
+    when "latest_news_feeds"
+      @feeds = Feed.desc("created_at").where(:channels.in => session_all).limit(2).entries
+      @title = "Latest News Feed"
+    else
+      @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
+    end      
     @feed_types = FeedType.all
   end
 
