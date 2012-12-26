@@ -1,1 +1,68 @@
+<script>
+  function get_favourites() {
+    $.ajax({
+      url: "/feeds/get_favourites",
+      dataType: 'script'
+    });
 
+  }
+</script>
+
+  <div class="span5">
+    <%= link_to(image_tag("/img/homepage_logo.png"), root_path) %>
+  </div>
+  <div class="span4">
+    <div class="btn-group">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+        <img src="/img/relayimg/nav_pin.png" />
+      </a>
+      <ul class="dropdown-menu" style="margin-top: -13px">
+        <% FeedType.all.each do |ft| %>
+          <li class="mainitem">
+            <%= link_to "#{ft.post_type}","#" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+      
+    <%= (current_user.messages.count > 0) ? (link_to image_tag("/img/relayimg/messages_new.png")) :  (link_to image_tag("/img/relayimg/messages_not_new.png")) %>
+    <div class="btn-group">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+        <img src="/img/relayimg/settings_default.png" />
+      </a>
+      <ul class="dropdown-menu" style="margin-top: -13px">
+        <li class="mainitem"><%= link_to "Account Settings"  %></li>
+        <li class="mainitem"><%= link_to "Privacy Settings"  %></li>
+        <li class="mainitem"><%= link_to "Walls", "#" %></li>
+        <li class="mainitem"><%= link_to "Feeds"  %></li>
+        <li class="divider"></li>
+        <li class="mainitem"><%= link_to "Log out","#"  %></li>
+      </ul>
+    </div>
+        
+    <%= (current_user.new_join_requests.count > 0) ? (link_to image_tag("/img/relayimg/join_request_new.png"),"#") :  (link_to image_tag("/img/relayimg/join_request_not_new.png")) %>
+  </div>
+  <div class="span5">    
+    <div class="btn-group">
+      <%= form_tag  do %>
+        <select name="model_type" style= "background-color:rgb(84,113,188);width:110px;border:0px;color:white" >
+          <option value="Feed" style= "background-color:rgb(84,113,188);color:white">Posts</option>
+          <option value="Circle" style= "background-color:rgb(84,113,188);color:white">Circles</option>
+          <option value="User" style= "background-color:rgb(84,113,188);color:white">Users</option>
+          <option value="Chronicle" style= "background-color:rgb(84,113,188);color:white">Chronicles</option>
+        </select>
+        <input type="text" name="keyword" placeholder="Search here.." />
+        <input type="image" src="/img/relayimg/search_icon.png" style="margin-left:-25px;margin-top:-10px;" onsubmit="submit-form();" />
+      <% end %>
+    </div>
+  </div>
+  <div class="span6">
+    <% if controller.controller_name == "feeds" or (controller.controller_name == "search_outresults") or (controller.controller_name == "join_requests") or (controller.controller_name == "messages") %>
+      <div id="feed_image" style="float: right; margin-left:5px; ">
+        <%= image_tag("/img/relayimg/feed.png") %> 
+      </div>
+      <div id = "user_select_item" style="float: right; color:white; ">Latest News Feed
+      </div>
+    
+    <% end %>
+  </div>
