@@ -30,17 +30,13 @@
    }
 
   function MinPost() {
-	 $("#minTd").attr("style", "display : block;");
-     $("#formTd").attr("style", "display : none;");
-
-     $("#new_post").show();
-     $("#span_post_type").hide();
+     $("#minTd").show();
+     $("#formTd").hide();
   }
 
   function MaxPost() {
-     $("#minTd").attr("style", "display : none;");
-     $("#formTd").attr("style", "display : block;");
-     $("#span_post_type").show();
+     $("#formTd").show();
+     $("#minTd").hide();
   }
 
   function onComment(e,feed_id) {
