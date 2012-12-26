@@ -269,7 +269,7 @@ class Signed::UsersController < Signed::BaseController
       @chronicle = current_user.chronicles.create(params[:chronicle])
       current_user.save
      end
-      @chronicle = Chronicle.new
+      @chronicle = @chronicle.errors.empty? ?  Chronicle.new : @chronicle
    rescue
      render :nothing => true
    end
@@ -307,7 +307,7 @@ class Signed::UsersController < Signed::BaseController
         @connection = current_user.connections.create(params[:connection])
         current_user.save
        end
-     @connection = Connection.new
+     @connection = @connection.errors.empty? ? Connection.new : @connection
     rescue
      render :nothing => true
    end
@@ -318,14 +318,14 @@ class Signed::UsersController < Signed::BaseController
     render :action => :add_category_title
   end
 
-  def delete
+  def delete_connection
     @connection = current_user.connections.where("_id" => params[:id]).first
     if @connection and (params[:type] == "hide")
       @connection.update_attributes(:hidden => true)
     else
       @connection.update_attributes(:hidden => false)
     end
-
+    @connection =  Connection.new
     render :action => :add_category_title
   end
 

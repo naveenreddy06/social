@@ -6,6 +6,7 @@
      <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
    </tr>
    <% (current_user.circles.nil? ? [] : current_user.circles).each do |circle| %>
+    <% unless circle.name.blank? %>
     <tr>
      <div id="circle_id">
        <td><span class="span_content" ><%= circle.name %></span></td>
@@ -17,7 +18,8 @@
          <% end %>
        </td>
       </div>
-   </tr>
+    </tr>
+    <% end %>
    <% end %>
   </table>
 </div>

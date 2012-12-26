@@ -11,16 +11,11 @@ class Chronicle
   field :published_date
   field :permission, :type => Boolean
 
-  validate :title_check
+  validates :chronicle_title, :presence => true
+  validates :published_date, :presence => true
+
   after_save :set_public
   after_destroy :remove_user_chronicle
-
-
-    def title_check
-      if self.chronicle_title.blank?
-        self.error("feed", "Nonsense")
-      end
-    end
 
     def to_indexed_json
         content = self.chronicle_title.to_s

@@ -51,7 +51,7 @@ $(document).ready(function(){
                <% account_setting_hash[ky].each do |val| %>
                  <% case ky.to_s + " " + val.to_s %>
                   <% when "Account Management General" %>
-                     <small><a href="?form_type=Other's Circle Edit" class="current-link" data-remote="true" link_id="clickable" gen_id="gen_click"><%= val %></a></small><br/>
+                     <small><a href="?form_type=general" class="current-link" data-remote="true" link_id="clickable" gen_id="gen_click"><%= val %></a></small><br/>
                   <% when "Manage Circles Other's Edit" %>
                      <small><a href="?form_type=Other's Circle Edit" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
                     <% current_user.circles.each do |c| %>

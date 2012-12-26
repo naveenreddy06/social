@@ -5,6 +5,7 @@
      <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
     </tr>
     <% (current_user.wall.nil? ? [] : current_user.wall.wall_details.asc(:priority)).each do |walldetail| %>
+     <% unless walldetail.title.blank? or walldetail.details.blank? %>
      <tr>
        <div id="walldetail_id">
          <td style="height:px;"><span class="span_content"><%= walldetail.title %></span>
@@ -20,6 +21,7 @@
          </td>
        </div>
      </tr>
+    <% end %>
     <% end %>
   </table>
 </div>
