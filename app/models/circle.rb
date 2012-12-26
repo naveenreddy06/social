@@ -15,9 +15,6 @@ class Circle
      has_many :circle_profile_images, validate: false
      accepts_nested_attributes_for :circle_profile_images, :reject_if => proc { |attributes| attributes['circle_profile_image'].blank? }
 
-
-
-
   #End Associations ----------------------------------------------------
 
   #Start attributes for circle form ------------------------------------
@@ -30,6 +27,12 @@ class Circle
     field :hidden, :type => Boolean, :default => false
 
   #End attributes for circle form --------------------------------------
+
+  #Start validations --------------------------------------------------
+
+   validates :name, :presence => true
+
+  #End validations -----------------------------------------------------
 
   #Start Callbacks -----------------------------------------------------
 

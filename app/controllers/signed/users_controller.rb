@@ -95,7 +95,7 @@ class Signed::UsersController < Signed::BaseController
     render :action =>  :add_walls
   end
 
-  def destroy_image
+  def destroy_wall_image
     image = ''
     if params[:img_type] == "banner"
       image = BannerImage.where("_id" => params[:id])
@@ -114,7 +114,7 @@ class Signed::UsersController < Signed::BaseController
      else
       @circle = current_user.circles.create(params[:circle])
      end
-      @circle = Circle.new
+      @circle = @circle.errors.empty? ? Circle.new : @circle
    rescue
      render :nothing => true
    end
@@ -163,7 +163,7 @@ class Signed::UsersController < Signed::BaseController
      else
        @circle_detail = CircleDetail.create(params[:circle_detail])
      end
-     @circle_detail = CircleDetail.new
+     @circle_detail = @circle_detail.errors.empty? ? CircleDetail.new : @circle_detail
      render :action => :add_circles_title
    rescue
      render :nothing => true
@@ -270,7 +270,7 @@ class Signed::UsersController < Signed::BaseController
       @chronicle = current_user.chronicles.create(params[:chronicle])
       current_user.save
      end
-      @chronicle = Chronicle.new
+      @chronicle = @chronicle.errors.empty? ?  Chronicle.new : @chronicle
    rescue
      render :nothing => true
    end
@@ -308,7 +308,7 @@ class Signed::UsersController < Signed::BaseController
         @connection = current_user.connections.create(params[:connection])
         current_user.save
        end
-     @connection = Connection.new
+     @connection = @connection.errors.empty? ? Connection.new : @connection
     rescue
      render :nothing => true
    end
@@ -319,14 +319,14 @@ class Signed::UsersController < Signed::BaseController
     render :action => :add_category_title
   end
 
-  def delete
+  def delete_connection
     @connection = current_user.connections.where("_id" => params[:id]).first
     if @connection and (params[:type] == "hide")
       @connection.update_attributes(:hidden => true)
     else
       @connection.update_attributes(:hidden => false)
     end
-
+    @connection =  Connection.new
     render :action => :add_category_title
   end
 

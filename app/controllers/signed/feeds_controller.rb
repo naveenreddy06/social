@@ -4,7 +4,24 @@ class Signed::FeedsController < Signed::BaseController
   before_filter :set_flashes_to_null, :check_authentication
 
   def index
-    @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
+    @title = nil
+    @status = false
+    case params[:feed_type]
+    when "latest_news_feeds"
+      @feeds = []
+      @title = "Latest News Feed"
+    when "circle"
+      @circle = Circle.find(params[:circle_id])
+      @feeds = Feed.desc("created_at").where(:channels.in => [@circle.id.to_s]).entries
+      @title = @circle.name.capitalize
+    when "chronicle"
+      @chronicle = Chronicle.find(params[:chronicle_id])
+      @feeds = Feed.desc("created_at").where(:channels.in => [@chronicle.id.to_s]).entries
+      @title = @circle.name.capitalize
+      @status = (@chronicle.user_id == current_user.id)
+    else
+      @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
+    end      
     @feed_types = FeedType.all
   end
 

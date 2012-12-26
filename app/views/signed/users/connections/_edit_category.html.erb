@@ -6,9 +6,10 @@
    </tr>
 
   <% (current_user.connections.nil? ? [] : current_user.connections).each do |connection| %>
-   <tr>
-     <div id="category_id">
-       <td><span class="span_content" > <%=connection.category_title %></span></td>
+   <% unless connection.category_title.blank? %>
+     <tr>
+      <div id="category_id">
+      <td><span class="span_content" > <%=connection.category_title %></span></td>
       <td>
           <%=link_to "Rename",edit_category_signed_users_path(:id => connection.id, :partial_name => "manage_connections"),:remote => true, :class => "common_link_font" %>
           <% if connection.hidden %>
@@ -16,9 +17,10 @@
           <% else %>
            <%=link_to "Hide","#", :onclick => "delete_detail(this, 'hide')", :id => connection.id, :class => "common_link_font" %>
           <% end %>
-      </td>
+       </td>
       </div>
-   </tr>
+     </tr>
+    <% end %>
    <% end %>
  </table>
 </div>

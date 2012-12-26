@@ -58,11 +58,12 @@
   </div>
   <div class="span6">
     <% if controller.controller_name == "feeds" or (controller.controller_name == "search_outresults") or (controller.controller_name == "join_requests") or (controller.controller_name == "messages") %>
-      <div id="feed_image" style="float: right; margin-left:5px; ">
+      <div id="feed_image" style="float: right; margin-left:5px; display : hidden ">
         <%= image_tag("/img/relayimg/feed.png") %> 
       </div>
-      <div id = "user_select_item" style="float: right; color:white; ">Latest News Feed
+      <div id = "user_select_item" style="float: right; color:white; ">
       </div>
     
     <% end %>
   </div>
+

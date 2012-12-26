@@ -3,7 +3,7 @@
 
   delete_detail = function(cid, type) {
     $.ajax({
-      url: "/signed/users/delete",
+      url: "/signed/users/delete_connection",
       data: { edit_id : current_id, id : $(cid).attr('id'), type : type, partial_name : "manage_connections" },
       dataType: 'script'
     });
