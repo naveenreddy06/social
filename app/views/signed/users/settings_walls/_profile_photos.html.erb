@@ -25,7 +25,7 @@
             <% else %>
 
                 <%= image_tag bi.object.banner_image_url(:banner_image_thumb) %>
-                <%= link_to "delete", destroy_image_signed_users_path(:id => bi.object.id, :img_type => "banner", :partial_name => "profile_photos") , :remote => true, :class => "common_link_font" %><br>
+                <%= link_to "delete", destroy_wall_image_signed_users_path(:id => bi.object.id, :img_type => "banner", :partial_name => "profile_photos") , :remote => true, :class => "common_link_font" %><br>
            <% end %>
         <% end %>
   </div><br><br>
@@ -38,7 +38,7 @@
               <%= pi.input :profile_image, :as => :file, label:false %>
          <% else %>
              <%= image_tag pi.object.profile_image_url(:profile_image_thumb) %>
-             <%= link_to "delete", destroy_image_signed_users_path(:id => pi.object.id, :img_type => "profile", :partial_name => "profile_photos") ,:remote => true, :class => "common_link_font" %><br>
+             <%= link_to "delete", destroy_wall_image_signed_users_path(:id => pi.object.id, :img_type => "profile", :partial_name => "profile_photos") ,:remote => true, :class => "common_link_font" %><br>
          <% end %>
        <% end %>
    </div><br>
