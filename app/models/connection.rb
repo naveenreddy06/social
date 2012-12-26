@@ -6,7 +6,7 @@ class Connection
    field :category_title, :type => String
    field :hidden, :type => Boolean, :default => false
 
-   validate :title_check
+   validates :category_title, :presence => true
 
    before_destroy :release_friends
 
@@ -16,13 +16,6 @@ class Connection
       friendrequests.each do |fr|
         fr.update_attributes("connection_id" => nil)
       end
-   end
-
-
-   def title_check
-     if self.category_title.blank?
-        self.error("feed", "Nonsense")
-     end
    end
 
 end

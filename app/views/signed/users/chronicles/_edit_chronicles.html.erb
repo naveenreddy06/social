@@ -5,15 +5,17 @@
      <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
    </tr>
    <% (current_user.chronicles.nil? ? [] : current_user.chronicles).each do |chronicles| %>
-    <tr>
-     <div id="chronicle_id">
-       <td><span class="span_content" ><%=chronicles.chronicle_title%></span></td>
-      <td>
+    <% unless chronicles.chronicle_title.blank? %>
+     <tr>
+      <div id="chronicle_id">
+       <td><span class="span_content" ><%=chronicles.chronicle_title %></span></td>
+       <td>
          <%=link_to "Edit",edit_chronicles_signed_users_path(:id => chronicles.id),:remote => true, :class => "common_link_font" %>
          <%=link_to "Delete","#", :onclick => "delete_detail(this)", :id => chronicles.id, :class => "common_link_font" %>
-      </td>
+       </td>
       </div>
-   </tr>
+     </tr>
+    <% end %>
    <% end %>
   </table>
 </div>
