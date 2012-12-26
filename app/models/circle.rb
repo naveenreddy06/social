@@ -31,8 +31,6 @@ class Circle
   #Start validations --------------------------------------------------
 
    validates :name, :presence => true
-   validates :listed, :presence => true
-   validates :approve, :presence => true
 
   #End validations -----------------------------------------------------
 
