@@ -113,7 +113,7 @@ class Signed::UsersController < Signed::BaseController
      else
       @circle = current_user.circles.create(params[:circle])
      end
-      @circle = Circle.new
+      @circle = @circle.errors.empty? ? Circle.new : @circle
    rescue
      render :nothing => true
    end
@@ -162,7 +162,7 @@ class Signed::UsersController < Signed::BaseController
      else
        @circle_detail = CircleDetail.create(params[:circle_detail])
      end
-     @circle_detail = CircleDetail.new
+     @circle_detail = @circle_detail.errors.empty? ? CircleDetail.new : @circle_detail
      render :action => :add_circles_title
    rescue
      render :nothing => true
