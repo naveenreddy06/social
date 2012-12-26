@@ -94,7 +94,7 @@ class Signed::UsersController < Signed::BaseController
     render :action =>  :add_walls
   end
 
-  def destroy_image
+  def destroy_wall_image
     image = ''
     if params[:img_type] == "banner"
       image = BannerImage.where("_id" => params[:id])
