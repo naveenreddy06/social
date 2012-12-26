@@ -76,7 +76,7 @@ function reset_all_icons() {
               <dd><small>
                <% current_user.others_circles.each do |circle| %>
                 <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
-                <span><%= link_to circle.name, signed_feeds_path(:feed_type => "circle", :circle_id => circle.id ), :remote => true, :class => "common_link_font" %></span><br>
+                <span><%= link_to circle.name, signed_feeds_path(:feed_type => "circle", :circle_id => circle.id ), :class => "common_link_font" %></span><br>
               <% end %>
               </small></dd>
             </dl>
@@ -96,7 +96,7 @@ function reset_all_icons() {
              <dt><small>User's</small></dt>
              <dd><small><% current_user.my_chronicles.each do |chronicle| %>
                <span><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %></span>
-               <span><%= link_to chronicle.chronicle_title, '#', :remote => true, :class => "common_link_font" %></span><br>
+               <span><%= link_to chronicle.chronicle_title, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ), :remote => true, :class => "common_link_font" %></span><br>
              <% end %><br></small></dd>
              <dt><small>Other's<br></small></dt>
              <dd><small>

@@ -5,6 +5,7 @@ class Signed::FeedsController < Signed::BaseController
 
   def index
     @title = nil
+    @status = false
     case params[:feed_type]
     when "latest_news_feeds"
       @feeds = []
@@ -13,6 +14,11 @@ class Signed::FeedsController < Signed::BaseController
       @circle = Circle.find(params[:circle_id])
       @feeds = Feed.desc("created_at").where(:channels.in => [@circle.id.to_s]).entries
       @title = @circle.name.capitalize
+    when "chronicle"
+      @chronicle = Chronicle.find(params[:chronicle_id])
+      @feeds = Feed.desc("created_at").where(:channels.in => [@chronicle.id.to_s]).entries
+      @title = @circle.name.capitalize
+      @status = (@chronicle.user_id == current_user.id)
     else
       @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
     end      

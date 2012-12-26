@@ -1,4 +1,6 @@
-$("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
+<% unless @status %>
+ $("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
+<% end %>
 $("td[tobeRemoved=true]").remove();
 
 <% @feeds.reverse.each do |feed| %> 
