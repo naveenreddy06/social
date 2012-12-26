@@ -1,3 +1,40 @@
+<script>
+function enable_all() {
+    $("a[link_id=clickable]").each(function(){
+      $(this).attr('class', '') ;
+    });
+}
+function reset_all_icons() {
+   $("a[accord-main=accord]").each(function(){
+   $(this).find('i').attr('class', 'icon-chevron-right') ;
+   $(this).attr('class', 'accordion-toggle collapsed') ;
+
+ });
+}
+$(document).ready(function(){
+
+      //for link color change
+      $("a[link_id=clickable]").click(function(){
+        enable_all();
+        $(this).attr('class', 'disabled');
+      });
+
+     // account management link to be clicked by default
+     $("#account").click();
+     $("#account").find('i').attr('class', 'icon-chevron-down');
+     $("#account").attr('class', 'disabled');
+     $("a[gen_id = gen_click]").attr('class', 'disabled');
+
+     //icon change
+     $("a[accord-main=accord]").click(function() {
+       reset_all_icons();
+       $(this).find('i').attr('class', 'icon-chevron-down');
+       $(this).attr('class', 'disabled');
+
+     });
+});
+</script>
+
 <div  class="hero-unit"  adjustTd=true>
     <h6 style="color :#696969"><img src="/assets/Account_settings.png"/> <b>Account Settings</b></label>
     <div class="accordion" id="account-management">
@@ -5,7 +42,7 @@
        <% account_setting_hash.keys.each do |ky| %>
          <div class="accordion-group" style="border: 0px">
            <div class="accordion-heading">
-             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#account-management" href="#account_<%= cnt %>" accord-main="accord">
+             <a class="accordion-toggle collapsed" id="account" data-toggle="collapse" data-parent="#account-management" href="#account_<%= cnt %>" accord-main="accord">
                <h6> <i class=" icon-chevron-right"></i><%= ky %></h6>
              </a>
            </div>
@@ -13,15 +50,17 @@
              <div class="accordion-inner">
                <% account_setting_hash[ky].each do |val| %>
                  <% case ky.to_s + " " + val.to_s %>
+                  <% when "Account Management General" %>
+                     <small><a href="?form_type=Other's Circle Edit" class="current-link" data-remote="true" link_id="clickable" gen_id="gen_click"><%= val %></a></small><br/>
                   <% when "Manage Circles Other's Edit" %>
-                     <small><a href="?form_type=Other's Circle Edit"><%= val %></a></small><br/>
+                     <small><a href="?form_type=Other's Circle Edit" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
                     <% current_user.circles.each do |c| %>
-	              <small><a href="?form_type=circle_info&id=<%= c.id %>"><%= c.name %></a></small><br>
+	              <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link" data-remote="true" link_id="clickable"><%= c.name %></a></small><br>
                     <% end %>
                   <% when "Manage Chronicles Other's Edit" %>
-                     <small><a href="?form_type=Other's Chronicle Edit"><%= val %></a></small><br/>
+                     <small><a href="?form_type=Other's Chronicle Edit" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
                   <% else %>
-                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>"><%= val %></a></small><br/>
+                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
                 <% end %>
                <% end %>
              </div>
