@@ -17,7 +17,7 @@
 //= require jquery.colorbox-min
 //= require jquery.fullscreenr
 //= require jquery.dd.min
-//= jquery.pjax
+//= require jquery.pjax
 
 
 
