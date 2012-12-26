@@ -1,0 +1,16 @@
+  <div class="row-fluid">
+    <div class="span21">
+      <div id = "cools_id_<%= feed.id %>" style ="display:inline">
+    	<% if !current_user.user_feeds.where(:feed_id => feed.id, 'cool' => true).empty? %>
+    		<a href="#" style="color:black;font-size:12px;font-weight:500"><%= feed.user_feeds.where('cool' => true).count > 0 ? " <img title='WOW!' src='/img/relayimg/wowed.png'/> ".html_safe : "<img title='WOW!' src='/img/relayimg/wowed.png'/>".html_safe %>
+    		</a>
+  		<% else %>
+  			<a href="#", onClick ="onCool('<%= feed.id %>');" id="<%= feed.id %>", style="color:#014F87;font-size:12px;font-weight:500"><%= feed.user_feeds.where('cool' => true).count > 0 ? " <img src='/img/relayimg/wow.png'/>".html_safe : "<img src='/img/relayimg/wow.png'/>".html_safe %>
+  			</a>
+  		<% end %>
+  				<span style="font-size: 12px;"><%= (feed.user_feeds.where('cool' => true).count > 0) ? feed.user_feeds.where('cool' => true).count : "" %>
+  				</span>
+		<%= render "shared/combined_share_fan", :feed => feed %>
+  	  </div>
+  	</div>
+  </div>

@@ -43,7 +43,7 @@ function reset_all_icons() {
 	        <dl>
              <dt><span><img src="/img/relayimg/Lists_connections.png" /><small style="margin-left:5px">Update's</small></span></dt>
              <dd style="margin-left:20px"><small><span><%= link_to "My Posts","#",:remote => true, :class => "common_link_font" %></span><br>
-             <span><%= link_to "Latest News Feed",'#',:remote => true, :class => "common_link_font" %></span><br>
+             <span><%= link_to "Latest News Feed", signed_feeds_path(:id => "wow"), :class => "common_link_font" %></span><br>
              <br></small></dd>
              <dt><span><img src="/img/relayimg/updates_connections.png" /><small style="margin-left:5px">Lists's</small></span></dt>
              <dd style="margin-left:20px"><small>
@@ -69,7 +69,7 @@ function reset_all_icons() {
 	          <dd><small>
                <% current_user.my_circles.each do |circle| %>
                 <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
-                <span><%= link_to circle.name, '#', :remote => true, :class => "common_link_font" %></span><br>
+                <span><%= link_to circle.name, '#', :class => "common_link_font" %></span><br>
                <% end %>
               <br></small></dd>
               <dt><small>Other's<br></small></dt>
@@ -110,5 +110,9 @@ function reset_all_icons() {
       </div>
     </div>
    </div>
-
+<script>
+  $(document).ready(function(){
+	$(document).pjax('.accordion-inner a', '#pjax-container');
+});
+</script>
 

@@ -1,0 +1,11 @@
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "width :320px">
+  <div class="modal-header">
+    <h6 id="myModalLabel">Choose which connections lists to relay</h6>
+  </div>
+  <div class="modal-body">
+    <% current_user.connections.each do |conn| %>
+      <a id="<%= conn.id %>" href="#" onclick="sendRequest($(this).attr('id'));"><%= conn.category_title %></a><br>
+    <% end %>
+  </div>
+</div>

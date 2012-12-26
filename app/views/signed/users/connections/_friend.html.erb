@@ -1,0 +1,25 @@
+<% friendrequest = @friendrequest || UserFriend.where(:user_id => current_user.id , :friend_id => friend.id).first
+%>
+
+
+   <td>
+      <span class="span_content" >
+    <%= image_tag friend.profile_image_thumb %>
+    <a id="<%= friend.id %>" href="#myModal" data-toggle="modal" onclick="currentSelect = $(this).attr('id');">
+      <div style="margin-left:45px;margin-top:5px;color:green"><%= friend.first_name.capitalize + " " + friend.last_name.capitalize %>
+    </div></a>
+    <div style="margin-top:-50px;margin-left:45px;"><%= friendrequest.connection.capitalize %></div>
+    </span>
+   </td>
+   <td>
+   <% if friendrequest.block %>
+     <%=link_to "UnBlock", unblock_signed_users_path(:id => friend.id, :partial_name => "lists_update"),:remote => true, :class => "common_link_font"  %>
+      <% else %>
+      <%=link_to "Block", block_signed_users_path(:id => friend.id, :partial_name => "lists_update"),:remote => true, :class => "common_link_font" %>
+     <% end %>
+   </td>
+
+
+
+
+

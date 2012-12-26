@@ -1,0 +1,20 @@
+<div id="edit_chronicle_title">
+  <table border="2" class="tab">
+   <tr>
+     <th><div style="background-color:rgb(188,209,245)">Title &nbsp; &nbsp; &nbsp;</div></th>
+     <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
+   </tr>
+   <% (current_user.chronicles.nil? ? [] : current_user.chronicles).each do |chronicles| %>
+    <tr>
+     <div id="chronicle_id">
+       <td><span class="span_content" ><%=chronicles.chronicle_title%></span></td>
+      <td>
+         <%=link_to "Edit",edit_chronicles_signed_users_path(:id => chronicles.id),:remote => true, :class => "common_link_font" %>
+         <%=link_to "Delete","#", :onclick => "delete_detail(this)", :id => chronicles.id, :class => "common_link_font" %>
+      </td>
+      </div>
+   </tr>
+   <% end %>
+  </table>
+</div>
+

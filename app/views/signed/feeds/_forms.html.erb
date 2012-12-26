@@ -1,0 +1,39 @@
+<script>
+  function taguser(){
+    $("#taguser_id").show();
+  }
+
+  function taguserclose(){
+    $("#taguser_id").hide();
+  }
+
+  function addlink(){
+    $("#addlink_id").show();
+  }
+
+   function addlinkclose(){
+    $("#addlink_id").hide();
+  }
+
+  function fetch_friends() {
+    $.ajax({
+      url: "/signed/feeds/fetch_friends",
+      dataType: 'script'
+    });
+  }
+
+
+</script>
+
+<% case @feed_type.post_type %>
+ <% when "Update" %>
+     <%= render "signed/feeds/forms/status_update" %>
+ <% when "Photos" %>
+     <%= render "signed/feeds/forms/photos" %>
+  <% when "Videos" %>
+      <%= render "signed/feeds/forms/videos" %>
+  <% when "Events" %>
+       <%= render "signed/feeds/forms/events" %>
+  <% when "Deals" %>
+       <%= render "signed/feeds/forms/deals" %>
+<% end %>

@@ -8,7 +8,6 @@ group :assets do
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
   gem 'less'
-  gem 'jquery-ui-rails'
 end
 gem "ruby-oembed"
 gem 'jquery-rails'
@@ -21,7 +20,6 @@ gem 'country-select'
 gem 'localized_language_select'
 gem 'bcrypt-ruby'
 gem 'simple_form'
-gem 'rails_admin'
 gem 'tire'
 
 #-------------gems installed for carrierwave image upload

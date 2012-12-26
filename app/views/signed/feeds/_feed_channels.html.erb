@@ -1,0 +1,27 @@
+      <%= f.submit 'relay ', :class => "btn-primary" %> 
+      <% if @circle.nil? and @chronicle.nil? %>
+        <%= f.input :public, :as => :boolean, label:false, :input_html => {:style => "margin-top:-15px;margin-left:40px;"}  %>
+       <div style= "margin-top:-55px;margin-left:80px;">
+          <span style= "color:#014F87;font-style:italic;font-size:13px;">share/public</span>
+         <img  src="/img/relayimg/add_connections.png" />
+         <a href="#myModal" data-toggle="modal" style = "color:#014F87;font-weight:500;font-style:italic;font-size:13px;">Custom</a><%= render "choose_connections" %>
+        </div>
+      <% end %>
+
+
+<% channel_id = @circle.nil? ? nil : @circle.id.to_s %>
+<% channel_id = channel_id || (@chronicle.nil? ? nil : @chronicle.id.to_s) %>
+<% channel_id = channel_id || (@connection.nil? ? nil : @connection.id.to_s) %>
+
+<% posted_in = @circle.nil? ? nil : "circle" %>
+<% posted_in = posted_in || (@chronicle.nil? ? nil : "chronicle") %>
+
+<% if !channel_id.nil? %>
+
+ <input type="hidden" name="feed[channels][]" value='<%=  channel_id %>'>
+<% end %>
+
+<% if !posted_in.nil? %>
+
+ <input type="hidden" name="feed[feed_hash][posted_in]" value='<%=  posted_in %>'>
+<% end %>

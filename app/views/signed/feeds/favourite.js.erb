@@ -1,0 +1,5 @@
+<% if params[:type] == "post" %>
+$("#posts_id_<%= @favourite.id %>").replaceWith("<div id='posts_id_<%= @favourite.id %>' style ='margin-left:45px; '> <%= escape_javascript(render 'shared/combined_share_fan', :feed => @favourite) %></div>");
+ <% else %>
+$("#cools_id_<%= @favourite.id %>").replaceWith("<div id='cools_id_<%= @favourite.id %>'> <%= escape_javascript(render 'wow_pin_share', :feed => @favourite) %></div>");
+<% end %>

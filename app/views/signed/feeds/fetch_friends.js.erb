@@ -1,0 +1,6 @@
+var friends = [];
+<% @friends.each do |f| %>
+   friends.push({id: '<%= f[0] %>', name: '<%= f[1] %>'});
+<% end %>
+
+$("#feed_tag_user").tokenInput(friends, {theme: "facebook"});

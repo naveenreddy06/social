@@ -1,13 +1,13 @@
 <div class="feeds" style="min-width:290px;">
       <% if feed.feed_type.post_type == "Videos" %>
-      <%= render "content/videos_feed", :feed => feed %>
+      <%= render "/signed/feeds/content/videos_feed", :feed => feed %>
       <% elsif feed.feed_type.post_type == "Photos" %>
-      <%= render "content/photos_feed", :feed => feed %>
+      <%= render "/signed/feeds/content/photos_feed", :feed => feed %>
       <% elsif feed.feed_type.post_type == "Events" %>
-      <%= render "content/events_feed", :feed => feed %>
+      <%= render "/signed/feeds/content/events_feed", :feed => feed %>
       <% elsif feed.feed_type.post_type == "Deals" %>
-      <%= render "content/deals_feed", :feed => feed %>
+      <%= render "/signed/feeds/content/deals_feed", :feed => feed %>
       <% else %>
       <% end %>
       <span class="span_content"> <%= feed.feed %> </span>
-</div> </br>
+</div> </br></br>

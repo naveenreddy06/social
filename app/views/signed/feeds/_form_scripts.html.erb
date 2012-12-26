@@ -1,0 +1,116 @@
+<script>
+  var chronicleId = '' ;
+  var circleId = '' ;
+  var connectionId = '' ;
+  var selectedUser = '' ;
+  var lastFeed = "<%= @feeds.last.updated_at unless @feeds.empty? %>";
+  var lastFavourite = "<%= @feeds.last.updated_at unless @feeds.empty? %>";
+  var FeedTypeId = "<%= params[:feed_type_id] %>";
+  var Type = "<%= params[:type] %>";
+
+  function fetch_older_feeds() {
+    $.ajax({
+      url: "/feeds/fetch_older_feeds",
+      data: {last_feed: lastFeed, chronicle_id: chronicleId, circle_id: circleId, connection_id: connectionId },
+      dataType: 'script'
+    });
+  }
+
+  function setSelectedUser(userId) {
+    $("#messageUserName").html($("#userSelect-"+userId).attr('user_name'));
+    $("#message_friend_id").val($("#userSelect-"+userId).attr('user_id'));
+  }
+
+  function fetch_form(select_val) {
+    $.ajax({
+      url: "/signed/feeds/fetch_form",
+      data: {select_id: select_val, chronicle_id: chronicleId, circle_id: circleId },
+      dataType: 'script'
+    });
+   }
+
+  function MinPost() {
+     $("#minTd").show();
+     $("#formTd").hide();
+  }
+
+  function MaxPost() {
+     $("#formTd").show();
+     $("#minTd").hide();
+  }
+
+  function onComment(e,feed_id) {
+  var key = (window.event) ? e.which : e.keyCode;
+
+    if (key == 13 && $("#comment_empty" + feed_id).val() != '' ) {
+     $.ajax({
+      url: "feeds/add_comment",
+      data: {feed_id:feed_id, comment:$("#comment_empty" + feed_id).val() },
+      dataType: 'script'
+     });
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+ function onCool(feed_id) {
+    $.ajax({
+      url: "feeds/cool",
+    data: {feed_id:feed_id },
+      dataType: 'script'
+    });
+   }
+
+   function onFav(feed_id) {
+    $.ajax({
+      url: "feeds/favourite",
+    data: {feed_id:feed_id, type:"feed" },
+      dataType: 'script'
+    });
+   }
+
+   function onshared(feed_id) {
+    $.ajax({
+      url: "/feeds/shared",
+    data: {feed_id:feed_id, type:"feed" },
+      dataType: 'script'
+    });
+   }
+
+    function deletePost(feed_id) {
+    $.ajax({
+      url: "/feeds/deletepost",
+    data: {feed_id:feed_id },
+      dataType: 'script'
+    });
+   }
+
+
+    function hidePost(feed_id) {
+    $.ajax({
+      url: "/feeds/hidepost",
+    data: {feed_id:feed_id },
+      dataType: 'script'
+    });
+   }
+
+
+
+   function fetch_older_favourites() {
+    $.ajax({
+      url: "/feeds/load_common",
+      data: {feed_type_id:FeedTypeId, last_favourite:lastFavourite, type:Type },
+      dataType: 'script'
+    });
+   }
+
+   function create_comment(feed_id) {
+    $.ajax({
+      url: "/feeds/add_comment",
+      data: {feed_id:feed_id, comment:$("#" + feed_id).val() },
+      dataType: 'script'
+    });
+   }
+</script>

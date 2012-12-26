@@ -1,0 +1,36 @@
+<tr>
+  <td>
+    <div class="span2">
+      <%= link_to(image_tag(comment.user.profile_image_thumb), signed_user_path(:id => comment.user.id)) %>
+    </div>
+    <div class="span18">
+      <div class="span_content">
+      <% if comment.user.display_name.blank? %>
+           <%= link_to comment.user.first_name.capitalize + " "+ comment.user.last_name.capitalize , signed_user_path(:id => comment.user.id) %>
+      <% else %>
+           <%= link_to comment.user.display_name.capitalize , signed_user_path(:id => comment.user.id) %>
+      <% end %><br>
+
+      <% if comment.created_at.to_date == Date.today %>
+          <%= comment.created_at.strftime("%l:%M%p").to_s %>
+      <% elsif comment.created_at.to_date == Date.today-1 %>
+          <%= comment.created_at.strftime("Yesterday %l:%M%p").to_s %>
+      <% else %>
+          <%= comment.created_at.to_date.strftime("%b %d, %Y").to_s %>
+      <% end %>
+    </div>
+    </div>
+    </td>
+</tr>
+<tr>
+  <td>
+    <div class="span7" style="word-wrap:break-word;width:280px;" >
+          <div class="span_content">
+              <%= comment.comment %><hr style="width:200px;">
+          </div>
+     </div>
+
+  </td>
+</tr>
+
+

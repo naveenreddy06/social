@@ -1,10 +1,18 @@
-<script>
-  toggleContent = function(){
-    	
-  }
+<%= render "form_scripts" %>
+ <script>
+ $(document).ready(function(){
+  chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
+  circleId = "<%= @circle ? @circle.id : '' %>";
+  connectionId = "<%= @connection ? @connection.id : '' %>";
+  MinPost();
+   fetch_form($("#post_type_id_post_type").val());
+
+ });
 </script>
 
-<td id="feed_form"><%= render "feed_form", :feed => @feed %></td>
-<% @feeds.each do |feed| %>
-  <td style="min-width: 360px; min-width: 361px;"><%= render "feed", :feed => feed %></td>
-<% end %>
+ <td id="minTd" style="min-width: 50px; display : none;"><%= render "max_post" %></td>
+ <td id="formTd" style="display : none;"><%= render "feed_type" %></td>
+ <td id="new_td" style="display : none;"></td>
+ <% @feeds.each do |feed| %>
+  <td style="min-width: 360px; max-width: 361px;"><%= render "feed", :feed => feed %></td>
+ <% end %>

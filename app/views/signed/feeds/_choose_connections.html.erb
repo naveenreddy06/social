@@ -1,0 +1,35 @@
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "width :320px">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="cboxClose" ></button>
+    <h6 id="myModalLabel">Choose which connections lists to relay</h6>
+  </div>
+  <div class="modal-body">
+    <table class="noborder">
+      <% ( current_user.connections.nil? ? [] :  current_user.connections).each do |connection| %>
+       <tr>
+        <div id="category_id">
+          <td><input type="checkbox" name="feed[channels][]" value='<%=  connection.id %>' /></td>
+          <td><%=connection.category_title%></td>
+        </div>
+       </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="modal-footer" style = "background-color:white">
+    <div style = "float:left">
+      <input type="checkbox" name="feed[channels][]" value='f_<%=  current_user.id %>' />
+      <p style= "color:black;font-weight:500;font-style:italic;display:inline;font-size:13px;">     All Followers</p>
+    </div><br><br>
+    <div style = "float:left">
+      <button class="btn btn-primary" data-dismiss="modal">Submit</button>
+    <div>
+  </div>
+</div>
+
+
+
+
+
+
+

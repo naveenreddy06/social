@@ -1,0 +1,29 @@
+<script>
+  var current_id = '';
+  function delete_row(tr_id, circle_id){
+   $.ajax({
+      url: "/signed/users/delete_circle",
+      data: { edit_id : current_id, id : tr_id, circle_id : circle_id, partial_name : "circle_info" },
+      dataType: 'script'
+    });
+   $("#"+tr_id).hide();
+  }
+
+  function setActive(tab_id) {
+    $('[tabbed="circles"]').attr('class', '');
+    $('#'+tab_id).attr('class', 'active');
+  }
+</script>
+
+<h4><%= @circle.name %></h4>
+   <ul class="nav nav-tabs">
+    <li id="about" class="active" tabbed="circles"><%= link_to "About", about_signed_users_path(:id => @circle, :partial_name => "circle_info"), :remote => true, :onclick => "setActive('about');" , :class => "common_link_font" %></li>
+    <li id="sort_about" tabbed="circles"><%= link_to "Sort About", sort_about_signed_users_path(:id => @circle), :remote => true, :onclick => "setActive('sort_about');" , :class => "common_link_font" %></li>
+    <li id="Photos" tabbed="circles"><%= link_to "Circle Wall Photos", add_circle_photos_signed_users_path(:id => @circle), :remote => true, :onclick => "setActive('Photos');", :class => "common_link_font" %></li>
+    <li id="Members" tabbed="circles"><%= link_to "Members", get_members_signed_users_path(:id => @circle.id), :remote => true, :onclick => "setActive('Members');", :class => "common_link_font" %></a></li>
+   </ul>
+
+ <div id="circle_management">
+  <%=render :partial=>"signed/users/circles/circle_form"%>
+  <%=render :partial=>"signed/users/circles/circle_edit_information"%>
+</div>

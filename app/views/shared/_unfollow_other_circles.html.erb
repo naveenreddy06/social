@@ -1,0 +1,19 @@
+<script>
+   function hide_circle(row_id){
+     $("#"+row_id).hide();
+   }
+ </script>
+
+ <h4>Manage Other Circles following settings</h4>
+ <table class="table table-condensed"  style="max-width:500px;">
+ 	<tr>
+   <th>Name</th>
+   <th> Unjoin </th>
+ </tr>
+  <% current_user.others_circles.each do |circle| %>
+    <tr id="row_<%= circle.id %>"  class="warning">
+       <td style="min-width:300px"><span class="span_content" ><%= image_tag circle.circle_profile_image_min_thumb %><%= link_to circle.name, "#" %></span></td>
+       <td><%= link_to "unjoin", unjoin_user_signed_users_path(:circle_id => circle.id,:type => "unjoin"), :remote => true, :onClick => "hide_circle('row_#{circle.id}')", :class => "common_link_font" %></td>
+    </tr>
+  <% end %>
+ </table>
