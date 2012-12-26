@@ -51,16 +51,16 @@ $(document).ready(function(){
                <% account_setting_hash[ky].each do |val| %>
                  <% case ky.to_s + " " + val.to_s %>
                   <% when "Account Management General" %>
-                     <small><a href="?form_type=general" class="current-link" data-remote="true" link_id="clickable" gen_id="gen_click"><%= val %></a></small><br/>
+                     <small><a href="?form_type=general" class="current-link"  link_id="clickable" gen_id="gen_click"><%= val %></a></small><br/>
                   <% when "Manage Circles Other's Edit" %>
-                     <small><a href="?form_type=Other's Circle Edit" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
+                     <small><a href="?form_type=Other's Circle Edit" class="current-link"  link_id="clickable"><%= val %></a></small><br/>
                     <% current_user.circles.each do |c| %>
-	              <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link" data-remote="true" link_id="clickable"><%= c.name %></a></small><br>
+	              <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link"  link_id="clickable"><%= c.name %></a></small><br>
                     <% end %>
                   <% when "Manage Chronicles Other's Edit" %>
-                     <small><a href="?form_type=Other's Chronicle Edit" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
+                     <small><a href="?form_type=Other's Chronicle Edit" class="current-link"  link_id="clickable"><%= val %></a></small><br/>
                   <% else %>
-                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link" data-remote="true" link_id="clickable"><%= val %></a></small><br/>
+                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable"><%= val %></a></small><br/>
                 <% end %>
                <% end %>
              </div>
