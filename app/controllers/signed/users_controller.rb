@@ -1,4 +1,6 @@
 class Signed::UsersController < Signed::BaseController
+  
+  before_filter :set_flashes_to_null, :check_authentication
 
   def show
    @user = current_user

@@ -1,5 +1,7 @@
 class Unsigned::HomeController < Unsigned::BaseController
   
+  before_filter :set_flashes_to_null, :check_authentication
+  
   def index
   end
 

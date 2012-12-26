@@ -10,7 +10,11 @@ Relayfan::Application.routes.draw do
       end
     end
     resources :search, :only => [:index]
-    resources :sessions, :only => [:create]
+    resources :sessions, :only => [:create] do
+      collection do
+        get "logout"
+      end
+    end
   end
 
   namespace :signed do
