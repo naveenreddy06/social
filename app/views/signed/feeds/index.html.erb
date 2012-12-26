@@ -1,18 +1,7 @@
-<%= render "form_scripts" %>
- <script>
- $(document).ready(function(){
-  chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
-  circleId = "<%= @circle ? @circle.id : '' %>";
-  connectionId = "<%= @connection ? @connection.id : '' %>";
-  MinPost();
-   fetch_form($("#post_type_id_post_type").val());
-
- });
-</script>
-
- <td id="minTd" style="min-width: 50px; display : none;"><%= render "max_post" %></td>
- <td id="formTd" style="display : none;"><%= render "feed_type" %></td>
- <td id="new_td" style="display : none;"></td>
- <% @feeds.each do |feed| %>
-  <td style="min-width: 360px;"><%= render "feed", :feed => feed %></td>
- <% end %>
+<table class="span21" style="overflow: auto;" id="my_feeds_index">
+   <tr>
+     <td style="min-width: 250px;"><%= render "left_panel" %></td>
+     <%= render "form_scripts" %>
+	 <%= render "index" %>
+   </tr>
+</table>
