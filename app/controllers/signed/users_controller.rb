@@ -3,7 +3,8 @@ class Signed::UsersController < Signed::BaseController
   before_filter :set_flashes_to_null, :check_authentication
 
   def show
-   @user = current_user
+   @user = User.where("id" => params[:id]).first
+   @details = @user.wall.nil? ? [] : @user.wall.wall_details.asc(:priority)
   end
 
   def update
@@ -352,4 +353,54 @@ class Signed::UsersController < Signed::BaseController
   end
 
   #======== End Connection ======================
+
+  #======== Walls ===============================
+
+  def chronicle_content
+    @user = User.where("_id" => params[:id]).first
+    if params[:type] == "user"
+      @chronicles = @user.chronicles.limit(2).entries
+    else
+      @chronicles = @user.other_chronicles.limit(2).entries
+    end
+  end
+
+  def fetch_older_chronicles
+    @user = User.where("_id" => params[:user_id]).first
+    page = params[:page]
+    offset = 2 * page.to_i
+    if params[:type] == "user"
+      @chronicles = @user.chronicles.skip(offset).limit(2).entries
+    else
+      @chronicles = @user.other_chronicles.skip(offset).limit(2).entries
+    end
+    @page = page.to_i + 1
+  end
+
+  def connection_content
+    @user = User.where("_id" => params[:user_id]).first
+    @user_friends = @user.user_friends.where("connection_id" => params[:id]).desc("connection_id").limit(2).entries
+  end
+
+  def connection_replace
+    page = params[:page]
+    offset = 2 * page.to_i
+    @user = User.where("_id" => params[:user_id]).first
+    @user_friends = @user.user_friends.where("connection_id" => params[:id]).skip(offset).limit(2).entries
+    @page = page.to_i + 1
+  end
+
+  def add_follow
+    FollowUser.create(:user_id => current_user.id, :following_id => params[:following_id])
+    render :nothing => true
+    session_following
+  end
+
+  def add_friend
+    FriendRequest.create(:user_id => current_user.id, :friend_id => params[:friend_id])
+    flash[:notice] = "Friend Added"
+    session_friends
+  end
+
+  #================ end ========================
 end
