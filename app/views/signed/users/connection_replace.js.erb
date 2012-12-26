@@ -1,0 +1,9 @@
+<% unless @user_friends.empty? %>
+ userId="<%= @user.id %>";
+ connId =  " <%= params[:id] %>";
+   page = "<%= @page %>";
+ <% @user_friends.each do |uf| %>
+  $("#connection_replace").replaceWith("<tr id='connection_<%= uf.id %>'><%= escape_javascript(render  "/signed/users/actual_content", :uf => uf) %></tr><tr id='connection_replace'></tr>");
+  setTimeout(function(){connection_replace()},1000);
+ <% end %>
+<% end %>

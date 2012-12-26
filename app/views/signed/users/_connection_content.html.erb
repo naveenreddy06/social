@@ -1,0 +1,24 @@
+<script>
+  var userId = '<%= @user.id.to_s %>' ;
+  var connId = '<%= params[:id] %>' ;
+  var page = 1;
+
+  function connection_replace() {
+    $.ajax({
+      url: "/signed/users/connection_replace",
+      data: {user_id: userId, id: connId, page: page},
+      dataType: 'script'
+    });
+  }
+
+</script>
+
+<div class="well well-small" style="max-width:800px;"><h6>My <%= @user_friends.first.connection.to_s %> Members </h6></div><br>
+  <table class="noborder">
+    <% @user_friends.each do |uf| %>
+      <tr>
+       <%= render "signed/users/actual_content",:uf => uf %>
+      </tr>
+    <% end %>
+     <tr id="connection_replace"></tr>
+  </table>

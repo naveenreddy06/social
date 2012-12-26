@@ -31,12 +31,12 @@
         <img src="/img/relayimg/settings_default.png" />
       </a>
       <ul class="dropdown-menu" style="margin-top: -13px">
-        <li class="mainitem"><%= link_to "Account Settings"  %></li>
+        <li class="mainitem"><%= link_to "Account Settings", manage_signed_users_path %></li>
         <li class="mainitem"><%= link_to "Privacy Settings"  %></li>
-        <li class="mainitem"><%= link_to "Walls", "#" %></li>
-        <li class="mainitem"><%= link_to "Feeds"  %></li>
+        <li class="mainitem"><%= link_to "Walls", signed_user_path(:id => current_user.id) %></li>
+        <li class="mainitem"><%= link_to "Feeds", signed_feeds_path  %></li>
         <li class="divider"></li>
-        <li class="mainitem"><%= link_to "Log out","#"  %></li>
+        <li class="mainitem"><%= link_to "Log out",logout_unsigned_sessions_path  %></li>
       </ul>
     </div>
         

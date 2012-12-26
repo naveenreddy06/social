@@ -1,0 +1,102 @@
+<script>
+function reset_all_icons() {
+   
+   $("a[accord-main=accord]").each(function(){
+   $(this).find('i').attr('class', 'icon-chevron-right') ;
+   $(this).attr('class', 'accordion-toggle collapsed') ;
+
+ });
+ }
+ $(document).ready(function(){
+	//icon change
+    $("a[accord-main=accord]").click(function() {
+       reset_all_icons();
+       $(this).find('i').attr('class', 'icon-chevron-down');
+       $(this).attr('class', 'disabled');
+    });
+});
+
+</script>
+
+<div  class="hero-unit"  adjustTd=true>
+
+
+        <%= link_to(image_tag(@user.profile_image), signed_user_path(:id => @user.id)) %><br><br>
+        <% if   @user.display_name.blank? %>
+	  <%= link_to @user.first_name.capitalize + " "+ @user.last_name.capitalize,  signed_user_path(:id => @user.id) %>
+        <% else %>
+           <%= link_to @user.display_name.capitalize,  signed_user_path(:id => @user.id) %>
+        <% end %>
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group" style="border: 0px">
+        <div class="accordion-heading">
+	  <div>
+            <a class="accordion-toggle collapsed" id="account" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" accord-main="accord">
+	    <h6><i class=" icon-chevron-right"></i>Connections </h6>
+	    </a>
+          </div>
+	</div>
+	<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+	  <div class="accordion-inner">
+	    <dl>
+             <dt><span class="icon-list-alt"><small style="margin-left:15px">Lists's</small></span></dt>
+             <dd><small>
+               <% @user.connections.each do |con| %>
+                   <span><%= link_to con.category_title, connection_content_signed_users_path(:id => con.id, :user_id => @user.id, :partial_name => "signed/users/connection_content"), :remote => true, :class => "common_link_font" %></span><br>
+               <% end %>
+             </small></dd>
+            </dl>
+	  </div>
+	</div>
+      </div>
+      <div class="accordion-group" style="border: 0px">
+        <div class="accordion-heading">
+	  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" accord-main="accord">
+	  <h6> <i class=" icon-chevron-right"></i> Circles</h6>
+	  </a>
+	</div>
+	<div id="collapseTwo" class="accordion-body collapse">
+	  <div class="accordion-inner">
+      <dl>
+        <dt><small>User's</small></dt>
+	    <dd><small>
+             <% @user.my_circles.each do |circle| %>
+                <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
+                <span><%= link_to circle.name, "#", :class => "common_link_font" %></span><br>
+             <% end %>
+          <br></small></dd>
+        <dt><small>Other's<br></small></dt>
+        <dd><small>
+         <% @user.others_circles.each do |circle| %>
+            <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
+            <span><%= link_to circle.name, "#", :class => "common_link_font" %></span><br>
+          <% end %>
+        </small></dd>
+      </dl>
+    </div>
+	</div>
+      </div>
+      <div class="accordion-group" style="border: 0px">
+       	<div class="accordion-heading">
+	  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" accord-main="accord">
+	  <h6> <i class=" icon-chevron-right"></i>Chronicles</h6>
+	  </a>
+	</div>
+	<div id="collapseThree" class="accordion-body collapse">
+	  <div class="accordion-inner">
+           <dl>
+            <dt><small>
+              <%= link_to "User's", chronicle_content_signed_users_path(:id => @user.id,  :partial_name => "signed/users/chronicle_content", :type => "user"), :remote => true, :class => "common_link_font" %>
+            </small></dt>
+            <dt><small>
+               <%= link_to "Other's", chronicle_content_signed_users_path(:id => @user.id,  :partial_name => "signed/users/chronicle_content", :type => "other"), :remote => true, :class => "common_link_font" %>
+            </small></dt>
+          </dl>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+
+
