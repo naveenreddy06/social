@@ -7,13 +7,6 @@ class ApplicationController < ActionController::Base
   include SessionLoader
   protect_from_forgery
 
-    def require_authentication
-      if !logged_in?
-       #session[:coming_from] = request.url
-       redirect_to unsigned_home_index_path
-      end
-    end
-
     def set_flashes_to_null
     	flash[:error] =  ''
     	flash[:notice] = ''

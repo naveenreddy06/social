@@ -1,5 +1,7 @@
 class Unsigned::SessionsController < Unsigned::BaseController
 
+  before_filter :check_authentication, :except => [:logout]
+  
   def create
     @user = (User.where("login.email" => params[:email]).first)
     if @user and  @user.verified and  @user.login.authenticate(params[:password])
@@ -19,4 +21,10 @@ class Unsigned::SessionsController < Unsigned::BaseController
       end
     end
   end
+  
+  def logout
+    session[:user_id] = nil
+    redirect_to root_path
+  end
+  
 end

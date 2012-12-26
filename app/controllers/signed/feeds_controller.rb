@@ -1,4 +1,7 @@
+require 'oembed'
 class Signed::FeedsController < Signed::BaseController
+
+  before_filter :set_flashes_to_null, :check_authentication
 
   def index
     @feeds = Feed.all.entries
