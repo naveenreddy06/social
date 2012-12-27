@@ -4,7 +4,7 @@ class UserFeed
   belongs_to :feed
 
   field :cool, :type => Boolean
-  field :favourite, :type => Boolean
+  field :favorite, :type => Boolean
   field :hidden, :type => Boolean, :default => false
   field :shared, :type => Boolean, :default => false
 
