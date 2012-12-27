@@ -1,14 +1,12 @@
-
-  <script>
+<script>
   $(document).ready(function(){
    chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
    circleId = "<%= @circle ? @circle.id : '' %>";
    connectionId = "<%= @connection ? @connection.id : '' %>";
    MinPost();
    fetch_form($("#post_type_id_post_type").val());
-
   });
- </script>
+</script>
 
  <td id="minTd" style="min-width: 50px; display : none;"><%= render "max_post" %></td>
  <td id="formTd" style="display : none;"><%= render "feed_type" %></td>
