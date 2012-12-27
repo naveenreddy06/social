@@ -13,7 +13,8 @@
 
 </script>
 
-<div class="well well-small" style="max-width:800px;"><h6>My <%= @user_friends.first.connection.to_s %> Members </h6></div><br>
+
+<div class="well well-small" style="max-width:800px;"><h6>My <%= Connection.where("_id" => params[:id]).first.category_title %> Members </h6></div><br>
   <table class="noborder">
     <% @user_friends.each do |uf| %>
       <tr>
