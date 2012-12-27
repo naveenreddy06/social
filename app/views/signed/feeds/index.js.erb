@@ -1,6 +1,7 @@
-<% unless @status %>
- $("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
-<% end %>
+
+$("#minTd").hide();
+$("#formTd").hide();
+
 $("td[tobeRemoved=true]").remove();
 
 <% @feeds.reverse.each do |feed| %> 
@@ -11,7 +12,10 @@ unifyHeights();
 chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
 circleId = "<%= @circle ? @circle.id : '' %>";
 connectionId = "<%= @connection ? @connection.id : '' %>";
-MinPost();
+<% if @status.nil? || @status %>
+ $("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
+ MinPost();
+<% end %>
 fetch_form($("#post_type_id_post_type").val());
 
 $("#user_select_item").html("<%= @title %>");
