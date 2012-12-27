@@ -55,30 +55,6 @@
     }
 }
 
- function onCool(feed_id) {
-    $.ajax({
-      url: "feeds/cool",
-    data: {feed_id:feed_id },
-      dataType: 'script'
-    });
-   }
-
-   function onFav(feed_id) {
-    $.ajax({
-      url: "feeds/favourite",
-    data: {feed_id:feed_id, type:"feed" },
-      dataType: 'script'
-    });
-   }
-
-   function onshared(feed_id) {
-    $.ajax({
-      url: "/feeds/shared",
-    data: {feed_id:feed_id, type:"feed" },
-      dataType: 'script'
-    });
-   }
-
     function deletePost(feed_id) {
     $.ajax({
       url: "/feeds/deletepost",

@@ -46,24 +46,16 @@ class Signed::FeedsController < Signed::BaseController
    @comment = @feed.comments.create(:user_id => current_user.id, :comment => params[:comment])
   end
 
-  def cool
-    @cool = Feed.where("_id" => params[:feed_id]).first
-    feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @cool.id)
-    if feed_user.empty?
-      @cool.user_feeds.create(:user_id => current_user.id, :cool => "true" )
-    else
-      feed_user.last.update_attributes(:cool => "true" )
+  def feed_tag
+    @feed = Feed.find(params[:feed_id])
+    update_tag = params[:update_tag]
+    if @feed
+      feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @feed.id).first
+      if !feed_user
+        @feed.user_feeds.create(update_tag.merge :user_id => current_user.id)
+      else
+        feed_user.update_attributes(update_tag)
+      end
     end
   end
-
-  def favourite
-    @favourite = Feed.where("_id" => params[:feed_id]).first
-    feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @favourite.id)
-    if feed_user.empty?
-      @favourite.user_feeds.create(:user_id => current_user.id, :favourite => true )
-    else
-      feed_user.last.update_attributes(:favourite => true)
-    end
-  end
-
 end

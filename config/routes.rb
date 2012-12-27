@@ -28,7 +28,7 @@ Relayfan::Application.routes.draw do
     end
     resources :feeds do
       collection do
-        get "fetch_form", "fetch_friends", "add_comment", "cool", "favourite"
+        get "fetch_form", "fetch_friends", "add_comment", "feed_tag"
       end
     end
   end
