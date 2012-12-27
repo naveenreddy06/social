@@ -335,26 +335,24 @@ class Signed::UsersController < Signed::BaseController
     if @friendrequest = UserFriend.where(:user_id => current_user.id , :friend_id => params[:id]).first
       @friendrequest.update_attributes("block" => "true")
     end
-    render :action => :add_category_title
   end
 
    def unblock
      if @friendrequest = UserFriend.where(:user_id => current_user.id , :friend_id => params[:id]).first
        @friendrequest.update_attributes("block" => nil)
      end
-     render :action => :add_category_title
+     render :action => :block
   end
 
   def connection_types
     if @friendrequest = UserFriend.where(:user_id => current_user.id , :friend_id => params[:friend_id]).first
        @friendrequest.update_attributes("connection_id" => params[:conn_id])
     end
-    render :action => :add_category_title
   end
 
-  #======== End Connection ======================
+  #======== End Connection ====================== 
 
-  #======== Walls ===============================
+  #======== Walls ===============================       
 
   def chronicle_content
     @user = User.where("_id" => params[:id]).first
@@ -401,5 +399,42 @@ class Signed::UsersController < Signed::BaseController
     session_friends
   end
 
-  #================ end ========================
+  #================ end =========================
+
+  #============= join requests ==================
+
+  def join_request
+  end
+
+  def accept
+    @user = FriendRequest.where("friend_id" => current_user.id, "user_id" => params[:id]).first
+    @user.update_attributes(:approve => true )
+    session_friends
+  end
+
+  def delete_friend
+    @user = FriendRequest.where("friend_id" => current_user.id, "user_id" => params[:id])
+    @user.delete
+    session_friends
+  end
+
+  def not_now
+    @user = FriendRequest.where("friend_id" => current_user.id, "user_id" => params[:id]).first
+    @user.update_attributes(:hold => true )
+    session_friends
+  end
+
+  def hide_all
+    current_user.friend_requests_all_hide.each do |user|
+      user.update_attributes(:hold => true )
+    end
+  end
+
+  def delete_all
+    current_user.friend_requests_all_delete.each do |user|
+      user.delete
+    end
+  end
+
+  #================ end =========================                    
 end

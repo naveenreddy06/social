@@ -17,11 +17,11 @@ class Signed::FeedsController < Signed::BaseController
     when "chronicle"
       @chronicle = Chronicle.find(params[:chronicle_id])
       @feeds = Feed.desc("created_at").where(:channels.in => [@chronicle.id.to_s]).entries
-      @title = @circle.name.capitalize
-      @status = (@chronicle.user_id == current_user.id)
+      @title = @chronicle.chronicle_title.capitalize
+      @status = (@chronicle.user_id == current_user.id.to_s)
     else
       @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
-    end      
+    end
     @feed_types = FeedType.all
   end
 

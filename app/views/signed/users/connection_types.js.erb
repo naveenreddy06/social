@@ -1,0 +1,4 @@
+$('#tr_<%= params[:friend_id] %>').replaceWith("<tr id=tr_<%= params[:friend_id] %>><%= escape_javascript(render("signed/users/connections/friend", :friend => User.where('_id' => params[:friend_id]).first)) %></tr>");
+
+$('#myModal').modal('hide');
+

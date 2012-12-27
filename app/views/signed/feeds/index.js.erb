@@ -4,7 +4,7 @@
 $("td[tobeRemoved=true]").remove();
 
 <% @feeds.reverse.each do |feed| %> 
-  $("#new_td").replaceWith("<td id='new_td' style='display : none'></td><td id='td_<%= feed.id %>'><%= escape_javascript(render 'feed', :feed => feed ) %></td>");
+  $("#new_td").replaceWith("<td id='new_td' style='display : none'></td><td tobeRemoved=true id='td_<%= feed.id %>'><%= escape_javascript(render 'feed', :feed => feed ) %></td>");
 <% end %>
 
 unifyHeights();

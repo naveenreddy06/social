@@ -1,6 +1,6 @@
 <script>
 function reset_all_icons() {
-   
+
    $("a[accord-main=accord]").each(function(){
    $(this).find('i').attr('class', 'icon-chevron-right') ;
    $(this).attr('class', 'accordion-toggle collapsed') ;
@@ -100,16 +100,13 @@ function reset_all_icons() {
                <span><%= link_to chronicle.chronicle_title, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ), :remote => true, :class => "common_link_font" %></span><br>
              <% end %><br></small></dd>
              <dt><small>Other's<br></small></dt>
-             <dd><small>
-             <div id="other_chronicles" >
-                
-             </div>
-             </small></dd>
+             <dd><small><% current_user.other_chronicles.each do |chronicle| %>
+               <span><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %></span>
+               <span><%= link_to chronicle.chronicle_title, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ), :remote => true, :class => "common_link_font" %></span><br>
+             <% end %><br></small></dd>
             </dl>
 	      </div>
 	    </div>
       </div>
     </div>
    </div>
-
-

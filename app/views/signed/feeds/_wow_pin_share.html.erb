@@ -1,7 +1,7 @@
   <div class="row-fluid">
-   <div style="float: left">
+   <div style="float: left; padding-bottom: 12px;">
     <%= cool_status feed %>
     <%= favorite_status feed %>
-    <span class="span6" id="<%= feed.id.to_s %>_share"><%= share_status feed %></span>
+    <%= shared_status feed %>
    </div>
   </div>

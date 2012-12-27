@@ -1,0 +1,63 @@
+<script>
+  $(document).ready(function(){
+     $("#hidden_requests").hide();
+     $("#feed_image").hide();
+     $("#user_select_item").hide();
+    });
+
+  function show_hidden_req() {
+      $("#hidden_requests").slideToggle(300);
+      $("#hide_req_button").hide();
+  }
+</script>
+
+<div style="background-color:#CDCDCD; min-height:20px;max-width:800px">
+  <span class="span_content" >
+    <b>Friend Requests</b>
+    <span style="float:right">
+      <%=link_to "Hide All",hide_all_signed_users_path(),:remote => true , :class => "common_link_font" %>
+    </span>
+  </span>
+</div><br>
+
+<table  class="noborder">
+  <% friends = current_user.new_join_requests %>
+  <% friends.each do |friend| %>
+    <tr>
+      <td><%=  image_tag friend.profile_image %></td>
+      <td style="font-size:13px;color:#2C4762;font-weight:bold;display:inline">
+        <%= friend.first_name.capitalize%>&nbsp;<%= friend.last_name%>
+        <%=link_to "Confirm",accept_signed_users_path(:id => friend.id),:remote => true,:class => 'btn btn-primary btn-small' %>
+        <%=link_to "Not Now" ,not_now_signed_users_path(:id => friend.id),:remote => true,:class =>'btn btn-small'%> &nbsp;
+      </td>
+    </tr>
+  <% end %>
+</table><br>
+
+<div id = "hide_req_button">
+  <button type="button" style = "background-color:white;color:#2C4762" onClick = "show_hidden_req()">
+    <span class="span_content" >See Hidden requests</span>
+  </button>
+</div><br>
+
+<div id = "hidden_requests">
+  <div style="background-color:#CDCDCD; min-height:20px;max-width:800px">
+    <span class="span_content" ><b>Hidden Requests</b>
+      <span style="float:right"> <%=link_to "Delete All" , delete_all_signed_users_path() ,:remote => true, :class => "common_link_font" %>
+      </span>
+    </span>
+  </div><br>
+  <table  class="noborder">
+    <% friends = current_user.hidden_join_requests %>
+    <% friends.each do |friend| %>
+      <tr>
+        <td><%=  image_tag friend.profile_image %> </td>
+        <td style="font-size:13px;color:#2C4762;font-weight:bold;display:inline">
+          <%= friend.first_name.capitalize%>&nbsp;<%= friend.last_name%>
+          <%=link_to "Confirm",accept_signed_users_path(:id => friend.id),:remote => true,:class => 'btn btn-primary btn-small' %>
+          <%=link_to "Delete",delete_friend_signed_users_path(:id => friend.id),:remote => true,:class => "btn btn-small" %> &nbsp;
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

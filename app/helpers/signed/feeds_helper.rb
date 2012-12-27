@@ -32,6 +32,21 @@ module Signed::FeedsHelper
     content_tag(:span, ret.to_s + "  "+ count.to_s, :style => "font-size:12px;", :id => "#{feed.id.to_s}_favorite", :ajax_call => true)
   end
   
-  def share_status feed
+  def shared_status feed
+    ret = ''
+    count =  UserFeed.where(:feed_id => feed.id, 'shared' => true).count
+    count = (count == 0) ? " " : count
+    if feed.user == current_user
+      ret = "shares"
+    elsif feed.public and count.to_i< 1000
+      if current_user.user_feeds.where(:feed_id => feed.id, 'shared' => true).empty?
+        img = image_tag "/img/relayimg/share.png", :title => "share"
+        ret = link_to(img, feed_tag_signed_feeds_path(:feed_id => feed.id.to_s, :update_tag => {"shared" => true}), :remote => true) 
+      else
+        img = "shared"
+        ret = link_to(img, feed_tag_signed_feeds_path(:feed_id => feed.id.to_s, :update_tag => {"shared" => false}), :remote => true)
+      end
+    end
+    content_tag(:span, ret.to_s + "  "+ count.to_s, :style => "font-size:12px;", :id => "#{feed.id.to_s}_shared", :ajax_call => true)
   end 
 end
