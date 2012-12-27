@@ -22,20 +22,12 @@ class Feed
     field :tag_user
     field :add_link
     field :public, type: Boolean
-
     field :feed_hash, type: Hash
     field :channels, type: Array
     field :tags, type: Array
-    belongs_to :original_feed, :class_name => "::Feed"
-    belongs_to :parent_feed_id, :class_name => "::Feed"
-
-    after_create :set_original_id
+    
     after_create :set_feed_array, :set_tags_array
-
-
     validates :feed, :presence => true, :on => :create
-
-
 
     def to_indexed_json
         content = self.feed.to_s
@@ -82,14 +74,6 @@ class Feed
      end
    end
 
-private
-
-   def set_original_id
-     if self.original_feed_id.blank?
-       self.original_feed_id = self.id
-       self.save(:validate => false)
-     end
-   end
 
 end
 
