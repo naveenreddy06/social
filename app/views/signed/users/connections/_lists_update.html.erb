@@ -6,24 +6,22 @@
       data: { conn_id : conn_id, friend_id : currentSelect, partial_name : "lists_update" },
       dataType: 'script'
     });
-
   }
-
 </script>
+
 <%= render "signed/users/connections/options_for_connections" %>
 <h5>Update Connections list <h5>
 <% friends = current_user.all_friends %>
 <table class="table table-condensed"  style="max-width:500px;">
- <tr>
-   <th>Name</th>
-   <th> Block/Unblock </th>
- </tr>
-
- <% friends.each do |friend| %>
-  <tr id="tr_<%= friend.id %>">
-    <%= render "signed/users/connections/friend", :friend => friend %>
+  <tr>
+    <th>Name</th>
+    <th> Block/Unblock </th>
   </tr>
- <% end %>
+  <% friends.each do |friend| %>
+    <tr id="tr_<%= friend.id %>">
+      <%= render "signed/users/connections/friend", :friend => friend %>
+    </tr>
+  <% end %>
 </table>
 
 

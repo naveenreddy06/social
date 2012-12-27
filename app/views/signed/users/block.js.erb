@@ -1,0 +1,1 @@
+$("#tr_<%= params[:id] %>").replaceWith("<tr id= 'tr_<%= params[:id] %>' ><%= escape_javascript(render "signed/users/connections/friend", :friend => User.where('_id' => params[:id]).first) %></tr>");
