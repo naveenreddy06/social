@@ -1,9 +1,9 @@
 
   <div class="row-fluid">
-      <div class="span2">
+      <div class="span3">
         <%= image_tag current_user.profile_image_thumb %>
       </div>
       <div class="span18">
-        <textarea rows="1" cols="1" placeholder="Comment here" onkeypress="onComment(event,'<%= feed.id %>');" id="comment_empty<%= feed.id %>" style = "resize: none;font-size:12px;max-width:270px;min-width:270px;max-height:35px;min-height:35px;"></textarea>
+        <textarea rows="1" cols="1" placeholder="Comment here" onkeypress="onComment(event,'<%= feed.id %>');" id="comment_empty<%= feed.id %>" style = "resize: none;font-size:12px;max-width:270px;min-width:270px;max-height:35px;min-height:30px;"></textarea>
       </div>
   </div>
