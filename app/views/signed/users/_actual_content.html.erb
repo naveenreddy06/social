@@ -1,11 +1,15 @@
-      <td> <%= link_to(image_tag(User.where(:_id => uf.friend_id).first.profile_image_thumb), signed_user_path(:id => uf.friend_id))  %></td>
-      <td>
-       <span class="span_content" style="float:left">
-        <span style="color:#005580"><%= link_to User.where(:_id => uf.friend_id).first.first_name, signed_user_path(:id => uf.friend_id) %></span><br>
-         <%= User.where(:_id => uf.friend_id).first.account_setting.state_name unless User.where(:_id => uf.friend_id).first.account_setting.nil?  %>,
-         <%= User.where(:_id => uf.friend_id).first.account_setting.city unless User.where(:_id => uf.friend_id).first.account_setting.nil?  %><br>
-          <img src='/img/relayimg/cool_feed_page.png'/><%= UserFeed.where(:feed_id.in => User.where(:_id => uf.friend_id).first.feeds.collect(&:id), 'cool' => true).count %>
-          <img src='/img/relayimg/favorite.png' /><%= UserFeed.where(:feed_id.in => User.where(:_id => uf.friend_id).first.feeds.collect(&:id), 'favourite' => true).count %>
-        </span>
-      </td>
-
+<td> 
+   <div class="span3">
+       <%= link_to(image_tag(User.where(:_id => uf.friend_id).first.profile_image_thumb), signed_user_path(:id => uf.friend_id))  %>
+   </div> 
+   <div class="span17">   
+       <%= link_to User.where(:_id => uf.friend_id).first.first_name, signed_user_path(:id => uf.friend_id), {:style=>'color:#005580;font-weight:bold'} %><br>
+     <div class="row-fluid"> 
+       <%= User.where(:_id => uf.friend_id).first.account_setting.state_name + "," unless User.where(:_id => uf.friend_id).first.account_setting.nil?  %>
+       <%= User.where(:_id => uf.friend_id).first.account_setting.city unless User.where(:_id => uf.friend_id).first.account_setting.nil?  %>
+      </div> 
+       <img src='/img/relayimg/cool_feed_page.png'/><%= UserFeed.where(:feed_id.in => User.where(:_id => uf.friend_id).first.feeds.collect(&:id), 'cool' => true).count %>
+       <img src='/img/relayimg/fan.png' /><%= UserFeed.where(:feed_id.in => User.where(:_id => uf.friend_id).first.feeds.collect(&:id), 'favourite' => true).count %>
+        
+   </div>
+</td>
