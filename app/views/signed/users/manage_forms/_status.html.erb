@@ -1,7 +1,8 @@
 <% current_user.build_account_setting if current_user.account_setting.nil? %>
 <%= render "shared/flash_messages"%>
   <h3> Status Profile Settings </h3>
-  <%= simple_form_for [:signed, current_user], :html => {:class => 'form-horizontal'}, :remote => true do |user| %>
+  <% user = @user.nil? ? current_user : @user %>
+  <%= simple_form_for [:signed, user], :html => {:class => 'form-horizontal'}, :remote => true do |user| %>
     <%= hidden_field_tag :partial_name, '', :value => "status" %>
     <%= user.fields_for :account_setting do |f|  %>
       <%= f.input :about_me, :label => 'Briefly about me:' %>
