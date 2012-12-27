@@ -1,8 +1,8 @@
 <script>
-  var lastuser = "<%= @chronicles.last.published_date %>";
+  var lastuser = "<%= @chronicles.empty? ? "" : @chronicles.last.published_date %>";
   var type = "<%= params[:type] %>";
   var userId = "<%= @user.id %>";
-  var chronicleId = "<%= @chronicles.last.id %>";
+  var chronicleId = "<%= @chronicles.empty? ? "" : @chronicles.last.id %>";
   var page = 1;
   function fetch_older_chronicles() {
     $.ajax({
@@ -20,7 +20,7 @@
 <div class="well well-small" style="max-width:800px;"><h6>Others Chronicles</h6></div></br>
  <% end %>
 <% end %>
-<% @chronicles.each do |chronicle| %>
+<% (@chronicles.empty? ? [] : @chronicles).each do |chronicle| %>
   <%= render "chronicle_div_content", :chronicle => chronicle %>
 <% end %>
 

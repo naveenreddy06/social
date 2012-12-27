@@ -1,10 +1,7 @@
-<% unless @chronicles.empty? %>
-   lastuser = "<%= @chronicles.last.published_date %>";
+   lastuser = "<%= @chronicles.empty? ? "" : @chronicles.last.published_date %>";
    userId = "<%= @user.id %>";
    type = "<%= params[:type]  %>";
    page = "<%= @page %>";
-   chronicleId = "<%= @chronicles.last.id %>";
+   chronicleId = "<%= @chronicles.empty? ? "" : @chronicles.last.id %>";
   $("#chronicle_content").replaceWith("<div id='chronicle_content'><%= escape_javascript(render(params[:partial_name])) %></div>");
  setTimeout(function(){fetch_older_chronicles()},3000);
-<% end %>
-
