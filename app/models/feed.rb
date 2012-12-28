@@ -13,7 +13,7 @@ class Feed
     accepts_nested_attributes_for :event_image
     has_many :user_feeds, validate: false, :dependent => :destroy
 
-    embeds_many :comments
+    has_many :comments
     belongs_to :user
     belongs_to :feed_type
 
