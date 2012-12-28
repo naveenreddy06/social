@@ -6,7 +6,7 @@ class Connection
    field :category_title, :type => String
    field :hidden, :type => Boolean, :default => false
 
-   validates_length_of :category_title, minimum: 1, maximum: 28, :on => :update
+   validates_length_of :category_title, minimum: 1, maximum: 28
 
    before_destroy :release_friends
 
