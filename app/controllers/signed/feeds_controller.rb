@@ -8,8 +8,11 @@ class Signed::FeedsController < Signed::BaseController
     limit = 15
     case params[:feed_type]
     when "latest_news_feeds"
-      @feeds = []
+      @feeds = Feed.desc("updated_at").where(:user_id.ne => current_user.id, :channels.in => session_all).entries
       @title = "Latest News Feed"
+    when "my_posts"
+      @feeds = Feed.desc("updated_at").limit(limit).where(:user_id => current_user.id ).entries
+      @title = "My Posts"
     when "circle"
       @circle = Circle.find(params[:circle_id])
       @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@circle.id.to_s]).entries
