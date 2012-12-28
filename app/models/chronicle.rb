@@ -11,7 +11,7 @@ class Chronicle
   field :published_date
   field :permission, :type => Boolean
 
-  validates_length_of :chronicle_title, minimum: 1, maximum: 28, :on => :update
+  validates_length_of :chronicle_title, minimum: 1, maximum: 28
   validates :published_date, :presence => true
 
   after_save :set_public
