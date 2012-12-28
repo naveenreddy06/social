@@ -6,16 +6,16 @@
    </tr>
 
   <% (current_user.connections.nil? ? [] : current_user.connections).each do |connection| %>
-   <% unless connection.category_title.blank? %>
+   <% if connection.errors.empty? %>
      <tr>
       <div id="category_id">
       <td><span class="span_content" > <%=connection.category_title %></span></td>
       <td>
           <%=link_to "Rename",edit_category_signed_users_path(:id => connection.id, :partial_name => "manage_connections"),:remote => true, :class => "common_link_font" %>
           <% if connection.hidden %>
-            <%=link_to "show","#", :onclick => "delete_detail(this, 'show')", :id => connection.id, :class => "common_link_font" %>
+            <%=link_to "show", delete_connection_signed_users_path(:id => connection.id, :type => "show", :partial_name => "manage_connections"), :class => "common_link_font", :remote => true %>
           <% else %>
-           <%=link_to "Hide","#", :onclick => "delete_detail(this, 'hide')", :id => connection.id, :class => "common_link_font" %>
+           <%=link_to "Hide", delete_connection_signed_users_path(:id => connection.id, :type => "hide", :partial_name => "manage_connections"), :class => "common_link_font", :remote => true %>
           <% end %>
        </td>
       </div>
