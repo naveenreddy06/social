@@ -1,7 +1,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
-   belongs_to :feed
+   embedded_in :feed
    belongs_to :user
 
    field :comment
