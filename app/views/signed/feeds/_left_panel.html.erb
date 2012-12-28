@@ -49,7 +49,7 @@ function reset_all_icons() {
              <dt><span><img src="/img/relayimg/updates_connections.png" /><small style="margin-left:5px">Lists's</small></span></dt>
              <dd style="margin-left:20px"><small>
               <% current_user.connections.each do |con| %>
-                 <span><%= link_to con.category_title, "#", :class => "common_link_font" %></span><br>
+                 <span><%= link_to con.category_title, signed_feeds_path(:feed_type => "connections", :connection_id => con.id), :remote => true, :class => "common_link_font" %></span><br>
               <% end %>
              </small></dd>
            </dl>
