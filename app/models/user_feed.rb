@@ -10,7 +10,7 @@ class UserFeed
   field :hidden, :type => Boolean, :default => false
   field :shared, :type => Boolean, :default => false
 
-  after_save :set_channels
+  before_save :set_channels
 
   private
 
@@ -21,6 +21,9 @@ class UserFeed
         feed.channels << self.user_id.to_s
         feed.save
       end
+    elsif self.shared_changed? and feed.channels.include? self.user_id.to_s
+      feed.channels.delete(self.user_id.to_s)
+      feed.save
     end
   end
 
