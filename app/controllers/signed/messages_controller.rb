@@ -1,7 +1,10 @@
 class Signed::MessagesController < Signed::BaseController
   
+  before_filter :set_flashes_to_null, :check_authentication
+  
   def create
      @msg = Message.create(params[:message])
+     @message = Message.new
   end
 
   def friend_message

@@ -44,6 +44,7 @@ class Signed::FeedsController < Signed::BaseController
       @feeds = Feed.desc("updated_at").where(:channels.in => session_all).entries
     end
     @feed_types = FeedType.all
+    @message = Message.new
   end
 
   def create
