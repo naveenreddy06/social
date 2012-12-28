@@ -9,7 +9,7 @@ class Login
    field :password_digest, :type => String
 
    validates :email, :presence => true
-   validates :password, :presence => true, :confirmation => true
+   validates_length_of :password, minimum: 5, maximum: 15, :confirmation => true
    validate :unique_email, :on => :create
 
    has_secure_password

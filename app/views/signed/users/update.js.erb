@@ -1,8 +1,9 @@
 $("#pjax-container").html("<%= escape_javascript(render('signed/users/manage_forms/'+ params[:partial_name])) %>");
 
 $("#div_notice").replaceWith("<%= escape_javascript(render('shared/flash_messages')) %>");
-
-<% if (!params[:user][:login_attributes][:password].blank? and  !@user.login.errors.empty?) %>
+<% if params[:user][:login_attributes].present? %>
+ <% if (!params[:user][:login_attributes][:password].blank? and  !@user.login.errors.empty?) %>
     $(".pass_fields").show();
+ <% end %>
 <% end %>
 
