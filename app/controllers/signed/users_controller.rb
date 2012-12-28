@@ -303,12 +303,12 @@ class Signed::UsersController < Signed::BaseController
     begin
      @connection = current_user.connections.where("_id" => params[:id]).first
        if @connection
-  	 @connection.update_attributes(params[:connection])
+  	     @connection.update_attributes(params[:connection])
        else
-        @connection = current_user.connections.create(params[:connection])
-        current_user.save
+         @connection = current_user.connections.create(params[:connection])
+         session_connections
        end
-     @connection = @connection.errors.empty? ? Connection.new : @connection
+       @connection = @connection.errors.empty? ? Connection.new : @connection
     rescue
      render :nothing => true
    end
@@ -326,6 +326,7 @@ class Signed::UsersController < Signed::BaseController
     else
       @connection.update_attributes(:hidden => false)
     end
+    session_connections
     @connection =  Connection.new
     render :action => :add_category_title
   end
