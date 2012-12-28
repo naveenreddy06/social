@@ -43,13 +43,13 @@ function reset_all_icons() {
 	      <div class="accordion-inner">
 	        <dl>
              <dt><span><img src="/img/relayimg/Lists_connections.png" /><small style="margin-left:5px">Update's</small></span></dt>
-             <dd style="margin-left:20px"><small><span><%= link_to "My Posts","#",:remote => true, :class => "common_link_font" %></span><br>
+             <dd style="margin-left:20px"><small><span><%= link_to "My Posts",signed_feeds_path(:feed_type => "my_posts"),:remote => true, :class => "common_link_font" %></span><br>
              <span><%= link_to "Latest News Feed", signed_feeds_path(:feed_type => "latest_news_feeds"), :remote => true, :class => "common_link_font" %></span><br>
              <br></small></dd>
              <dt><span><img src="/img/relayimg/updates_connections.png" /><small style="margin-left:5px">Lists's</small></span></dt>
              <dd style="margin-left:20px"><small>
               <% current_user.connections.each do |con| %>
-                 <span><%= link_to con.category_title, "#", :class => "common_link_font" %></span><br>
+                 <span><%= link_to con.category_title, signed_feeds_path(:feed_type => "connections", :connection_id => con.id), :remote => true, :class => "common_link_font" %></span><br>
               <% end %>
              </small></dd>
            </dl>
@@ -110,3 +110,4 @@ function reset_all_icons() {
       </div>
     </div>
    </div>
+
