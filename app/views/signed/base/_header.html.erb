@@ -22,7 +22,8 @@
     <ul class="dropdown-menu" style="margin-top: -13px">
       <% FeedType.all.each do |ft| %>
         <li class="mainitem">
-          <%= link_to "#{ft.post_type}","#" %>
+          <%= link_to "#{ft.post_type}",signed_feeds_path(:feed_type =>
+          "Favorites", :type_id => ft.id.to_s) %>
         </li>
       <% end %>
     </ul>
@@ -45,13 +46,13 @@
       <li class="mainitem"><%= link_to "Log out",logout_unsigned_sessions_path  %></li>
     </ul>
   </div>
-      
+
   <div class="btn-group">
     <%= (current_user.new_join_requests.count > 0) ? (link_to image_tag("/img/relayimg/join_request_new.png"),join_request_signed_users_path) :  (link_to image_tag("/img/relayimg/join_request_not_new.png"),join_request_signed_users_path) %>
   </div>
 </div>
 
-<div class="span5">    
+<div class="span5">
   <div class="btn-group">
     <%= form_tag  do %>
       <select name="model_type" style= "background-color:rgb(84,113,188);width:110px;border:0px;color:white" >
@@ -69,10 +70,10 @@
 <div class="span6">
   <% if controller.controller_name == "feeds" or (controller.controller_name == "search_outresults") or (controller.controller_name == "join_requests") or (controller.controller_name == "messages") %>
     <div id="feed_image" style="float: right; margin-left:5px; display : hidden ">
-      <%= image_tag("/img/relayimg/feed.png") %> 
+      <%= image_tag("/img/relayimg/feed.png") %>
     </div>
     <div id = "user_select_item" style="float: right; color:white; ">
-    </div>  
+    </div>
   <% end %>
 </div>
 
