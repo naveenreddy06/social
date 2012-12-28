@@ -32,6 +32,14 @@ class Signed::FeedsController < Signed::BaseController
       @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => users + [@connection.id.to_s]).entries
       @title = @connection.category_title.capitalize
 
+    when "Favorites"
+      @feeds = []
+      @feed_type = FeedType.find(params[:type_id])
+      UserFeed.limit(limit).where(:feed_type_id => @feed_type.id, :favorite => true, :user_id => current_user.id).each do |feed|
+        @feeds << feed.feed
+      end
+      @title = "Favorites - #{@feed_type.post_type.capitalize}"
+
     else
       @feeds = Feed.desc("updated_at").where(:channels.in => session_all).entries
     end

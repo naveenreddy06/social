@@ -1,5 +1,6 @@
 class UserFeed
   include Mongoid::Document
+  include Mongoid::Timestamps
   belongs_to :user
   belongs_to :feed
   belongs_to :feed_type
@@ -18,11 +19,6 @@ class UserFeed
     if self.shared
       unless feed.channels.include? self.user_id.to_s
         feed.channels << self.user_id.to_s
-        feed.save
-      end
-    else
-      if self.feed.channels.include? self.user_id.to_s
-        feed.channels.delete(self.user_id.to_s)
         feed.save
       end
     end
