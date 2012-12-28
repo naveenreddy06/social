@@ -42,7 +42,7 @@ function reset_all_icons() {
              <dt><span class="icon-list-alt"><small style="margin-left:15px">Lists's</small></span></dt>
              <dd><small>
                <% @user.connections.each do |con| %>
-                   <span><%= link_to con.category_title, connection_content_signed_users_path(:id => con.id, :user_id => @user.id, :partial_name => "signed/users/connection_content"), :remote => true, :class => "common_link_font" %></span>
+                   <span><%= link_to con.category_title, connection_content_signed_users_path(:id => con.id, :user_id => @user.id, :partial_name => "signed/users/connection_content"), :remote => true, :class => "common_link_font" %></span><br>
                <% end %>
              </small></dd>
             </dl>
