@@ -19,11 +19,6 @@ class UserFeed
         feed.channels << self.user_id.to_s
         feed.save
       end
-    else
-      if self.feed.channels.include? self.user_id.to_s
-        feed.channels.delete(self.user_id.to_s)
-        feed.save
-      end
     end    
   end
 
