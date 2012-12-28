@@ -5,7 +5,7 @@
      <th><div style="background-color:rgb(188,209,245)">Action&nbsp; &nbsp; &nbsp;</div></th>
    </tr>
    <% (current_user.chronicles.nil? ? [] : current_user.chronicles).each do |chronicles| %>
-    <% unless chronicles.chronicle_title.blank? or chronicles.published_date.blank? %>
+     <% if chronicles.errors.empty? %>
      <tr>
       <div id="chronicle_id">
        <td><span class="span_content" ><%=chronicles.chronicle_title %></span></td>

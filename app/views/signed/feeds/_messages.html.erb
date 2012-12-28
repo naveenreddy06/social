@@ -1,0 +1,25 @@
+
+<div id="mymessagesModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style = "width :320px">
+
+  <div class="modal-header">
+   <h6 id="myModalLabel">Private message</h6>
+
+      <h6>to: &nbsp;
+
+    <span id="messageUserName"></span></h6>
+
+  </div>
+  <div class="modal-body">
+
+   <%= simple_form_for @message, :url => signed_messages_path, :remote => true do |f| %>
+
+   <%= f.input :message, :as => :text, :placeholder => 'message.....' , label:false, :input_html => {  :rows => 4, :style => "resize: none; width:260px; "  } %>
+
+   <%= f.input :friend_id, :as => :hidden, :input_html => {:value => 2} %>
+   <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+   <%= f.submit "Submit", :class => "btn btn-primary"  %>
+   <button class="btn btn-primary" data-dismiss="modal" id="cancelButton">Cancel</button>
+  </div>
+  <% end %>
+</div>
+

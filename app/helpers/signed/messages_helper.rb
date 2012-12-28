@@ -1,0 +1,2 @@
+module Signed::MessagesHelper
+end

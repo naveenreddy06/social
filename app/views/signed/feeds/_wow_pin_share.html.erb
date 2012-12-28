@@ -3,5 +3,9 @@
     <%= cool_status feed %>
     <%= favorite_status feed %>
     <%= shared_status feed %>
+    <% if current_user != feed.user %>
+      <a href="#mymessagesModal" data-toggle="modal" id="userSelect-<%= feed.id %>" user_id="<%= feed.user.id %>" user_name="<%= feed.user.first_name %>" style = "color:#014F87;font-weight:500;font-  style:italic;font-size:13px;" onclick="setSelectedUser('<%= feed.id %>')"><small ><%= image_tag("/img/relayimg/private_message.png") %></small></a>
+     <% end %>
+    
    </div>
   </div>
