@@ -24,7 +24,12 @@ class Signed::FeedsController < Signed::BaseController
       @status = (@chronicle.user_id.to_s == current_user.id.to_s) ? true : false
     when "connections"
       @connection = Connection.find(params[:connection_id])
-      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@connection.id.to_s]).entries
+      users = []
+      UserFriend.where(:connection_id => @connection.id.to_s).each do |user|
+        users << user.friend_id.to_s
+      end
+      users.uniq!
+      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => users + [@connection.id.to_s]).entries
       @title = @connection.category_title.capitalize
     else
       @feeds = Feed.desc("updated_at").where(:channels.in => session_all).entries
