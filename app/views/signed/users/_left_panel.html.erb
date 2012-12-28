@@ -24,10 +24,26 @@ $(document).ready(function(){
       });
 
      // account management link to be clicked by default
-     $("#account").click();
-     $("#account").find('i').attr('class', 'icon-chevron-down');
-     $("#account").attr('class', 'disabled');
-     $("a[gen_id = gen_click]").attr('class', 'disabled');
+   <% if params[:form_type].present? %>
+       <% if params[:id].present? %>
+        var cnt = $("a[href='?form_type=<%= params[:form_type].html_safe %>&id=<%= params[:id].html_safe %>']");
+       <% else %>
+        var cnt = $("a[href='?form_type=<%= params[:form_type].html_safe %>']");
+       <% end %>
+      $("a[accord-main=accord]").each(function(){
+        if($(this).attr('href') == ("#account_"+ cnt.attr("id"))){
+          $(this).click();
+          $(this).find('i').attr('class', 'icon-chevron-down');
+          $(this).attr('class', 'disabled');
+          cnt.attr('class', 'disabled');
+         };
+       });
+    <% else %>
+      $("#account").click();
+      $("#account").find('i').attr('class', 'icon-chevron-down');
+      $("#account").attr('class', 'disabled');
+      $("a[gen_id = gen_click]").attr('class', 'disabled');
+    <% end %>
 
      //icon change
      $("a[accord-main=accord]").click(function() {
@@ -55,16 +71,16 @@ $(document).ready(function(){
                <% account_setting_hash[ky].each do |val| %>
                  <% case ky.to_s + " " + val.to_s %>
                   <% when "Account Management General" %>
-                     <small><a href="?form_type=general" class="current-link"  link_id="clickable" gen_id="gen_click"><%= val %></a></small><br/>
+                     <small><a href="?form_type=general" class="current-link"  link_id="clickable" gen_id="gen_click" id="<%= cnt %>" ><%= val %></a></small><br/>
                   <% when "Manage Circles Other's Edit" %>
-                     <small><a href="?form_type=Other's Circle Edit" class="current-link"  link_id="clickable"><%= val %></a></small><br/>
+                     <small><a href="?form_type=Others_Circle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
                     <% current_user.circles.each do |c| %>
-	              <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link"  link_id="clickable"><%= c.name %></a></small><br>
+	              <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= c.name %></a></small><br>
                     <% end %>
                   <% when "Manage Chronicles Other's Edit" %>
-                     <small><a href="?form_type=Other's Chronicle Edit" class="current-link"  link_id="clickable"><%= val %></a></small><br/>
+                     <small><a href="?form_type=Others_Chronicle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
                   <% else %>
-                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable"><%= val %></a></small><br/>
+                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
                 <% end %>
                <% end %>
              </div>
