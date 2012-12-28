@@ -3,6 +3,7 @@
   var circleId = '' ;
   var connectionId = '' ;
   var selectedUser = '' ;
+  var pageIn = '';
   var lastFeed = "<%= @feeds.last.updated_at unless @feeds.empty? %>";
   var lastFavourite = "<%= @feeds.last.updated_at unless @feeds.empty? %>";
   var FeedTypeId = "<%= params[:feed_type_id] %>";
