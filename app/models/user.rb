@@ -47,6 +47,7 @@ class User
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
+  validates_length_of :display_name, minimum: 1, maximum: 28, :on => :update
 
   after_validation :set_verification_token
   after_create :send_verification

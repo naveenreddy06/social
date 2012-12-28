@@ -1,15 +1,27 @@
 <% unless current_user.following.include? user.id %>
-  <%= link_to "+1 Follow me", add_follow_signed_users_path(:following_id => user.id),:onclick => "$(this).replaceWith('Request Sent')", :remote => true, :class => "btn btn-small" %>
+
+ <div id = "following_div" style="display:inline">
+  <%= link_to image_tag("/img/friends/BecomeFan.png") , add_follow_signed_users_path(:following_id => user.id), :remote => true %>
+ </div>
 <% else %>
-  Unfollow
+
+  <img src="/img/friends/FanConnected.png">
+
 <% end %>
 
 <% if (FriendRequest.where(:user_id.in => [current_user.id, user.id ] , :friend_id.in => [user.id, current_user.id]).to_a.empty?) %>
-  <%= link_to "+ Connect me", add_friend_signed_users_path(:friend_id => user.id),:onclick => "$(this).replaceWith('Pending Connection')", :remote => true, :class => "btn btn-small" %>
+
+  <%= link_to image_tag("/img/friends/BecomeFriend.png"), add_friend_signed_users_path(:friend_id => user.id),:onclick => "$(this).replaceWith('Pending Connection')", :remote => true %>
+
 <% elsif !(FriendRequest.where(:user_id.in => [current_user.id, user.id ] , :friend_id.in => [user.id, current_user.id], :approve => true).to_a.empty?) %>
-  <%= link_to "Connected","#", :class => "common_link_font" %>
+
+    <img src="/img/friends/FriendConnected.png">
+
 <% elsif !(FriendRequest.where(:user_id.in => [current_user.id ] , :friend_id.in => [user.id], :approve => nil).to_a.empty?) %>
-  <%= link_to "+1 Pending Connection ", "#", :class => "common_link_font" %>
+
+    <img src="/img/friends/FriendRequest.png">
+
+
 <% elsif !(FriendRequest.where(:user_id.in => [user.id ] , :friend_id.in => [current_user.id], :approve => nil).to_a.empty?) %>
   <%= link_to "+1 Respond to friend Request ", "#", :class => "common_link_font" %>
 <% else %>

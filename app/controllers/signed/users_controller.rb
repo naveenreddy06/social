@@ -1,5 +1,5 @@
 class Signed::UsersController < Signed::BaseController
-  
+
   before_filter :set_flashes_to_null, :check_authentication
 
   def show
@@ -16,7 +16,7 @@ class Signed::UsersController < Signed::BaseController
 
   def manage
    @wall_detail = WallDetail.new
-   case params[:form_type] 
+   case params[:form_type]
     when "manage_connections"
      @connection = Connection.new
     when "manage_circles"
@@ -390,7 +390,6 @@ class Signed::UsersController < Signed::BaseController
 
   def add_follow
     FollowUser.create(:user_id => current_user.id, :following_id => params[:following_id])
-    render :nothing => true
     session_following
   end
 

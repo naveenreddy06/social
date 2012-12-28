@@ -5,23 +5,30 @@ class Signed::FeedsController < Signed::BaseController
 
   def index
     @title = nil
-    @status = false
+    limit = 15
     case params[:feed_type]
     when "latest_news_feeds"
-      @feeds = []
+      @feeds = Feed.desc("updated_at").where(:user_id.ne => current_user.id, :channels.in => session_all).entries
       @title = "Latest News Feed"
+    when "my_posts"
+      @feeds = Feed.desc("updated_at").limit(limit).where(:user_id => current_user.id ).entries
+      @title = "My Posts"
     when "circle"
       @circle = Circle.find(params[:circle_id])
-      @feeds = Feed.desc("created_at").where(:channels.in => [@circle.id.to_s]).entries
+      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@circle.id.to_s]).entries
       @title = @circle.name.capitalize
     when "chronicle"
       @chronicle = Chronicle.find(params[:chronicle_id])
-      @feeds = Feed.desc("created_at").where(:channels.in => [@chronicle.id.to_s]).entries
-      @title = @circle.name.capitalize
-      @status = (@chronicle.user_id == current_user.id)
+      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@chronicle.id.to_s]).entries
+      @title = @chronicle.chronicle_title.capitalize
+      @status = (@chronicle.user_id.to_s == current_user.id.to_s) ? true : false
+    when "connections"
+      @connection = Connection.find(params[:connection_id])
+      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@connection.id.to_s]).entries
+      @title = @connection.category_title.capitalize
     else
-      @feeds = Feed.desc("created_at").where(:channels.in => session_all).entries
-    end      
+      @feeds = Feed.desc("updated_at").where(:channels.in => session_all).entries
+    end
     @feed_types = FeedType.all
   end
 

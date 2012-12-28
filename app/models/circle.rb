@@ -30,7 +30,7 @@ class Circle
 
   #Start validations --------------------------------------------------
 
-   validates :name, :presence => true
+    validates_length_of :name, minimum: 1, maximum: 28, :on => :update
 
   #End validations -----------------------------------------------------
 

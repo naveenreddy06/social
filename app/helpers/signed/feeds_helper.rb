@@ -36,7 +36,7 @@ module Signed::FeedsHelper
     ret = ''
     count =  UserFeed.where(:feed_id => feed.id, 'shared' => true).count
     count = (count == 0) ? " " : count
-    if feed.user == current_user
+    if feed.user == current_user and feed.public
       ret = "shares"
     elsif feed.public and count.to_i< 1000
       if current_user.user_feeds.where(:feed_id => feed.id, 'shared' => true).empty?
