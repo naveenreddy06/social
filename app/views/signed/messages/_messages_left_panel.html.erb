@@ -1,0 +1,17 @@
+<div  class="hero-unit span4"  adjustTd=true>
+  <%= link_to(image_tag(current_user.profile_image),signed_user_path(:id => current_user.id)) %><br><br>
+    <% if   current_user.display_name.blank? %>
+      <%= link_to current_user.first_name.capitalize + " "+ current_user.last_name.capitalize, signed_user_path(:id => current_user.id) %>
+    <% else %>
+      <%= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
+    <% end %>
+
+  <h6>Messages </h6>
+  <h6> Connections </h6>
+  <hr>
+    <% current_user.connections.each do |con| %>
+      <%= link_to con.category_title, signed_messages_path(:id => con.id, :type => "connection", :con_name => con.category_title), :remote => true, :class => "common_link_font" %><br><br>
+    <% end %>
+    <hr>
+  <%= link_to "Unlisted", signed_messages_path(:type => "unlisted", :con_name => "Unlisted"), :remote => true, :class => "common_link_font" %><hr>
+</div>

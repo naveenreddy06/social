@@ -30,7 +30,7 @@
   </div>
 
   <div class="btn-group">
-    <%= (current_user.messages.count > 0) ? (link_to image_tag("/img/relayimg/messages_new.png")) :  (link_to image_tag("/img/relayimg/messages_not_new.png")) %>
+    <%= (current_user.messages.count > 0) ? (link_to image_tag("/img/relayimg/messages_new.png"), signed_messages_path) :  (link_to image_tag("/img/relayimg/messages_not_new.png"),signed_messages_path) %>
   </div>
 
   <div class="btn-group">
@@ -76,5 +76,3 @@
     </div>
   <% end %>
 </div>
-
-

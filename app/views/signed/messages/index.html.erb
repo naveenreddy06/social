@@ -1,0 +1,9 @@
+<script>
+  <% if @title %>
+     $("#user_select_item").html("<%= @title %>");
+  <% end %>
+</script>
+<div class="span21">
+  <%= render "messages_left_panel" %>
+  <%= render "index" %>
+</div>
