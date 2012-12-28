@@ -1,2 +1,5 @@
 <% current_action =  params[:update_tag].keys.first %>
  $("#<%= @feed.id.to_s %>_<%= current_action %>").replaceWith('<%= escape_javascript(send("#{current_action}_status", @feed)) %>');
+if(pageIn == "Favorites") {
+  $("#tdFeed_<%= @feed.id %>").hide();
+}

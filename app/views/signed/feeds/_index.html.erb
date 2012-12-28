@@ -3,6 +3,7 @@
    chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
    circleId = "<%= @circle ? @circle.id : '' %>";
    connectionId = "<%= @connection ? @connection.id : '' %>";
+   pageIn = '<%= params[:feed_type].present? ? params[:feed_type] : "" %>';
    MinPost();
    fetch_form($("#post_type_id_post_type").val());
   });
