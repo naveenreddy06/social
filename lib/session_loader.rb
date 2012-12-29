@@ -14,7 +14,7 @@ module SessionLoader
 
   def session_following
     session[:following]=current_user.following
-    session[:following]
+    session[:following].to_a
   end
 
   def session_user_chronicles

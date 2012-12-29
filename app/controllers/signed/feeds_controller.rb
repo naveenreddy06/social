@@ -48,7 +48,7 @@ class Signed::FeedsController < Signed::BaseController
       @title = "Favorites - #{@feed_type.post_type.capitalize}"
 
     else
-      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest, ).entries
       @last_feed = @feeds.last.updated_at unless @feeds.empty?
     end
     @feed_types = FeedType.all
@@ -73,11 +73,15 @@ class Signed::FeedsController < Signed::BaseController
 
   def add_comment
    @feed = Feed.where("_id" => params[:feed_id]).first
-   @comment = @feed.comments.create(:user_id => current_user.id, :comment => params[:comment])
+   @comment = @feed.comments.create(:user_id => current_user.id, :comment => params[:comment]) if @feed
   end
 
   def feed_tag
-    @feed = Feed.find(params[:feed_id])
+    begin
+      @feed = Feed.find(params[:feed_id])
+    rescue
+      @feed = false
+    end
     update_tag = params[:update_tag]
     if @feed
       feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @feed.id).first
@@ -88,4 +92,28 @@ class Signed::FeedsController < Signed::BaseController
       end
     end
   end
+
+  def deletepost
+    begin
+      @feed = Feed.where("_id" => params[:feed_id]).first
+    rescue
+      @feed = false
+    end
+    case params[:type]
+     when "delete"
+       if @feed
+         @feed.destroy
+       end
+     when "hide"
+       if @feed
+         feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @feed.id)
+         if feed_user.empty?
+           @feed.user_feeds.create(:user_id => current_user.id, :hidden => true )
+         else
+           feed_user.last.update_attributes(:hidden => true)
+         end
+       end
+    end
+  end
+
 end

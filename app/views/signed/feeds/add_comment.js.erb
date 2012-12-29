@@ -1,9 +1,13 @@
-$("#new_comment_<%= @comment.feed.id %>").replaceWith("<tr id='new_comment_<%= @comment.feed.id %>'></td><td><%= escape_javascript(render 'comment', :comment => @comment ) %></tr>");
+<% if @feed %>
+ $("#new_comment_<%= @comment.feed.id %>").replaceWith("<tr id='new_comment_<%= @comment.feed.id %>'></td><td><%= escape_javascript(render 'comment', :comment => @comment ) %></tr>");
 
-$("#comment_empty<%= @comment.feed.id %>").attr('value', '');
+ $("#comments_count_<%= @feed.id %>").replaceWith("<div id='comments_count_<%= @feed.id %>'><%= escape_javascript(render('comments_count', :feed => @feed)) %></div>");
+ $("#comment_<%= @comment.feed.id %>").css({"background-color":"rgb(231,235,242)", "height":"auto","width":"auto"});
+ $("#comment_<%= @comment.feed.id %>").attr('class', 'hero-unit');
+<% else %>
+bootbox.alert("Post has been deleted at the source.", function() {
+  $(".modal-footer").trigger("click");
+});
+<% end %>
 
-$("#comments_count_<%= @feed.id %>").replaceWith("<div id='comments_count_<%= @feed.id %>'><%= escape_javascript(render('comments_count', :feed => @feed)) %></div>");
-$("#comment_<%= @comment.feed.id %>").css({"background-color":"rgb(231,235,242)", "height":"auto","width":"auto"});
-$("#comment_<%= @comment.feed.id %>").attr('class', 'hero-unit');
-
-
+$("#comment_empty<%= params[:feed_id] %>").attr('value', '');

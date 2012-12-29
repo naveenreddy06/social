@@ -21,7 +21,7 @@ class UserFeed
         feed.channels << self.user_id.to_s
         feed.save
       end
-    elsif self.shared_changed? and feed.channels.include? self.user_id.to_s
+    elsif self.shared_changed? and feed.channels.include? self.user_id.to_s and (self.user_id != self.feed.user_id)
       feed.channels.delete(self.user_id.to_s)
       feed.save
     end
