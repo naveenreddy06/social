@@ -5,23 +5,28 @@ class Signed::FeedsController < Signed::BaseController
 
   def index
     @title = nil
-    limit = 15
+    @limit = 15
+    latest = params[:last_feed] || Time.now
     case params[:feed_type]
     when "latest_news_feeds"
-      @feeds = Feed.desc("updated_at").where(:user_id.ne => current_user.id, :channels.in => session_all).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:user_id.ne => current_user.id, :channels.in => session_all, :updated_at.lt => latest).entries
       @title = "Latest News Feed"
+      @last_feed = @feeds.last.updated_at unless @feeds.empty?
     when "my_posts"
-      @feeds = Feed.desc("updated_at").limit(limit).where(:user_id => current_user.id ).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:user_id => current_user.id, :updated_at.lt => latest ).entries
       @title = "My Posts"
+      @last_feed = @feeds.last.updated_at unless @feeds.empty?
     when "circle"
       @circle = Circle.find(params[:circle_id])
-      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@circle.id.to_s]).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => [@circle.id.to_s], :updated_at.lt => latest).entries
       @title = @circle.name.capitalize
+      @last_feed = @feeds.last.updated_at unless @feeds.empty?
     when "chronicle"
       @chronicle = Chronicle.find(params[:chronicle_id])
-      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => [@chronicle.id.to_s]).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => [@chronicle.id.to_s], :updated_at.lt => latest ).entries
       @title = @chronicle.chronicle_title.capitalize
       @status = (@chronicle.user_id.to_s == current_user.id.to_s) ? true : false
+      @last_feed = @feeds.last.updated_at unless @feeds.empty?
     when "connections"
       @connection = Connection.find(params[:connection_id])
       users = []
@@ -29,19 +34,22 @@ class Signed::FeedsController < Signed::BaseController
         users << user.friend_id.to_s
       end
       users.uniq!
-      @feeds = Feed.desc("updated_at").limit(limit).where(:channels.in => users + [@connection.id.to_s]).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => users + [@connection.id.to_s], :updated_at.lt => latest).entries
       @title = @connection.category_title.capitalize
-
+      @last_feed = @feeds.last.updated_at unless @feeds.empty?
     when "Favorites"
       @feeds = []
       @feed_type = FeedType.find(params[:type_id])
-      UserFeed.limit(limit).where(:feed_type_id => @feed_type.id, :favorite => true,:user_id => current_user.id).each do |feed|
+      user_feeds = UserFeed.limit(@limit).where(:feed_type_id => @feed_type.id, :favorite => true,:user_id => current_user.id, :updated_at.lt => latest)
+      @last_feed = user_feeds.last.updated_at unless user_feeds.empty?
+      user_feeds.each do |feed|
         @feeds << feed.feed
       end
       @title = "Favorites - #{@feed_type.post_type.capitalize}"
 
     else
-      @feeds = Feed.desc("updated_at").where(:channels.in => session_all).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest).entries
+      @last_feed = @feeds.last.updated_at unless @feeds.empty?
     end
     @feed_types = FeedType.all
     @message = Message.new

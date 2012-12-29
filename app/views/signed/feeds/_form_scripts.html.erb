@@ -4,15 +4,15 @@
   var connectionId = '' ;
   var selectedUser = '' ;
   var pageIn = '';
-  var lastFeed = "<%= @feeds.last.updated_at unless @feeds.empty? %>";
-  var lastFavourite = "<%= @feeds.last.updated_at unless @feeds.empty? %>";
-  var FeedTypeId = "<%= params[:feed_type_id] %>";
-  var Type = "<%= params[:type] %>";
+  var lastFeed = "";
+  var feedCounter = 0;
+  var typeId = '';
 
   function fetch_older_feeds() {
+
     $.ajax({
-      url: "/feeds/fetch_older_feeds",
-      data: {last_feed: lastFeed, chronicle_id: chronicleId, circle_id: circleId, connection_id: connectionId },
+      url: "/signed/feeds/",
+      data: {last_feed: lastFeed, chronicle_id: chronicleId, circle_id: circleId, connection_id: connectionId, type_id: typeId, feed_type: pageIn },
       dataType: 'script'
     });
   }
@@ -69,16 +69,6 @@
     $.ajax({
       url: "/feeds/hidepost",
     data: {feed_id:feed_id },
-      dataType: 'script'
-    });
-   }
-
-
-
-   function fetch_older_favourites() {
-    $.ajax({
-      url: "/feeds/load_common",
-      data: {feed_type_id:FeedTypeId, last_favourite:lastFavourite, type:Type },
       dataType: 'script'
     });
    }

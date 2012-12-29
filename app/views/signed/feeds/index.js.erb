@@ -1,20 +1,32 @@
+lastFeed = '<%= @last_feed %>';
+<% unless params[:last_feed].present? %>
+ pageIn = '<%= params[:feed_type].present? ? params[:feed_type] : "" %>';
+ $("#minTd").hide();
+ $("#formTd").hide();
 
-$("#minTd").hide();
-$("#formTd").hide();
+ $("td[tobeRemoved=true]").remove();
 
-$("td[tobeRemoved=true]").remove();
-
-<% @feeds.reverse.each do |feed| %> 
+ <% @feeds.reverse.each do |feed| %> 
   $("#new_td").replaceWith("<td id='new_td' style='display : none'></td><td tobeRemoved=true id='td_<%= feed.id %>'><%= escape_javascript(render 'feed', :feed => feed ) %></td>");
-<% end %>
-chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
-circleId = "<%= @circle ? @circle.id : '' %>";
-connectionId = "<%= @connection ? @connection.id : '' %>";
-<% if @status.nil? || @status %>
- $("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
- MinPost();
-<% end %>
-fetch_form($("#post_type_id_post_type").val());
+ <% end %>
+ chronicleId = "<%= @chronicle ? @chronicle.id : '' %>";
+ circleId = "<%= @circle ? @circle.id : '' %>";
+ connectionId = "<%= @connection ? @connection.id : '' %>";
+ <% if @status.nil? || @status %>
+  $("#formTd").html("<%= escape_javascript(render('feed_type')) %>");
+  MinPost();
+ <% end %>
+ fetch_form($("#post_type_id_post_type").val());
+ $("#user_select_item").html("<%= @title %>");
+<% else %>
 
-$("#user_select_item").html("<%= @title %>");
+ <% @feeds.each do |feed| %> 
+  $("#old_td").replaceWith("<td tobeRemoved=true id='td_<%= feed.id %>'><%= escape_javascript(render 'feed', :feed => feed ) %></td><td id='old_td' style='display : none'></td>");
+ <% end %>
+<% end %>
+
 unifyHeights();
+
+<% if @feeds.size == @limit %>
+	setTimeout(function(){fetch_older_feeds()},3000);
+<% end %>
