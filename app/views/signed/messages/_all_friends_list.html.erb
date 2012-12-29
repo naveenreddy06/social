@@ -1,0 +1,29 @@
+<div class="row-fluid">
+  <% if params[:type] == "unlisted" %>
+    <h6>Unlisted</h6>
+  <% elsif params[:type] == "connection" %>
+    <h6><%= params[:con_name] %>&nbsp;List:</h6>
+  <% else %>
+    <h6>All friends List : </h6>
+  <% end %>
+
+  <% friends.each do |friend| %>
+  <% message_num = Message.where(:friend_id => current_user.id, :user_id => friend.id,:read.in => [nil,false]) %>
+  <span style="font-size:12px;"><%= link_to friend_message_signed_messages_path(:id => friend.id ), :remote => true  do %>
+   <table class="noborder">
+    <tr>
+      <td>
+        <span><%= image_tag friend.profile_image_thumb %></span>
+        <span class="span_content" style="float:left; margin-left:50px; margin-top:-50px;">
+          <%= link_to friend.first_name.capitalize + " " + friend.last_name.capitalize, signed_user_path(:id => friend.id) %>
+          <% if message_num.count > 0 %>
+                  <div style="display:inline" id = "all_id_<%= friend.id %>">(<%= message_num.count %>) </div>
+          <% end %><br>
+        </span>
+      </td>
+    </tr>
+  </table>
+<% end %>
+</span>
+<% end %>
+</div>
