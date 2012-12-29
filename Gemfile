@@ -33,3 +33,4 @@ gem 'dalli'
 gem 'stalker'
 gem 'rack-pjax'
 gem "devise"
+gem 'le', '2.0'

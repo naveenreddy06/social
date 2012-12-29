@@ -110,6 +110,7 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    le (2.0)
     less (2.2.2)
       commonjs (~> 0.2.6)
     localized_language_select (0.2.0)
@@ -239,6 +240,7 @@ DEPENDENCIES
   devise
   execjs
   jquery-rails
+  le (= 2.0)
   less
   localized_language_select
   mini_magick (= 3.4)
