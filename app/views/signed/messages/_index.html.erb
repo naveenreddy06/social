@@ -1,16 +1,19 @@
-<div class="span5 hero-unit" adjustTd=true >
+<td class="span5">
+ <div class="hero-unit" adjustTd=true >
   <div id="new_message">
    <%= render "latest_unread_messages", :messages => @messages%>
   </div>
-</div>
+ </div>
+</td>
 
-<div class="span5 hero-unit" adjustTd=true>
+<td class="span5">
+ <div class="hero-unit" adjustTd=true>
   <div id="all_friends">
     <%= render "all_friends_list", :friends => current_user.my_friends %>
   </div>
-</div>
+ </div>
+</td>
 
-
-<div id="reply_message" adjustTd=true>
-
-</div>
+<td class="span5" style="display: none" id="td_reply_message">
+ <div class="hero-unit" id="reply_message" adjustTd=true ></div>
+</td>

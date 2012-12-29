@@ -2,10 +2,9 @@ $("#all_id_<%= params[:id] %>").replaceWith("");
 
 last_message = "<%= @allmessages.last.created_at unless @allmessages.empty? %>";
 
-$("#reply_message").replaceWith("<div id='reply_message' adjustTd=true  > <%= escape_javascript(render 'signed/messages/reply_message', :friend => params[:id]) %></div>");
+$("#reply_message").html("<%= escape_javascript(render 'signed/messages/reply_message', :friend => params[:id]) %>");
 
-$("#reply_message").attr('class' , 'span6 hero-unit');
-
+$("#td_reply_message").show();
 
 
 

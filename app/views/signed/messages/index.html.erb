@@ -3,7 +3,9 @@
      $("#user_select_item").html("<%= @title %>");
   <% end %>
 </script>
-<div class="span21">
-  <%= render "messages_left_panel" %>
+<table class="span21">
+ <tr>
+  <td class="span4" style="min-width: 250px;"><%= render "messages_left_panel" %></td>
   <%= render "index" %>
-</div>
+ </tr>
+</table>
