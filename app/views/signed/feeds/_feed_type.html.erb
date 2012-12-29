@@ -5,6 +5,7 @@ $(document).ready(function() {
 });
 </script>
 <div class="hero-unit" id = "span_post_type" adjustTd=true>
+  <img onclick="MinPost(this, 'minus.png')"  style="float:right;" src="/img/minus.png" ></img>
     <div style = "width:300px;font-style:italic;color;font-size:14px; margin-bottom:15px;">Post Type:&nbsp;
         <select style = "width:150px;"class="post_type_drop" id="post_type_id_post_type" name="post_type_id[post_type]" onchange="fetch_form($(this).val())">
          <% @feed_types.each do |ft| %>
@@ -22,7 +23,6 @@ $(document).ready(function() {
            <% end %>
          <% end %>
         </select>
-      <img onclick="MinPost(this, 'minus.png')"  style="float:right;"src="/img/minus.png" /></img>
     </div>
     <div id="form_div"></div>
 </div>
