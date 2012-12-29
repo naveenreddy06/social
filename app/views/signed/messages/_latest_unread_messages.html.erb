@@ -4,7 +4,7 @@
   <% elsif params[:type] == "connection" %>
     <h6><%= params[:con_name] %>&nbsp;List: Messages</h6>
   <% else %>
-    <h6>Latest Unread messages </h6>
+    <h6>Latest Unread messages</h6>
   <% end %>
  
     <% messages.each do |msg| %>
@@ -15,26 +15,26 @@
            <%= image_tag msg.user.profile_image_thumb %>
           </div>
           <div class=" span18">
-          <% if msg.user.display_name.blank? %>
-            <%= link_to msg.user.first_name.capitalize + " " + msg.user.last_name.capitalize, signed_user_path(:id => msg.user.id) %>
-          <% else %>
-             <%= link_to msg.user.display_name.capitalize , signed_user_path(:id =>msg.user.id) %>
-          <% end %>
-
-          <div class="span_content">
-            <%= msg.message %>
-          </div>
-
-           <div class="span_content">
-            <% if msg.created_at.to_date == Date.today %>
-                <%= msg.created_at.strftime("%l:%M%p").to_s %>
-            <% elsif msg.created_at.to_date == Date.today-1 %>
-                <%= msg.created_at.strftime("Yesterday %l:%M%p").to_s %>
+            <% if msg.user.display_name.blank? %>
+              <%= link_to msg.user.first_name.capitalize + " " + msg.user.last_name.capitalize, signed_user_path(:id => msg.user.id) %>
             <% else %>
-                <%= msg.created_at.to_date.strftime("%b %d, %Y").to_s %>
+              <%= link_to msg.user.display_name.capitalize , signed_user_path(:id =>msg.user.id) %>
             <% end %>
-            <hr style="width:200px;">
-           </div>
+
+            <div class="span_content">
+              <%= msg.message %>
+            </div>
+
+            <div class="span_content">
+              <% if msg.created_at.to_date == Date.today %>
+                <%= msg.created_at.strftime("%l:%M%p").to_s %>
+              <% elsif msg.created_at.to_date == Date.today-1 %>
+                <%= msg.created_at.strftime("Yesterday %l:%M%p").to_s %>
+              <% else %>
+                <%= msg.created_at.to_date.strftime("%b %d, %Y").to_s %>
+              <% end %>
+              <hr style="width:200px;">
+            </div>
           </div>
         </td>
       </tr>

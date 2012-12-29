@@ -1,6 +1,7 @@
-$("#cancelButton").trigger("click");
-$("#message_partial").replaceWith("<div id='message_partial'><%= escape_javascript(render 'signed/feeds/messages' ) %></div>");
-
-
-$("#new_msgs").replaceWith("<tr id='new_msgs'></tr><tr><%= escape_javascript(render 'msg', :msg => @msg ) %></tr>");
-$('#message_message').val('');
+<% if params[:page_name] == "main_messages" %>
+  $("#new_msgs").replaceWith("<tr id='new_msgs'></tr><tr><%= escape_javascript(render 'msg', :msg => @msg ) %></tr>");
+  $('#message_message').val('');
+<% else %>
+ $("#cancelButton").trigger("click");
+ $("#message_partial").replaceWith("<div id='message_partial'><%= escape_javascript(render 'signed/feeds/messages' ) %></div>");
+<% end %>
