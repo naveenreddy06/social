@@ -1,8 +1,10 @@
 <div class="span20" style="padding-top: 30px;">
   <div class="well span4" style="background-color:#ebf3f8;">
-	 <%= form_tag do %>
+	 <%= form_tag unsigned_search_index_path, :method => :get do %>
 	   Refine Search : <br><br>
 	   <%= select_tag :filter, options_for_select(fetch_filters) %>
+	   <%= hidden_field_tag :model_type, params[:model_type] %>
+	   <%= hidden_field_tag :keyword, params[:keyword] %>
 	   <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
 	 <% end %>
   </div>
