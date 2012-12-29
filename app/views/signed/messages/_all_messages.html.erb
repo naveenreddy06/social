@@ -1,0 +1,24 @@
+<script>
+  var last_message = "<%= @allmessages.last.created_at unless @allmessages.empty? %>";
+   function fetch_older_messages( last_id) {
+    $.ajax({
+      url: "/signed/messages/fetch_older_messages",
+      data: { id:last_id, last_message:last_message },
+      dataType: 'script'
+    });
+   }
+
+</script>
+<table class = "noborder">
+  <tr id="new_msgs"></tr>
+    <% @allmessages.each do |msg| %>
+     <tr>
+       <%= render "msg" , :msg => msg %>
+     </tr>
+    <% end %>
+    <tr id="older_msgs"></tr>
+</table>
+
+<% if @allmessages.count >= 7 %>
+   <a href="#", onClick ="fetch_older_messages('<%= params[:id] %>');" , style="color:#014F87;font-size:14px; font-style:italic; font-weight:500">-Load more messages</a>
+<% end %>

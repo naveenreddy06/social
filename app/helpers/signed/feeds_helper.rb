@@ -37,13 +37,13 @@ module Signed::FeedsHelper
     count =  UserFeed.where(:feed_id => feed.id, 'shared' => true).count
     count = (count == 0) ? " " : count
     if feed.user == current_user and feed.public
-      ret = "shares"
+      ret = image_tag "/img/relayimg/share.png"
     elsif feed.public and count.to_i< 1000
       if current_user.user_feeds.where(:feed_id => feed.id, 'shared' => true).empty?
         img = image_tag "/img/relayimg/share.png", :title => "share"
         ret = link_to(img, feed_tag_signed_feeds_path(:feed_id => feed.id.to_s, :update_tag => {"shared" => true}), :remote => true) 
       else
-        img = "shared"
+        img = image_tag "/img/relayimg/unshare.png"
         ret = link_to(img, feed_tag_signed_feeds_path(:feed_id => feed.id.to_s, :update_tag => {"shared" => false}), :remote => true)
       end
     end

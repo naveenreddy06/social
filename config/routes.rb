@@ -31,7 +31,11 @@ Relayfan::Application.routes.draw do
         get "fetch_form", "fetch_friends", "add_comment", "feed_tag"
       end
     end
-    resources :messages
+    resources :messages do
+      collection do
+        get "friend_message","fetch_older_messages"
+      end
+   end
   end
 
 end
