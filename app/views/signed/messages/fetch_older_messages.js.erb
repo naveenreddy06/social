@@ -1,7 +1,6 @@
 <% if !@allmessages.empty? %>
   last_message = "<%= @allmessages.last.created_at unless @allmessages.empty? %>";
-<% @allmessages.each do |msg| %>
- $("#older_msgs").replaceWith("<tr><%= escape_javascript(render 'msg', :msg => msg ) %></tr><tr id='older_msgs'></tr>");
- <% end %>
-
+  <% @allmessages.each do |msg| %>
+    $("#older_msgs").replaceWith("<tr><%= escape_javascript(render 'msg', :msg => msg ) %></tr><tr id='older_msgs'></tr>");
+   <% end %>
 <% end %>

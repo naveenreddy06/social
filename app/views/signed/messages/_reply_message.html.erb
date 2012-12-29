@@ -1,31 +1,27 @@
-<div  id="new_reply_msg">
-   <h6 style="color:#1497e2"> Compose Message </h6>
+<div id="new_reply_msg">
+  <h6 style="color:#1497e2"> Compose Message </h6>
+    <div style="color:#1497e2"><b style="color:black">To</b>
+      <%=  User.where(:_id => params[:id]).first.first_name + " " + User.where(:_id => params[:id]).first.last_name%>
+    </div>
+    <hr>
+  </h6>
 
-     <h6>
-      <%= "To" %>
-      <span style="color:#1497e2">
-      <%=  User.where(:_id => params[:id]).first.first_name %>
-      <%=  User.where(:_id => params[:id]).first.last_name %>
-    </span>
-       <hr>
-    </h6>
-
-
-
-     <%= simple_form_for @message, :url => signed_messages_path, :remote => true do |f| %>
-     <table>
+  <%= simple_form_for @message, :url => signed_messages_path, :remote => true do |f| %>
+    <table>
       <tr>
-       <td><%= image_tag current_user.profile_image_thumb %></td>
-      <td id="reply"><%= f.input :message, :as => :text, :placeholder => 'reply here...' , label:false, :input_html => {  :rows => 1, :cols => 1,  :style => "resize: none;margin-left:4px; margin-bottom:-6px;font-size:12px;width:270px;max-height:35px;min-height:35px;"  } %></td>
+        <td>
+          <%= image_tag current_user.profile_image_thumb %>
+        </td>
+        <td id="reply">
+          <%= f.input :message, :as => :text, :placeholder => 'reply here...' , label:false, :input_html => {:rows => 1, :cols => 8,  :style => "resize: none;font-size:12px;"} %>
+        </td>
       </tr>
-     </table>
-   <%= hidden_field_tag :page_name, '', :value => "main_messages" %>   
-  <%= f.input :friend_id, :as => :hidden, :input_html => {:value => friend} %>
-  <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
-   <%= f.submit "Reply", :class => "btn btn-small btn-primary",  :style => "margin-left:49px; margin-bottom:5px;  line-height:13px;"  %>
+    </table>
+    <%= hidden_field_tag :page_name, '', :value => "main_messages" %>
+    <%= f.input :friend_id, :as => :hidden, :input_html => {:value => friend} %>
+    <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+    <%= f.submit "Reply", :class => "btn btn-small btn-primary" %>
   <% end %>
-
-
 
   <div id="all_messages">
    <%= render "all_messages" %>
