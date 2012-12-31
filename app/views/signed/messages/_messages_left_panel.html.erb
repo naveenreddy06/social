@@ -1,4 +1,4 @@
-<div  class="hero-unit span4"  adjustTd=true>
+<div  class="hero-unit" adjustTd=true>
   <%= link_to(image_tag(current_user.profile_image),signed_user_path(:id => current_user.id)) %><br><br>
     <% if   current_user.display_name.blank? %>
       <%= link_to current_user.first_name.capitalize + " "+ current_user.last_name.capitalize, signed_user_path(:id => current_user.id) %>

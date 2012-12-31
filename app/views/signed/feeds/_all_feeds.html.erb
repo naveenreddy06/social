@@ -1,3 +1,6 @@
 <% feeds.each do |feed| %>
- <td tobeRemoved=true style="min-width: 360px; min-width: 361px;" id="tdFeed_<%= feed.id %>"><%= render "feed", :feed => feed %></td>
+   <% hidden = UserFeed.where(:feed_id => feed.id, :user_id => current_user.id).first.nil? ? false : UserFeed.where(:feed_id => feed.id, :user_id => current_user.id).first.hidden %>
+  <% unless hidden %>
+   <td tobeRemoved=true style="min-width: 360px; min-width: 361px;" id="tdFeed_<%= feed.id %>"><%= render "feed", :feed => feed %></td>
+  <% end %>
 <% end %>
