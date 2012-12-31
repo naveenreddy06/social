@@ -27,17 +27,31 @@ class Feed
     
     after_create :set_feed_array, :set_tags_array
     validates :feed, :presence => true, :on => :create
+    
+    mapping do
+      indexes :id, type: 'string'
+      indexes :user_id, type: 'string'
+      indexes :feed_type_id, type: 'string'
+      indexes :feed
+      indexes :user_name
+      indexes :add_link
+      indexes :current_channels, type: 'string'
+      indexes :public, type: 'boolean'
+    end
 
     def to_indexed_json
-        content = self.feed.to_s
-        {
-          :content => content,
-          :feed_id => self.id,
-          :public => self.public,
-          :user => self.user.id,
-          :feed_type_id => self.feed_type_id,
-          :channels => self.channels.to_a.collect{|c| c}.join(" ")
-        }.to_json
+        to_json(methods: [:user_name, :current_channels])
+    end
+    
+    def self.search(params)
+      tire.search(page: params[:page], per_page: 10, load: true) do
+        query do
+          boolean do
+            must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
+            must { term :public, true } 
+          end
+        end
+      end
     end
 
     def set_feed_array
@@ -72,7 +86,15 @@ class Feed
        self.save
      end
    end
-
+  
+  def user_name
+    user.display_name.to_s + " " + user.first_name.to_s + " " +  user.last_name.to_s
+  end
+  
+  def current_channels
+    channels.collect{|c| c}.join(" ")
+  end
+     
 
 end
 
