@@ -51,7 +51,25 @@ class User
 
   after_validation :set_verification_token
   after_create :send_verification
-
+  
+  mapping do
+    indexes :id, type: 'string'
+    indexes :display_name, type: 'string'
+    indexes :last_name, type: 'string'
+    indexes :first_name, type: 'string'
+    indexes :user_type_id, type: 'string'
+  end
+  
+  def self.search(params)
+    tire.search(page: params[:page], per_page: 10, load: true) do
+      query do
+        boolean do
+          must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
+          must { term :user_type_id, params[:filter] } if params[:filter].present?
+        end
+      end
+    end
+  end
 
   def feed_channels
     UserFriend.where("friend_id" => self.id).collect(&:connection_id) + self.user_circles.collect{|cir| cir.circle_id.to_s}  + self.my_friends.collect{|usr| usr.id.to_s} + self.following + self.user_chronicles.collect{|chronicle| chronicle.chronicle_id.to_s} + [self.id.to_s] + self.connections.collect{|conn| conn.id.to_s} + self.chronicles.collect{|chr| chr.id.to_s}
@@ -180,17 +198,5 @@ class User
       send_verification
     end
   end
-
-  def to_indexed_json
-        content = self.first_name + " " + self.last_name
-        user_type = self.user_type.name unless self.user_type.nil?
-        {
-          :content => content,
-          :display_name => self.display_name,
-          :user_id => self.id,
-          :verified => self.verified,
-          :user_type =>  user_type
-        }.to_json
-    end
 
 end

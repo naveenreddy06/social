@@ -4,6 +4,8 @@ module ApplicationHelper
     case params[:model_type]
     when"Feed"
       FeedType.all.collect{|ft| [ft.post_type, ft.id]}
+    when "User"
+      UserType.all.collect{|ut| [ut.name, ut.id]}
     else
       []
     end
