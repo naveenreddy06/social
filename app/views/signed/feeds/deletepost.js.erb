@@ -1,0 +1,10 @@
+<% if @feed %>
+    $("#td_"+"<%= @feed.id %>").hide();
+    $("#tdFeed_"+"<%= @feed.id %>").hide();
+<% else %>
+  bootbox.alert("Post has been deleted at the source.", function() {
+    $(".modal-footer").trigger("click");
+      $("#td_"+"<%= params[:feed_id] %>").hide();
+      $("#tdFeed_"+"<%= params[:feed_id] %>").hide();
+  });
+<% end %>

@@ -3,10 +3,12 @@
      <ul>
        <% if feed.user == current_user %>
          <li style="font-size:13px;font-style:italic;">
-         <a onclick="deletePost('<%= feed.id %>');" id="<%= feed.id %>" >Delete Post</a></li>
+          <%= link_to "Delete Post", deletepost_signed_feeds_path(:feed_id => feed.id, :type => "delete"), :remote => true %>
+         </li>
        <% else %>
         <li style="font-size:13px;font-style:italic">
-        <a onclick="hidePost('<%= feed.id %>');" id="<%= feed.id %>">Hide Post</a></li>
+          <%= link_to "Hide Post", deletepost_signed_feeds_path(:feed_id => feed.id, :type => "hide"), :remote => true %>
+        </li>
       <% end %>
      </ul>
    </li>

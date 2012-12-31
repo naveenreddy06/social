@@ -56,23 +56,6 @@
     }
 }
 
-    function deletePost(feed_id) {
-    $.ajax({
-      url: "/feeds/deletepost",
-    data: {feed_id:feed_id },
-      dataType: 'script'
-    });
-   }
-
-
-    function hidePost(feed_id) {
-    $.ajax({
-      url: "/feeds/hidepost",
-    data: {feed_id:feed_id },
-      dataType: 'script'
-    });
-   }
-
    function create_comment(feed_id) {
     $.ajax({
       url: "/feeds/add_comment",

@@ -17,7 +17,6 @@ class Feed
     belongs_to :user
     belongs_to :feed_type
 
-
     field :feed
     field :tag_user
     field :add_link

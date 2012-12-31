@@ -18,6 +18,8 @@
 //= require jquery.fullscreenr
 //= require jquery.dd.min
 //= require jquery.pjax
+//= require bootbox.js
+
 
 
 
