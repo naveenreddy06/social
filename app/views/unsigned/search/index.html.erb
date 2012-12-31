@@ -48,6 +48,6 @@
             <% end %>
           </div><hr><hr>
       <% end %>
-   <%= paginate @results %>
+   <%= paginate @results unless @results.empty? %>
   </div>
 </div>
