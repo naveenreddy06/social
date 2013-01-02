@@ -56,6 +56,14 @@ $(document).ready(function(){
 </script>
 
 <div  class="hero-unit"  adjustTd=true>
+
+    <%= link_to(image_tag(current_user.profile_image), signed_user_path(:id => current_user.id)) %><br><br>
+    <% display_name = current_user.display_name.blank? ? current_user.first_name.capitalize + " "+ current_user.last_name.capitalize : current_user.display_name.capitalize %>
+    <%= link_to display_name, signed_user_path(:id => current_user.id) %>
+
+
+
+
     <h6 style="color :#696969"><img src="/assets/Account_settings.png"/> <b>Account Settings</b></label>
     <div class="accordion" id="account-management">
        <% cnt = 1 %>
