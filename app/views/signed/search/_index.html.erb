@@ -7,7 +7,9 @@
         <% when "Feed" %>
             <%= render "inside_post" %>
         <% when "User" %>
-            <%= render "users" %>
+          <% @results.each do |result| %>
+            <%= render "/unsigned/search/common_layout",:result => result %>
+          <% end %>
       <% end %>
    <%= paginate @results unless @results.empty? %>
   </div>
