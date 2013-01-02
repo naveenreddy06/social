@@ -54,7 +54,7 @@
 
 <div class="span5">
   <div class="btn-group">
-    <%= form_tag  do %>
+    <%= form_tag(signed_search_index_path, :method => :get)  do %>
       <select name="model_type" style= "background-color:rgb(84,113,188);width:110px;border:0px;color:white" >
         <option value="Feed" style= "background-color:rgb(84,113,188);color:white">Posts</option>
         <option value="Circle" style= "background-color:rgb(84,113,188);color:white">Circles</option>

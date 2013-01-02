@@ -48,7 +48,8 @@ class Feed
         query do
           boolean do
             must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
-            must { term :public, true } unless params[:current_user].present?
+            must { term :public, true } unless params[:channels].present?
+            should { string "public: true OR current_channels: #{params[:channels]}" } if params[:channels].present?
             must { term :feed_type_id, params[:filter] } if params[:filter].present?
           end
         end

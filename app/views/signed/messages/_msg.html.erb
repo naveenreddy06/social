@@ -8,7 +8,7 @@
      <% if msg.user.display_name.blank? %>
        <%= link_to msg.user.first_name.capitalize + " " + msg.user.last_name.capitalize,signed_user_path(:id => msg.user.id) %>
      <% else %>
-       <%= link_to msg.user.display_name.capitalize , signed_user_path(:id => current_user.id) %>
+       <%= link_to msg.user.display_name.capitalize , signed_user_path(:id => msg.user.id) %>
      <% end %>
     </div>
     <div class="span_content">

@@ -15,43 +15,13 @@
       <span class="icon-search"></span>
       <span><%= " Search Results for " %></span>
       <span style="color:red">'<%= params[:keyword] %>'</span><br><br>
-      <% @results.each do |result| %>
-          <div class="row-fluid">
-	   <div class="span12">
-	    <div class="row-fluid">
-              <div class="span2">
-                <%= image_tag result.user.profile_image_thumb %>
-              </div>
-              <div class="span18">
-                <%= render "/signed/feeds/feed_header", :feed => result %>
-              </div>
-             </div>
-            </div>
-          </div><br>
 
-          <!-- Feed Content -->
-
-        <%= render "/signed/feeds/feed_content", :feed => result %>
-
-        <!-- Wow Pin Share -->
-          <div class="span_content">
-            <% if result.user_feeds.where('cool' => true).count > 0 %>
-                  <img src='/img/relayimg/wow.png' />
-                  <%= result.user_feeds.where('cool' => true).count %>
-                  wow
-            <% end %>
-            <% if result.user_feeds.where('favorite' => true).count > 0 %>
-                   <img src='/img/relayimg/pin.png' />
-                   <%= result.user_feeds.where('favorite' => true).count %>
-                   fan
-            <% end %>
-            <% if result.user_feeds.where('share' => true).count > 0 %>
-                   <img src='/img/relayimg/share.png' />
-                   <%= result.user_feeds.where('share' => true).count %>
-                   share
-            <% end %>
-          </div><hr><hr>
-      <% end %>
+        <% case params[:model_type] %>
+         <% when "Feed" %>
+            <%= render "outside_post" %>
+         <% when "User" %>
+            <%= render "users" %>
+         <% end %>
    <%= paginate @results unless @results.empty? %>
   </div>
 </div>
