@@ -1,0 +1,23 @@
+<script>
+  var circleID = "<%= @circle.id %>";
+  var page = 1;
+  function circle_replace() {
+    $.ajax({
+      url: "/signed/users/circle_members_replace",
+      data: {circle_id: circleID, page: page },
+      dataType: 'script'
+    });
+  }
+
+</script>
+
+<div style="background-color:#E8E8E8; min-height:20px;width:82%;font-weight:normal">Circle Members</div><br>
+
+   <table class="noborder">
+    <% @circle_users.each do |us| %>
+       <tr>
+       <%= render "signed/users/circles/circle_members_name",:us => us %>
+      </tr>
+    <% end %>
+     <tr id="circle_members_replace"></tr>
+  </table>

@@ -257,6 +257,27 @@ class Signed::UsersController < Signed::BaseController
     end
     session_circles
   end
+
+  def get_circle_details
+    @circle = Circle.where("id" => params[:id]).first
+  end
+
+  def about_circle
+    @circle = Circle.find params[:id]
+  end
+
+  def circle_members
+    @circle = Circle.where("_id" =>  params[:id]).first
+    @circle_users = @circle.user_circles.limit(2).entries
+  end
+
+  def circle_members_replace
+    page = params[:page]
+    offset = 2 * page.to_i
+    @circle = Circle.where("_id" => params[:circle_id]).first
+    @circle_users = @circle.user_circles.skip(offset).limit(2).entries
+    @page = page.to_i + 1
+  end
   #======== End Circle ==========================
 
   #========= Chronicle management ===============

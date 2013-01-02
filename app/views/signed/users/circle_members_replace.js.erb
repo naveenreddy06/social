@@ -1,0 +1,8 @@
+<% unless @circle_users.empty? %>
+  circleID = "<%= @circle.id %>";
+  page = "<%= @page %>";
+  <% @circle_users.each do |us| %>
+  $("#circle_members_replace").replaceWith("<tr id='ccl_<%= us.id %>' ><%= escape_javascript(render  "signed/users/circles/circle_members_name", :us => us) %></tr><tr id='circle_members_replace'></tr>");
+ <% end %>
+   setTimeout(function(){circle_replace()},1000);
+<% end %>

@@ -1,0 +1,14 @@
+<% user_circle = UserCircle.where(:user_id => current_user.id, :circle_id => circle.id).first %>
+<% if user_circle %>
+       <% if !user_circle.admin %>
+         <% if !user_circle.approve %>
+          <%= link_to "UnJoin circle", unjoin_user_circles_path(:circle_id => circle.id), :class => "btn btn-small", :remote => true %>
+         <% else %>
+           <span class="span_content" > Request Sent </span>
+         <% end %>
+       <% end %>
+<% else %>
+      <% unless user_circle %>
+       <%= link_to "Join circle", join_user_circles_path(:circle_id => circle.id), :class => "btn btn-small", :remote => true %>
+      <% end %>
+<% end %>
