@@ -23,6 +23,7 @@ Relayfan::Application.routes.draw do
   end
 
   namespace :signed do
+    resources :search, :only => [:index]
     resources :users, :except => [:new, :create, :edit] do
      collection do
       get "manage", "account_form", "edit_detail", "hide_wall_detail", "delete", "set_order", "destroy_wall_image", "edit_category", "delete","block","unblock", "connection_types", "edit_circles", "hide_circle", "about", "sort_about", "get_members", "get_circle", "delete_circle", "set_order", "add_circle_photos", "destroy_image", "delete_user", "approve_user", "reject_user", "unjoin_user", "edit_chronicles", "delete_chronicle", "unfollow_chronicle", "chronicle_content", "fetch_older_chronicles", "connection_content", "connection_replace","add_follow", "add_friend", "accept", "delete_friend", "not_now", "hide_all", "delete_all","join_request", "delete_connection"
