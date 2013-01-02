@@ -183,6 +183,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     ref (1.0.2)
+    remotipart (1.0.2)
     responders (0.9.3)
       railties (~> 3.1)
     rest-client (1.6.7)
@@ -251,6 +252,7 @@ DEPENDENCIES
   rack-pjax
   rack-raw-upload (= 1.1.0)
   rails (= 3.2.8)
+  remotipart (~> 1.0)
   ruby-oembed
   sass-rails (~> 3.2.3)
   simple_form

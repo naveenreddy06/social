@@ -21,6 +21,7 @@ gem 'localized_language_select'
 gem 'bcrypt-ruby'
 gem 'simple_form'
 gem 'tire'
+gem 'remotipart', '~> 1.0'
 
 #-------------gems installed for carrierwave image upload
 gem 'carrierwave', '0.6.2'
