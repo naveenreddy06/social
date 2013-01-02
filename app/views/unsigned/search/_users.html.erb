@@ -1,9 +1,3 @@
 <% @results.each do |result| %>
           <%= render "common_layout",:result => result %>
-        <!-- About Me -->
-          <div  class="span_content">
-           <%= result.account_setting.about_me unless result.account_setting.blank? %>
-
-
-          </div><hr><hr>
       <% end %>
