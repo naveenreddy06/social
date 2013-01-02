@@ -7,13 +7,28 @@
       <%= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
     <% end %>
   </div><br><br>
+  <% if params[:model_type] == "Circle" or params[:model_type] == "Chronicle" %>
     <div class="well span20" style="background-color:#ebf3f8;">
    <%= form_tag signed_search_index_path, :method => :get do %>
      Refine Search : <br><br>
-     <%= select_tag :filter, options_for_select(fetch_filters) %>
+     <%= text_field_tag :filter, nil, :placeholder => "#{params[:model_type]} name" %>
+        <div>or</div><br>
+     <%= text_field_tag :filter, nil, :placeholder => "Keyword Search" %>
      <%= hidden_field_tag :model_type, params[:model_type] %>
      <%= hidden_field_tag :keyword, params[:keyword] %>
      <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
    <% end %>
   </div>
+  <% end %>
+  <% if params[:model_type] == "Feed" or params[:model_type] == "User" %>
+    <div class="well span20" style="background-color:#ebf3f8;">
+     <%= form_tag signed_search_index_path, :method => :get do %>
+       Refine Search : <br><br>
+       <%= select_tag :filter, options_for_select(fetch_filters) %>
+       <%= hidden_field_tag :model_type, params[:model_type] %>
+       <%= hidden_field_tag :keyword, params[:keyword] %>
+       <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
+     <% end %>
+    </div>
+  <% end %>
 </div>

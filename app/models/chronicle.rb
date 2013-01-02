@@ -17,14 +17,32 @@ class Chronicle
   after_save :set_public
   after_destroy :remove_user_chronicle
 
+    mapping do
+      indexes :id, type: 'string'
+      indexes :user_id, type: 'string'
+      indexes :chronicle_title, type: 'string'
+      indexes :user_name
+      indexes :permission, type: 'boolean'
+    end
+
     def to_indexed_json
-        content = self.chronicle_title.to_s
-        {
-          :content => content,
-          :chronicle_id => self.id,
-          :permission  => self.permission,
-          :user_info => self.user.first_name.to_s + " " + self.user.last_name.to_s + " " + self.user.display_name.to_s
-        }.to_json
+        to_json(methods: [:user_name])
+    end
+
+    def self.search(params)
+      tire.search(page: params[:page], per_page: 10, load: true) do
+        query do
+          boolean do
+            must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
+            must { term :permission, true }
+            must { term :chronicle_title, params[:filter] } if params[:name_filter].present?
+          end
+        end
+      end
+    end
+
+    def user_name
+    user.display_name.to_s + " " + user.first_name.to_s + " " +  user.last_name.to_s
     end
 
     def set_public

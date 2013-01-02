@@ -24,10 +24,10 @@ class Feed
     field :feed_hash, type: Hash
     field :channels, type: Array
     field :tags, type: Array
-    
+
     after_create :set_feed_array, :set_tags_array
     validates :feed, :presence => true, :on => :create
-    
+
     mapping do
       indexes :id, type: 'string'
       indexes :user_id, type: 'string'
@@ -42,7 +42,7 @@ class Feed
     def to_indexed_json
         to_json(methods: [:user_name, :current_channels])
     end
-    
+
     def self.search(params)
       tire.search(page: params[:page], per_page: 10, load: true) do
         query do
@@ -88,15 +88,15 @@ class Feed
        self.save
      end
    end
-  
+
   def user_name
     user.display_name.to_s + " " + user.first_name.to_s + " " +  user.last_name.to_s
   end
-  
+
   def current_channels
     channels.collect{|c| c}.join(" ")
   end
-     
+
 
 end
 
