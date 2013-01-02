@@ -17,11 +17,15 @@
       <span style="color:red">'<%= params[:keyword] %>'</span><br><br>
       <% @results.each do |result| %>
           <div class="row-fluid">
-            <div class="span2">
-              <%= image_tag result.user.profile_image_thumb %>
-            </div>
-            <div class="span18">
-              <%= render "/signed/feeds/feed_header", :feed => result %>
+	   <div class="span12">
+	    <div class="row-fluid">
+              <div class="span2">
+                <%= image_tag result.user.profile_image_thumb %>
+              </div>
+              <div class="span18">
+                <%= render "/signed/feeds/feed_header", :feed => result %>
+              </div>
+             </div>
             </div>
           </div><br>
 
