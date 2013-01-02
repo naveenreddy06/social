@@ -1,0 +1,64 @@
+<script>
+    $(function(){
+      $('#slides').slides({
+        preload: true,
+        preloadImage: '/img/loading.gif',
+        play: 5000,
+        pause: 2500,
+        hoverPause: true
+      });
+    });
+  </script>
+<div class="hero-unit" adjustTd=true>
+  <div style="color:#1B7AE0;font-weight:bold">
+    <span class="span_content" ><%= @circle.name.capitalize %></span>
+  </div><br><br>
+
+
+  <div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+      <% if @circle.circle_images.count == 0 %>
+        <div class="active item">
+          <img src="/img/default_banner_image.jpg" />
+        </div>
+      <% else %>
+        <div class="active item">
+            <%= image_tag @circle.circle_images.first.circle_image_url(:circle_image) %>
+         </div>
+         <% count = 0 %>
+         <% @circle.circle_images.each do |bi| %>
+           <% count += 1 %>
+           <% if count != 1 %>
+             <div class="item">
+               <%= image_tag bi.circle_image_url(:circle_image) %>
+             </div>
+           <% end %>
+          <% end %>
+      <% end %>
+    </div>
+             <!-- Carousel nav -->
+
+        <a  href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a  href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+
+     <div id="btn_controls" style="position:relative;margin-left: 680px; margin-top:-10px; z-index:4;"><%= render "signed/users/circles/controls", :circle => @circle %></div><br><br>
+
+    <div id="circle_about_and_members" >
+     <div style="background-color:#E8E8E8; min-height:20px;width:82%;font-weight:normal"> About me</div><br>
+
+       <table class="noborder span15">
+        <% unless @circle.nil? %>
+            <% @circle.circle_details.each do |cd| %>
+           <tr>
+            <td valign="top" style="min-width:150px;color:grey;font-weight:bold"><span class="span_content" ><%= cd.title %></span></td>
+            <td style="font-style:normal;color:black;text-align:justify"><span class="span_content" ><%= cd.details %></span></td>
+           </tr>
+           <% end %>
+         <% end %>
+       </table>
+    </div>
+ </div>
+
+
+

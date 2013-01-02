@@ -1,0 +1,27 @@
+
+<td> 
+ <div class="row-fluid">
+  <div class="span16">
+   <div class="row-fluid">
+    <div class="span3">
+      <%= link_to(image_tag(us.user.profile_image_thumb), signed_user_path(:id => us.user_id)) %>
+     </div>
+   <div class="span18">
+       <span class="span_content" style="float:left">
+         <% if us.user.display_name.blank? %>
+            <%= link_to us.user.first_name.capitalize + " " + us.user.last_name.capitalize, signed_user_path(:id => us.user_id) %>  <%= "Owner" if us.admin %>
+         <% else %>
+           <%= link_to us.user.display_name, signed_user_path(:id => us.user_id) %>  <%= "Owner" if us.admin %>
+         <% end %>
+      <br>
+         <%= us.user.account_setting.state_name unless us.user.account_setting.nil?  %>,
+         <%= us.user.account_setting.city unless us.user.account_setting.nil?  %><br>
+          <img src='/img/relayimg/fan.png'/><%= UserFeed.where(:feed_id.in => us.user.feeds.collect(&:id), 'cool' => true).count %>
+          <img src='/img/relayimg/pin.png' /><%= UserFeed.where(:feed_id.in => us.user.feeds.collect(&:id), 'favourite' => true).count %>
+        </span>
+       </div>
+      </div>
+     </div>
+   </div>
+</td>
+
