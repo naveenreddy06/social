@@ -50,6 +50,7 @@ class Signed::FeedsController < Signed::BaseController
     else
       @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest, ).entries
       @last_feed = @feeds.last.updated_at unless @feeds.empty?
+      @title = "All Feeds"
     end
     @feed_types = FeedType.all
     @message = Message.new
