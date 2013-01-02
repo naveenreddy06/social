@@ -1,53 +1,11 @@
-<div class="span14 offset6" style="padding-top: 30px;">
-     <%= render "shared/search/search_form"%>
+<div class="span21">
+<table style="overflow: auto;">
+   <tr>
+        <td class="span4" style="min-width: 250px;"><%= render "search_left_panel" %></td>
+        <td class="span16" style="min-width: 250px;"><%= render "index" %></td>
+   </tr>
+</table>
 </div>
-<div class="span20">
-  <div class="well span5" style="background-color:#ebf3f8;">
-   <%= form_tag unsigned_search_index_path, :method => :get do %>
-     Refine Search : <br><br>
-     <%= select_tag :filter, options_for_select(fetch_filters) %>
-     <%= hidden_field_tag :model_type, params[:model_type] %>
-     <%= hidden_field_tag :keyword, params[:keyword] %>
-     <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
-   <% end %>
-  </div>
-  <div class="span15 offset1">
-      <span class="icon-search"></span>
-      <span><%= " Search Results for " %></span>
-      <span style="color:red">'<%= params[:keyword] %>'</span><br><br>
-      <% @results.each do |result| %>
-          <div class="row-fluid">
-            <div class="span2">
-              <%= image_tag result.user.profile_image_thumb %>
-            </div>
-            <div class="span18">
-              <%= render "/signed/feeds/feed_header", :feed => result %>
-            </div>
-          </div><br>
 
-          <!-- Feed Content -->
 
-        <%= render "/signed/feeds/feed_content", :feed => result %>
 
-        <!-- Wow Pin Share -->
-          <div class="span_content">
-            <% if result.user_feeds.where('cool' => true).count > 0 %>
-                  <img src='/img/relayimg/wow.png' />
-                  <%= result.user_feeds.where('cool' => true).count %>
-                  wow
-            <% end %>
-            <% if result.user_feeds.where('favorite' => true).count > 0 %>
-                   <img src='/img/relayimg/pin.png' />
-                   <%= result.user_feeds.where('favorite' => true).count %>
-                   fan
-            <% end %>
-            <% if result.user_feeds.where('share' => true).count > 0 %>
-                   <img src='/img/relayimg/share.png' />
-                   <%= result.user_feeds.where('share' => true).count %>
-                   share
-            <% end %>
-          </div><hr><hr>
-      <% end %>
-   <%= paginate @results unless @results.empty? %>
-  </div>
-</div>

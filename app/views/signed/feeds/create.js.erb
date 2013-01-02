@@ -1,5 +1,6 @@
 $("#new_td").replaceWith("<td id='new_td' style='display : none'></td><td tobeRemoved=true id='td_<%= @feed.id %>'><%= escape_javascript(render 'feed', :feed => @feed ) %></td>");
 
 unifyHeights();
+photoOverlay();
 MaxPost();
 fetch_form($("#post_type_id_post_type").val());

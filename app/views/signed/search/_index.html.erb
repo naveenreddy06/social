@@ -1,0 +1,14 @@
+<div class="hero-unit" adjustTd=true >
+  <div class="span15 offset1">
+      <span class="icon-search"></span>
+      <span><%= " Search Results for " %></span>
+      <span style="color:red">'<%= params[:keyword] %>'</span><br><br>
+      <% case params[:model_type] %>
+        <% when "Feed" %>
+            <%= render "inside_post" %>
+        <% when "User" %>
+            <%= render "users" %>
+      <% end %>
+   <%= paginate @results unless @results.empty? %>
+  </div>
+</div>

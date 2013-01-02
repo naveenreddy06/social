@@ -1,5 +1,5 @@
 class Signed::SearchController < Signed::BaseController
-  
+
   before_filter :set_flashes_to_null, :check_authentication
 
   def index
@@ -10,5 +10,5 @@ class Signed::SearchController < Signed::BaseController
   	  @results = []
     end
   end
-  
+
 end
