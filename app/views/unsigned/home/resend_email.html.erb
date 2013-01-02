@@ -1,3 +1,5 @@
+
+<div>&nbsp;<%= render "/shared/flash_messages" %></div>
 <%= form_tag(resend_email_click_unsigned_home_index_path, :method=>'post') do %>
   <h5>Please Enter Your Registered Email in order to Send Verfication Email Again...</h5>
   <br/>
@@ -5,7 +7,7 @@
   <%= text_field_tag :email,'', :class => "input-large", :placeholder => "Email",:label =>"Email" %>
   <br/><br/>
   <%= submit_tag "Send Verification Again", :class => "btn btn-primary "%>
-  <%=link_to "Go back", root_path %>
+  <%=link_to "Back to login page", root_path %>
 <% end %>
 
 

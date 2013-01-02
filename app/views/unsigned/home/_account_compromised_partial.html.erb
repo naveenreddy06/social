@@ -1,10 +1,13 @@
 <div class="container">
   <div class="row-fluid">
+    <div class="span21">
+      <%= render "/shared/flash_messages"%>
+    </div>
     <div class="span2">
     </div>
     <div class="span8">
       <h2>Account Compromised</h2>
-      <h6>Please enter the Master email address and we will send you both login username and link to reset your password<h6>
+      <h6>Please enter the Master email address and we will send you both login username and link to reset your password</h6>
       <br>
       <%= form_tag(account_compromised_retreive_unsigned_home_index_path, :method=>'post', :remote => true) do %>
         <%= text_field_tag :master_email,'', :class => "input-large", :placeholder => "Email" %><br>

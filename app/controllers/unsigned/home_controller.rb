@@ -13,16 +13,22 @@ class Unsigned::HomeController < Unsigned::BaseController
   end
 
   def resend_email
-    
+   flash[:error] = params[:errors]
   end
 
   def resend_email_click
     @user = (User.where("login.email" => params[:email]).first)
-    if @user
+    if @user and !@user.verified
       @user.send_verification 
       redirect_to registered_successfully_unsigned_home_index_path
     else
-      render :action => :resend_email
+      @errors = ''
+      if @user.nil?
+        @errors += "The username entered does not belong to any account. Enter valid username"
+      else
+        @errors += "User Already Verified"
+      end
+      redirect_to :action => "resend_email", :errors=> @errors
     end
   end
 
