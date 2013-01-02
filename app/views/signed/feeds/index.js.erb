@@ -1,6 +1,8 @@
 lastFeed = '<%= @last_feed %>';
+feedCounter += parseInt('<%= @limit %>');
 <% unless params[:last_feed].present? %>
  pageIn = '<%= params[:feed_type].present? ? params[:feed_type] : "" %>';
+ feedCounter = 0;
  $("#minTd").hide();
  $("#formTd").hide();
 
@@ -28,5 +30,7 @@ lastFeed = '<%= @last_feed %>';
 unifyHeights();
 
 <% if @feeds.size == @limit %>
-	setTimeout(function(){fetch_older_feeds()},3000);
+    if(feedCounter < 300) {
+	  setTimeout(function(){fetch_older_feeds()},3000);
+	}
 <% end %>
