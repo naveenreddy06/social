@@ -1,7 +1,6 @@
  <h2> Forgot Username</h2>
- <h6>Please enter your master email address and we will or your phone no<h6>
+ <h6>Please enter your Master email address</h6>
  <br>
-
 <%= form_tag(forgot_username_unsigned_home_index_path, :method=>'get', :remote => true) do %>
   <%= text_field_tag :master_email,'', :class => "input-large", :placeholder => " master Email" %><br>
   <%= submit_tag "Request", :class => "btn btn-primary " %>

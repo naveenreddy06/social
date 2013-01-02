@@ -17,7 +17,7 @@ class Unsigned::SessionsController < Unsigned::BaseController
       elsif !@user.verified
         @errors += "Email provided is not verified."
       else
-        @errors += "Password is incorrect."
+        @errors += "Incorrect Password."
       end
     end
   end

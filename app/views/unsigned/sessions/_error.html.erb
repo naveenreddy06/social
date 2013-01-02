@@ -10,7 +10,7 @@
           <li class="home_page"><a href="#" class="home_page"> Privacy & Cookies </a></li>
           <li class="home_page"><a href="#" class="home_page"> Help Center </a></li>
           <li class="home_page"><a href="#" class="home_page"> What's New </a></li>
-          <li class="home_page"><a href="#" class="home_page"> Feed back </a></li>
+          <li class="home_page"><a href="#" class="home_page"> Feedback </a></li>
         </ul>
       </div>
       <div class="span12">
@@ -19,7 +19,8 @@
             <strong>Errors!</strong> <%= @errors %>
           </div>
           <div class= "form_css">
-	        <%= render "unsigned/shared/form" %>
+	    <%= render "unsigned/shared/form" %>
+            <span style="color:white";>Trouble logging in the site ?</span><%= link_to 'Click here', help_unsigned_home_index_path %>
           </div>
         </div>
       </div>

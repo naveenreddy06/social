@@ -1,0 +1,19 @@
+<div  class="hero-unit" adjustTd=true>
+  <div>
+  <%= link_to(image_tag(current_user.profile_image),signed_user_path(:id => current_user.id)) %><br><br>
+    <% if   current_user.display_name.blank? %>
+      <%= link_to current_user.first_name.capitalize + " "+ current_user.last_name.capitalize, signed_user_path(:id => current_user.id) %>
+    <% else %>
+      <%= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
+    <% end %>
+  </div><br><br>
+    <div class="well span20" style="background-color:#ebf3f8;">
+   <%= form_tag signed_search_index_path, :method => :get do %>
+     Refine Search : <br><br>
+     <%= select_tag :filter, options_for_select(fetch_filters) %>
+     <%= hidden_field_tag :model_type, params[:model_type] %>
+     <%= hidden_field_tag :keyword, params[:keyword] %>
+     <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
+   <% end %>
+  </div>
+</div>
