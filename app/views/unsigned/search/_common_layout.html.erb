@@ -1,15 +1,15 @@
-		<div class="span11">
-		  <div class="row-fluid">
-            <div class="span2">
-              <%= image_tag result.profile_image_thumb %>
-            </div>
-            <div class="span8">
-              <% display_name = result.display_name.blank? ? result.first_name.capitalize + " "+ result.last_name.capitalize : result.display_name.capitalize %>
-              <%= link_to display_name, signed_user_path(result), :style => "" %><br>
+     <div class="span11">
+       <div class="row-fluid">
+         <div class="span2">
+            <%= image_tag result.profile_image_thumb %>
+         </div>
+         <div class="span8">
+            <% display_name = result.display_name.blank? ? result.first_name.capitalize + " "+ result.last_name.capitalize : result.display_name.capitalize %>
+            <%= link_to display_name, signed_user_path(result), :style => "" %><br>
               <!-- About Me -->
-          		<div  class="span_content">
-           			<%= result.account_setting.about_me unless result.account_setting.blank? %>
-          		</div><hr><hr>
-            </div>
-          </div>
-        </div><br>
+          <div  class="span_content">
+             <%= result.account_setting.about_me unless result.account_setting.blank? %>
+          </div><hr><hr>
+         </div>
+       </div>
+     </div><br>

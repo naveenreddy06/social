@@ -56,39 +56,42 @@ $(document).ready(function(){
 </script>
 
 <div  class="hero-unit"  adjustTd=true>
-    <h6 style="color :#696969"><img src="/assets/Account_settings.png"/> <b>Account Settings</b></label>
-    <div class="accordion" id="account-management">
-       <% cnt = 1 %>
-       <% account_setting_hash.keys.each do |ky| %>
-         <div class="accordion-group" style="border: 0px">
-           <div class="accordion-heading">
-             <a class="accordion-toggle collapsed" id="account" data-toggle="collapse" data-parent="#account-management" href="#account_<%= cnt %>" accord-main="accord">
-               <h6> <i class=" icon-chevron-right"></i><%= ky %></h6>
-             </a>
-           </div>
-           <div id="account_<%= cnt %>" class="accordion-body collapse">
-             <div class="accordion-inner">
-               <% account_setting_hash[ky].each do |val| %>
-                 <% case ky.to_s + " " + val.to_s %>
-                  <% when "Account Management General" %>
-                     <small><a href="?form_type=general" class="current-link"  link_id="clickable" gen_id="gen_click" id="<%= cnt %>" ><%= val %></a></small><br/>
-                  <% when "Manage Circles Other's Edit" %>
-                     <small><a href="?form_type=Others_Circle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
-                    <% current_user.circles.each do |c| %>
-	              <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= c.name %></a></small><br>
-                    <% end %>
-                  <% when "Manage Chronicles Other's Edit" %>
-                     <small><a href="?form_type=Others_Chronicle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
-                  <% else %>
-                   <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
+  <%= link_to(image_tag(current_user.profile_image), signed_user_path(:id => current_user.id)) %><br><br>
+  <% display_name = current_user.display_name.blank? ? current_user.first_name.capitalize + " "+ current_user.last_name.capitalize : current_user.display_name.capitalize %>
+  <%= link_to display_name, signed_user_path(:id => current_user.id) %>
+  <h6 style="color :#696969"><img src="/assets/Account_settings.png"/> <b>Account Settings</b></label>
+  <div class="accordion" id="account-management">
+    <% cnt = 1 %>
+    <% account_setting_hash.keys.each do |ky| %>
+      <div class="accordion-group" style="border: 0px">
+        <div class="accordion-heading">
+          <a class="accordion-toggle collapsed" id="account" data-toggle="collapse" data-parent="#account-management" href="#account_<%= cnt %>" accord-main="accord">
+            <h6> <i class=" icon-chevron-right"></i><%= ky %></h6>
+          </a>
+        </div>
+        <div id="account_<%= cnt %>" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <% account_setting_hash[ky].each do |val| %>
+              <% case ky.to_s + " " + val.to_s %>
+                <% when "Account Management General" %>
+                <small><a href="?form_type=general" class="current-link"  link_id="clickable" gen_id="gen_click" id="<%= cnt %>" ><%= val %></a></small><br/>
+                <% when "Manage Circles Other's Edit" %>
+                <small><a href="?form_type=Others_Circle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
+                <% current_user.circles.each do |c| %>
+	          <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= c.name %></a></small><br>
                 <% end %>
-               <% end %>
-             </div>
-           </div>
-         </div>
-        <% cnt += 1 %>
-      <% end %>
-    </div>
+                <% when "Manage Chronicles Other's Edit" %>
+                  <small><a href="?form_type=Others_Chronicle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
+              <% else %>
+                <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% cnt += 1 %>
+    <% end %>
+  </div>
 </div>
 
 <script>
