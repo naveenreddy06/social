@@ -37,16 +37,17 @@
 
   <div class="span6 offset11">
     <% if @user != current_user %>
-      <%= render "signed/users/wall_user_follow_connect", :user => @user %>
+      <%= render "signed/users/wall_user_follow", :user => @user %>
+      <%= render "signed/users/wall_user_connect", :user => @user %>
      <% end %>
   </div><br><br><br>
-  
+
   <div id="chronicle_content">
     <!-- hard coded max-width according to the image width -->
     <div class="well well-small" style="max-width:800px;"><h6>My Social Factor</h6></div>
     <div class="well well-small" style="max-width:800px;"><h6>About Me</h6></div>
 
-    <table> 
+    <table>
       <% @details.each do |detail| %>
         <% unless detail.hidden and @user.id != current_user.id %>
           <tr>

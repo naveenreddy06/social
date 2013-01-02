@@ -1,3 +1,9 @@
+<%= javascript_include_tag "jquery.colorbox-min" , "common_layout" %>
+<script>
+$(document).ready(function(){
+    photoOverlay();
+});
+</script>
 <div class="span14 offset6" style="padding-top: 30px;">
      <%= render "shared/search/search_form"%>
 </div>
@@ -15,13 +21,12 @@
       <span class="icon-search"></span>
       <span><%= " Search Results for " %></span>
       <span style="color:red">'<%= params[:keyword] %>'</span><br><br>
-
         <% case params[:model_type] %>
          <% when "Feed" %>
             <%= render "outside_post" %>
          <% when "User" %>
             <%= render "users" %>
-         <% end %>
+        <% end %>
    <%= paginate @results unless @results.empty? %>
   </div>
 </div>

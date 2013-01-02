@@ -1,0 +1,10 @@
+<% unless current_user.following.include? user.id %>
+
+ <div id = "following_div" style="display:inline">
+  <%= link_to image_tag("/img/friends/BecomeFan.png") , add_follow_signed_users_path(:following_id => user.id), :remote => true %>
+ </div>
+<% else %>
+
+  <img src="/img/friends/FanConnected.png">
+
+<% end %>

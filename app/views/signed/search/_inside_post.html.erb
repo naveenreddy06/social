@@ -1,0 +1,17 @@
+<% @results.each do |result| %>
+          <div class="row-fluid">
+            <div class="span2">
+              <%= image_tag result.user.profile_image_thumb %>
+            </div>
+            <div class="span18">
+              <%= render "/signed/feeds/feed_header", :feed => result %>
+            </div>
+          </div><br>
+
+          <!-- Feed Content -->
+
+        <%= render "/signed/feeds/feed_content", :feed => result %>
+
+        <!-- Wow Pin Share -->
+          <%= render "/signed/feeds/wow_pin_share",:feed => result %><hr><hr>
+<% end %>

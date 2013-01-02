@@ -51,7 +51,7 @@ class User
 
   after_validation :set_verification_token
   after_create :send_verification
-  
+
   mapping do
     indexes :id, type: 'string'
     indexes :display_name, type: 'string'
@@ -59,7 +59,7 @@ class User
     indexes :first_name, type: 'string'
     indexes :user_type_id, type: 'string'
   end
-  
+
   def self.search(params)
     tire.search(page: params[:page], per_page: 10, load: true) do
       query do
