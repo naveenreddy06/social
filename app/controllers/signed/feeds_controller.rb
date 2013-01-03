@@ -114,6 +114,17 @@ class Signed::FeedsController < Signed::BaseController
            feed_user.last.update_attributes(:hidden => true)
          end
        end
+     when "abuse"
+       if @feed
+          feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @feed.id)
+         if feed_user.empty?
+           @feed.user_feeds.create(:user_id => current_user.id, :abuse => true )
+           @feed.update_attributes(:feed_count => @feed.feed_count.to_i + 1 )
+         else
+           feed_user.last.update_attributes(:abuse => true)
+           @feed.update_attributes(:feed_count => @feed.feed_count.to_i + 1 )
+         end
+       end      
     end
   end
 

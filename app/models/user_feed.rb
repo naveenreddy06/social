@@ -9,6 +9,7 @@ class UserFeed
   field :favorite, :type => Boolean
   field :hidden, :type => Boolean, :default => false
   field :shared, :type => Boolean, :default => false
+  field :abuse, :type => Boolean, :default => false
 
   before_save :set_channels
 

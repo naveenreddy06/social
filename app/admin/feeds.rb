@@ -5,8 +5,12 @@ ActiveAdmin.register Feed do
  index do
    column :id
    column :public
+   column "Abuse Count", :feed_count
    column "Actions" do |feed|
      span link_to "View", admin_feed_path(feed)
+    if feed.feed_count.to_i > 5
+     span link_to "Delete", admin_feed_path(feed), :method => :delete
+    end
    end
   end
 

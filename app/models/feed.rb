@@ -24,6 +24,7 @@ class Feed
     field :feed_hash, type: Hash
     field :channels, type: Array
     field :tags, type: Array
+    field :feed_count, type: Integer
 
     after_create :set_feed_array, :set_tags_array
     validates :feed, :presence => true, :on => :create
