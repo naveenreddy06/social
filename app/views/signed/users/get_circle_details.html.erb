@@ -42,10 +42,10 @@
         <a  href="#myCarousel" data-slide="next">&rsaquo;</a>
   </div>
 
-     <div id="btn_controls" style="position:relative;margin-left: 680px; margin-top:-10px;"><%= render "signed/users/circles/controls", :circle => @circle %></div><br><br>
+     <div id="btn_controls_<%= @circle.id.to_s %>" class="span6 offset14"><%= render "signed/users/circles/controls", :circle => @circle %></div><br><br><br>
 
     <div id="circle_about_and_members" >
-     <div style="background-color:#E8E8E8; min-height:20px;width:82%;font-weight:normal"> About me</div><br>
+     <div class="well well-small" style="max-width:800px;"> About me</div><br>
 
        <table class="noborder span15">
         <% unless @circle.nil? %>

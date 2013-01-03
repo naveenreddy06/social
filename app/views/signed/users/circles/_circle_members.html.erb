@@ -11,7 +11,9 @@
 
 </script>
 
-<div style="background-color:#E8E8E8; min-height:20px;width:82%;font-weight:normal">Circle Members</div><br>
+<div class="well well-small" style="max-width:800px;">
+   <h6>Circle Members</h6>
+</div>
 
    <table class="noborder">
     <% @circle_users.each do |us| %>
@@ -21,3 +23,4 @@
     <% end %>
      <tr id="circle_members_replace"></tr>
   </table>
+<br></br>
