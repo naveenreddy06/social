@@ -7,13 +7,14 @@
       <%= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
     <% end %>
   </div><br><br>
-  <% if params[:model_type] == "Circle" or params[:model_type] == "Chronicle" %>
+  <% if params[:model_type] != "Chronicle" %>
+  <% if params[:model_type] == "Circle" %>
     <div class="well span20" style="background-color:#ebf3f8;">
    <%= form_tag signed_search_index_path, :method => :get do %>
      Refine Search : <br><br>
      <%= text_field_tag :name_filter, nil, :placeholder => "#{params[:model_type]} name" %>
         <div>or</div><br>
-     <%= text_field_tag :user_filter, nil, :placeholder => "Keyword Search" %>
+     <%= text_field_tag :keyword_filter, nil, :placeholder => "User" %>
      <%= hidden_field_tag :model_type, params[:model_type] %>
      <%= hidden_field_tag :keyword, params[:keyword] %>
      <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
@@ -32,3 +33,4 @@
     </div>
   <% end %>
 </div>
+<% end %>

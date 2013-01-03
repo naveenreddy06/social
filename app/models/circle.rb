@@ -89,6 +89,7 @@ class Circle
       indexes :user_name
       indexes :hidden, type: 'boolean'
       indexes :listed, type: 'boolean'
+      indexes :keyword_tags, type: 'string'
     end
 
     def to_indexed_json
@@ -100,7 +101,9 @@ class Circle
         query do
           boolean do
             must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
-            must { string "listed: true" }
+            must { term :listed, true }
+            must { term :name, params[:name_filter] } if params[:name_filter].present?
+            must { term :keyword_tags, params[:keyword_filter] } if params[:keyword_filter].present?
           end
         end
       end
