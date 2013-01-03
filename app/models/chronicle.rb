@@ -34,9 +34,7 @@ class Chronicle
         query do
           boolean do
             must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
-            must { term :permission, true }
-            must { term :chronicle_title, params[:filter] } if params[:name_filter].present?
-            must { term :user_id, params[:filter] } if params[:user_filter].present?
+
           end
         end
       end
