@@ -278,6 +278,30 @@ class Signed::UsersController < Signed::BaseController
     @circle_users = @circle.user_circles.skip(offset).limit(2).entries
     @page = page.to_i + 1
   end
+
+  def join_circle
+    @circle = Circle.where("_id" => params[:circle_id]).first
+    if @circle.listed and !@circle.approve
+      @user_circle = UserCircle.create(:user_id => current_user.id, :circle_id => @circle.id, :approve => false, :admin => false)
+    else
+      @user_circle = UserCircle.create(:user_id => current_user.id, :circle_id => @circle.id,:approve => true, :admin => false)
+    end
+    session_circles
+  end
+
+  def unjoin_circle
+    @circle = Circle.where("_id" => params[:circle_id]).first
+    @user_circle = UserCircle.where(:circle_id => @circle.id , :user_id => current_user.id).first
+    if @user_circle
+       @user_circle.destroy
+    end
+    if params[:type] == "unjoin"
+       render :nothing => true
+    else
+     render :action => :join_circle
+    end
+    session_circles
+  end
   #======== End Circle ==========================
 
   #========= Chronicle management ===============
