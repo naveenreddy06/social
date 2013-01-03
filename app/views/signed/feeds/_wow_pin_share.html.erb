@@ -1,3 +1,11 @@
+<% if params[:model_type] == "Feed" %>
+  <div class="row-fluid">
+   <div style="float: left; padding-bottom: 12px;padding-top: 12px;">
+    <%= cool_status feed %>
+    <%= favorite_status feed %>
+   </div>
+  </div>
+<% else %>
   <div class="row-fluid">
    <div style="float: left; padding-bottom: 12px;padding-top: 12px;">
     <%= cool_status feed %>
@@ -6,6 +14,6 @@
     <% if current_user != feed.user %>
       <a href="#mymessagesModal" data-toggle="modal" id="userSelect-<%= feed.id %>" user_id="<%= feed.user.id %>" user_name="<%= feed.user.first_name %>" style = "color:#08C;font-weight:500;font-  style:italic;font-size:13px;" onclick="setSelectedUser('<%= feed.id %>')"><small ><%= image_tag("/img/coolpinshare/private_message.png") + " " + "Message" %></small></a>
      <% end %>
-
    </div>
   </div>
+<% end %>
