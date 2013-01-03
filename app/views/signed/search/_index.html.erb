@@ -10,6 +10,10 @@
           <% @results.each do |result| %>
             <%= render "/unsigned/search/common_layout",:result => result %>
           <% end %>
+        <% when "Circle" %>
+            <%= render "inside_circle" %>
+        <% when "Chronicle" %>
+            <%= render "inside_chronicle" %>
       <% end %>
    <%= paginate @results unless @results.empty? %>
   </div>

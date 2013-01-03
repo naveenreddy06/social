@@ -11,9 +11,9 @@
     <div class="well span20" style="background-color:#ebf3f8;">
    <%= form_tag signed_search_index_path, :method => :get do %>
      Refine Search : <br><br>
-     <%= text_field_tag :filter, nil, :placeholder => "#{params[:model_type]} name" %>
+     <%= text_field_tag :name_filter, nil, :placeholder => "#{params[:model_type]} name" %>
         <div>or</div><br>
-     <%= text_field_tag :filter, nil, :placeholder => "Keyword Search" %>
+     <%= text_field_tag :user_filter, nil, :placeholder => "Keyword Search" %>
      <%= hidden_field_tag :model_type, params[:model_type] %>
      <%= hidden_field_tag :keyword, params[:keyword] %>
      <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>

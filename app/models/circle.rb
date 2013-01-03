@@ -100,8 +100,7 @@ class Circle
         query do
           boolean do
             must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
-            must { term :listed, true }
-            must { term :name, params[:filter] } if params[:name_filter].present?
+            must { string "listed: true" }
           end
         end
       end
