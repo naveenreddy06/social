@@ -1,0 +1,5 @@
+<% if params[:type] == "wall" %>
+  $("#btn_controls").replaceWith("<div id='btn_controls' style='position:relative;margin-left: 680px; margin-top:-10px;'><%= escape_javascript(render "signed/users/circles/controls" , :circle => @circle) %></div>");
+<% else %>
+  $("#btn_controls_<%= @circle.id %>").replaceWith("<div id='btn_controls_<%= @circle.id %>'><%= escape_javascript(render "signed/users/circles/controls" , :circle => @circle) %></div>");
+<% end %>

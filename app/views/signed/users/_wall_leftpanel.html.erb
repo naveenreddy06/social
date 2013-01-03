@@ -69,7 +69,7 @@ function reset_all_icons() {
         <dd><small>
          <% @user.others_circles.each do |circle| %>
             <span><%= image_tag circle.circle_profile_image_min_thumb %></span>
-            <span><%= link_to circle.name, "#", :class => "common_link_font" %></span><br>
+            <span><%= link_to circle.name, get_circle_details_signed_users_path(:id => circle), :class => "common_link_font" %></span><br>
           <% end %>
         </small></dd>
       </dl>
