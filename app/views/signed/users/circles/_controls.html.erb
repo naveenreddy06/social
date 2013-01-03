@@ -2,13 +2,13 @@
 <% if user_circle %>
        <% if !user_circle.admin %>
          <% if !user_circle.approve %>
-          <%= link_to "UnJoin circle", unjoin_circle_signed_users_path(:circle_id => circle.id, :type => "wall"), :class => "btn btn-small", :remote => true %>
+          <%= link_to "UnJoin circle", unjoin_circle_signed_users_path(:circle_id => circle.id), :class => "btn btn-small", :remote => true %>
          <% else %>
            <span class="span_content" > Request Sent </span>
          <% end %>
        <% end %>
 <% else %>
       <% unless user_circle %>
-       <%= link_to "Join circle", join_circle_signed_users_path(:circle_id => circle.id, :type => "wall"), :class => "btn btn-small", :remote => true %>
+       <%= link_to "Join circle", join_circle_signed_users_path(:circle_id => circle.id), :class => "btn btn-small", :remote => true %>
       <% end %>
 <% end %>

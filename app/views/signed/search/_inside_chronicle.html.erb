@@ -1,3 +1,18 @@
 <% @results.each do |result| %>
- <%= result.chronicle_title %>
+<div class="span21">
+       <div class="row-fluid">
+       	<div class="span2">
+       		<% if result.user.profile_images.count == 0 %>
+                <img  src="/img/default_profile_image_thumb_small.jpg" />
+                <% else %>
+                  <%= image_tag result.user.profile_images.last.profile_image_url(:profile_image_thumb_small) %>
+            <% end %>
+        </div>
+        <div class="span8">
+            <%= link_to result.chronicle_title.capitalize, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => result.id ), :class => "common_link_font" %></br></br>
+            <% display_name = result.user.display_name.blank? ? result.user.first_name.capitalize + " "+ result.user.last_name.capitalize : result.user.display_name.capitalize %>
+            <%= display_name %>
+        </div>
+       </div><hr>
+     </div><br>
 <% end %>
