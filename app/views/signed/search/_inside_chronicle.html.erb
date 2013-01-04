@@ -9,9 +9,11 @@
             <% end %>
         </div>
         <div class="span8">
-            <%= link_to result.chronicle_title.capitalize, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => result.id ), :class => "common_link_font" %></br></br>
+            <%= link_to result.chronicle_title.capitalize, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => result.id ), :class => "common_link_font" %></br>
+            <div style="padding-top:5px;">
             <% display_name = result.user.display_name.blank? ? result.user.first_name.capitalize + " "+ result.user.last_name.capitalize : result.user.display_name.capitalize %>
-            <%= display_name %>
+            <%= "By : "+display_name %>
+          </div>
         </div>
        </div><hr>
      </div><br>

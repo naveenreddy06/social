@@ -1,5 +1,6 @@
 <% @results.each do |result| %>
 <div class="span21">
+  <div style="span_content">
        <div class="row-fluid">
        	<div class="span2">
        		<% if result.circle_profile_images.count == 0 %>
@@ -9,15 +10,33 @@
             <% end %>
         </div>
         <div class="span8">
-            <%= link_to result.name.capitalize, get_circle_details_signed_users_path(:id => result), :style => "" %></br></br>
+            <%= link_to result.name.capitalize, get_circle_details_signed_users_path(:id => result), :style => "" %>
+            </br>
+            <div style="padding-top:5px;">
+            <!-- #########user image and name ########## -->
+            <% if result.user.profile_images.count == 0 %>
+               <img  src="/img/default_profile_image_thumb_small.jpg" />
+            <% else %>
+               <%= image_tag result.user.profile_image_thumb_small_chronicle %>
+            <% end %>
+
             <% display_name = result.user.display_name.blank? ? result.user.first_name.capitalize + " "+ result.user.last_name.capitalize : result.user.display_name.capitalize %>
             <%= display_name %>
+            <!-- ######### -->
+          </div><br>
+            <div>
+              <%= result.short_description.capitalize %>
+          </div>
         </div>
         <div class="span10">
          	<div id="btn_controls_<%= result.id %>" >
                 <%= render "signed/users/circles/controls", :circle => result %>
             </div>
         </div>
+       </div>
+       <div style="padding-top:5px;">
+       <%= "Tags : " + result.keyword_tags.capitalize %>
        </div><hr>
+     </div>
      </div><br>
 <% end %>

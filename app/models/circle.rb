@@ -90,6 +90,7 @@ class Circle
       indexes :hidden, type: 'boolean'
       indexes :listed, type: 'boolean'
       indexes :keyword_tags, type: 'string'
+      indexes :short_description, type: 'string'
     end
 
     def to_indexed_json
