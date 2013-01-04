@@ -1,1 +1,5 @@
-$("#pjax-container").html("<%= escape_javascript(render('shared/unfollow_other_chronicles')) %>");
+<% if  params[:type].present? %>
+ $("#chr_<%= params[:id] %>").replaceWith("<div class='span5' id='chr_<%= params[:id] %>'><%= escape_javascript(render "signed/search/join_chronicle_controles", :result => @chronicle ) %></div>");
+<% else %>
+ $("#pjax-container").html("<%= escape_javascript(render('shared/unfollow_other_chronicles')) %>");
+<% end %>

@@ -1,0 +1,6 @@
+ <% user_chronicle = UserChronicle.where(:user_id => current_user.id, :chronicle_id => result.id).first %>
+              <% if user_chronicle %>
+                <%= link_to "Un Follow", unfollow_chronicle_signed_users_path(:id => result.id,:user_id => current_user.id,:type => "unfollow"), :class => "btn btn-warning btn-small", :remote => true %>
+              <% else %>
+                <%= link_to "+1 Follow", unfollow_chronicle_signed_users_path(:id => result.id,:type => "follow",:user_id => current_user.id), :class => "btn btn-primary btn-small", :remote => true %>
+          <% end %>

@@ -337,9 +337,20 @@ class Signed::UsersController < Signed::BaseController
   end
 
   def unfollow_chronicle
-    @chronicle = UserChronicle.where(:chronicle_id => params[:id], :user_id => params[:user_id]).first
-    @chronicle.destroy
-    session_user_chronicles
+      @chronicle = Chronicle.where(:id => params[:id]).first
+    case params[:type]
+    when "follow"
+        UserChronicle.create(:user_id => current_user.id, :chronicle_id => @chronicle.id)
+        session_user_chronicles
+    when "unfollow"
+        @user_chronicle = UserChronicle.where(:chronicle_id => @chronicle.id, :user_id => params[:user_id]).first
+        @user_chronicle.destroy
+        session_user_chronicles
+    else
+        @user_chronicle = UserChronicle.where(:chronicle_id => @chronicle.id, :user_id => params[:user_id]).first
+        @user_chronicle.destroy
+        session_user_chronicles
+    end
   end
   #======== End Chronicle =======================
 
@@ -396,9 +407,9 @@ class Signed::UsersController < Signed::BaseController
     end
   end
 
-  #======== End Connection ====================== 
+  #======== End Connection ======================
 
-  #======== Walls ===============================       
+  #======== Walls ===============================
 
   def chronicle_content
     @user = User.where("_id" => params[:id]).first
@@ -482,5 +493,5 @@ class Signed::UsersController < Signed::BaseController
     end
   end
 
-  #================ end =========================                    
+  #================ end =========================
 end
