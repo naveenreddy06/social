@@ -1,9 +1,9 @@
-     <div class="span20">
+     <div class="span<%= span_length %>">
        <div class="row-fluid">
          <div class="span2">
             <%= image_tag result.profile_image_thumb %>
          </div>
-         <div class="span12">
+         <div class="span15">
             <% display_name = result.display_name.blank? ? result.first_name.capitalize + " "+ result.last_name.capitalize : result.display_name.capitalize %>
             <%= link_to display_name, signed_user_path(result), :style => "" %><br>
               <!-- About Me -->
@@ -11,7 +11,7 @@
              <%= result.account_setting.about_me unless result.account_setting.blank? %>
             </div>
          </div>
-         <div class="span6">
+         <div class="span4">
                 <% if current_user %>
                   <% if result.id != current_user.id %>
                 <%= render "signed/users/wall_user_connect", :user => result %>

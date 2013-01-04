@@ -1,5 +1,5 @@
 <% @results.each do |result| %>
-<div class="span21">
+<div class="span16">
   <div style="span_content">
        <div class="row-fluid">
        	<div class="span2">
@@ -9,7 +9,7 @@
                <%= image_tag result.circle_profile_image_thumb %>
             <% end %>
         </div>
-        <div class="span8">
+        <div class="span14">
             <%= link_to result.name.capitalize, get_circle_details_signed_users_path(:id => result), :style => "" %>
             </br>
             <div style="padding-top:5px;">
@@ -28,7 +28,7 @@
               <%= result.short_description.capitalize %>
           </div>
         </div>
-        <div class="span10">
+        <div class="span5">
          	<div id="btn_controls_<%= result.id %>" >
                 <%= render "signed/users/circles/controls", :circle => result %>
             </div>

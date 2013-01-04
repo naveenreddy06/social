@@ -8,7 +8,7 @@
             <%= render "inside_post" %>
         <% when "User" %>
           <% @results.each do |result| %>
-            <%= render "/unsigned/search/common_layout",:result => result %>
+            <%= render "/unsigned/search/common_layout",:result => result, :span_length => 15 %>
           <% end %>
         <% when "Circle" %>
             <%= render "inside_circle" %>
