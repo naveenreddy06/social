@@ -1,4 +1,5 @@
 <div  class="hero-unit" adjustTd=true>
+  <!--
   <div>
   <%= link_to(image_tag(current_user.profile_image),signed_user_path(:id => current_user.id)) %><br><br>
     <% if   current_user.display_name.blank? %>
@@ -6,7 +7,7 @@
     <% else %>
       <%= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
     <% end %>
-  </div><br><br>
+  </div> --><br><br>
   <% if params[:model_type] != "Chronicle" %>
   <% if params[:model_type] == "Circle" %>
     <div class="well span20" style="background-color:#ebf3f8;">
@@ -21,7 +22,7 @@
    <% end %>
   </div>
   <% end %>
-  <% if params[:model_type] == "Feed" or params[:model_type] == "User" %>
+  <% if params[:model_type] == "User" %>
     <div class="well span20" style="background-color:#ebf3f8;">
      <%= form_tag signed_search_index_path, :method => :get do %>
        Refine Search : <br><br>
@@ -30,6 +31,13 @@
        <%= hidden_field_tag :keyword, params[:keyword] %>
        <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
      <% end %>
+    </div>
+  <% end %>
+  <% if params[:model_type] == "Feed" %>
+    <div class="well span20" style="background-color:#ebf3f8;">
+      <% fetch_filters.each do |feed_type| %>
+        <%= link_to feed_type[0],signed_search_index_path(:filter => feed_type[1],:model_type => params[:model_type],:keyword => params[:keyword]) %><br>
+      <% end %>
     </div>
   <% end %>
 </div>

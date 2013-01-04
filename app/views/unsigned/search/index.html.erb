@@ -8,6 +8,7 @@ $(document).ready(function(){
      <%= render "shared/search/search_form"%>
 </div>
 <div class="span20">
+  <% if params[:model_type] == "User" %>
   <div class="well span5" style="background-color:#ebf3f8;">
    <%= form_tag unsigned_search_index_path, :method => :get do %>
      Refine Search : <br><br>
@@ -17,6 +18,14 @@ $(document).ready(function(){
      <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
    <% end %>
   </div>
+  <% end %>
+  <% if params[:model_type] == "Feed" %>
+    <div class="well span5" style="background-color:#ebf3f8;">
+      <% fetch_filters.each do |feed_type| %>
+        <%= link_to feed_type[0],unsigned_search_index_path(:filter => feed_type[1],:model_type => params[:model_type],:keyword => params[:keyword]) %><br>
+      <% end %>
+    </div>
+  <% end %>
   <div class="span15 offset1">
       <span class="icon-search"></span>
       <span><%= " Search Results for " %></span>
