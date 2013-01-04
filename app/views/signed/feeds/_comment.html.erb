@@ -5,34 +5,29 @@
     </div>
     <div class="span18">
       <div class="span_content">
-      <% if comment.user.display_name.blank? %>
-           <%= link_to comment.user.first_name.capitalize + " "+ comment.user.last_name.capitalize , signed_user_path(:id => comment.user.id) %>
-      <% else %>
-           <%= link_to comment.user.display_name.capitalize , signed_user_path(:id => comment.user.id) %>
-      <% end %><br>
+        <% if comment.user.display_name.blank? %>
+          <%= link_to comment.user.first_name.capitalize + " "+ comment.user.last_name.capitalize , signed_user_path(:id => comment.user.id) %>
+        <% else %>
+          <%= link_to comment.user.display_name.capitalize , signed_user_path(:id => comment.user.id) %>
+        <% end %><br>
 
-      <% if comment.created_at.to_date == Date.today %>
+        <% if comment.created_at.to_date == Date.today %>
           <%= comment.created_at.strftime("%l:%M%p").to_s %>
-      <% elsif comment.created_at.to_date == Date.today-1 %>
+        <% elsif comment.created_at.to_date == Date.today-1 %>
           <%= comment.created_at.strftime("Yesterday %l:%M%p").to_s %>
-      <% else %>
+        <% else %>
           <%= comment.created_at.to_date.strftime("%b %d, %Y").to_s %>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-    </div>
-    </td>
+  </td>
 </tr>
 <tr>
   <td>
-    <div class="span7" style="word-wrap:break-word;width:280px;" >
-          <div class="span_content span17">
-              <%= comment.comment %>
-            <div class="span4">
-              <hr style="width:200px; margin-bottom:-5px;"/>
-            </div>
-          </div>
-     </div>
-
+    <div class="span_content span21" style="word-wrap:break-word;width:280px;" >
+      <%= comment.comment %>
+      <hr/>
+    </div>
   </td>
 </tr>
 
