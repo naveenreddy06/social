@@ -10,7 +10,8 @@
      <% end %>
    </div>
   </div>
-  
+ 
+<% if params[:model_type] != "Feed" %>
   <div class="row-fluid">
     <% if feed.public %>
      <% cus = feed.channels
@@ -27,6 +28,7 @@
         <%= link_to(image_tag(cu.profile_image_thumb, :title => display_name), signed_user_path(:id => cu.id)) %>
       <% end %>
       <% end %>
+      <hr>
     <% end %>
   </div>
-  <hr>
+<% end %>  
