@@ -1,3 +1,22 @@
+
+<script>
+function enable_all() {
+    $("a[link_id=clickable]").each(function(){
+      $(this).attr('class', '') ;
+    });
+}
+
+ $(document).ready(function(){
+
+      //for link color change
+      $("a[link_id=clickable]").click(function(){
+        enable_all();
+        $(this).attr('class', 'disabled');
+      });
+
+});
+
+</script>
 <div  class="hero-unit" adjustTd=true>
   <%= link_to(image_tag(current_user.profile_image),signed_user_path(:id => current_user.id)) %><br><br>
     <% if   current_user.display_name.blank? %>
@@ -11,8 +30,8 @@
   <h6>My Connections </h6>
   <hr>
     <% current_user.connections.each do |con| %>
-      <%= link_to con.category_title, signed_messages_path(:id => con.id, :type => "connection", :con_name => con.category_title), :remote => true, :class => "common_link_font" %><br><br>
+      <%= link_to con.category_title, signed_messages_path(:id => con.id, :type => "connection", :con_name => con.category_title), :remote => true, :class => "common_link_font", :link_id =>"clickable" %><br><br>
     <% end %>
     <hr>
-  <%= link_to "Unlisted", signed_messages_path(:type => "unlisted", :con_name => "Unlisted"), :remote => true, :class => "common_link_font" %><hr>
+  <%= link_to "Unlisted", signed_messages_path(:type => "unlisted", :con_name => "Unlisted"), :remote => true, :class => "common_link_font", :link_id =>"clickable" %><hr>
 </div>
