@@ -10,7 +10,8 @@
      <% end %>
    </div>
   </div>
-  
+ 
+<% if params[:model_type] != "Feed" %>
   <div class="row-fluid">
     <% if feed.public %>
      <% cus = feed.channels
@@ -19,12 +20,15 @@
         
      <% if feed.user_feeds.where(:shared => true).count > 0 %>
       <hr>
-      Your Friends(s) shared this post: <br>
+      <% if feed.user_feeds.where(:user_id.ne => current_user.id.to_s, :shared => true).count > 0 %>
+       Your Friends(s) shared this post: <br>
+      <% end %>
       <% User.where(:_id.in => cus ).limit(5).each do |cu| %>
         <% display_name = cu.display_name.blank? ? cu.first_name.capitalize + " "+ cu.last_name.capitalize : cu.display_name.capitalize %>
         <%= link_to(image_tag(cu.profile_image_thumb, :title => display_name), signed_user_path(:id => cu.id)) %>
       <% end %>
       <% end %>
+      <hr>
     <% end %>
   </div>
-  <hr>
+<% end %>  
