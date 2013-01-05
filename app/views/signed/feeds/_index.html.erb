@@ -6,8 +6,11 @@
    feedCounter = 0;
    pageIn = '<%= params[:feed_type].present? ? params[:feed_type] : "" %>';
    lastFeed = '<%= @last_feed %>';
-   MinPost();
-   fetch_form($("#post_type_id_post_type").val());
+   <% if @status.nil? || @status %>
+     MinPost();
+     fetch_form($("#post_type_id_post_type").val());
+   <% end %>
+   
    typeId = '<%= params[:type_id] %>';
    setTimeout(function(){fetch_older_feeds()},3000);
   });

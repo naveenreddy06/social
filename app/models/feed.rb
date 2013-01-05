@@ -75,6 +75,14 @@ class Feed
        self.feed_image.feedimage_url(:feedzoom)
   end
 
+  def event_zooms
+       self.event_image.eventimage_url(:eventimage)
+  end
+
+  def deal_zooms
+       self.deal_image.dealimage_url(:dealimage)
+  end
+
   def event_images
        self.event_image.eventimage_url(:eventimage)
   end

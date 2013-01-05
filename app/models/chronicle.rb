@@ -36,7 +36,7 @@ class Chronicle
             must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
             must {term :permission, true}
             must { term :chronicle_title, params[:name_filter] } if params[:name_filter].present?
-            must { term :user_name, params[:user_filter] } if params[:user_filter].present?
+            must { term :user_name, params[:keyword_filter] } if params[:keyword_filter].present?
           end
         end
       end

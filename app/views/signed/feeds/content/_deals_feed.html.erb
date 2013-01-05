@@ -1,5 +1,7 @@
 <% begin %>
- <%= feed.deal_image.nil? ? "" : (image_tag feed.deal_images) %>
+ <a class="group1" href="<%= feed.deal_zooms %>" >
+   <%= feed.deal_image.nil? ? "" : (image_tag feed.deal_images) %>
+ </a>
    <% rescue %>
       <span class="span_content">....Photo not found or removed at source..or Check URL..</span>
 <% end %>
