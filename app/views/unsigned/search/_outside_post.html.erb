@@ -21,17 +21,14 @@
             <% if result.user_feeds.where('cool' => true).count > 0 %>
                   <img src='/img/relayimg/wow.png' />
                   <%= result.user_feeds.where('cool' => true).count %>
-                  wow
             <% end %>
             <% if result.user_feeds.where('favorite' => true).count > 0 %>
                    <img src='/img/relayimg/pin.png' />
                    <%= result.user_feeds.where('favorite' => true).count %>
-                   fan
             <% end %>
             <% if result.user_feeds.where('share' => true).count > 0 %>
                    <img src='/img/relayimg/share.png' />
                    <%= result.user_feeds.where('share' => true).count %>
-                   share
             <% end %>
           </div><hr><hr>
       <% end %>

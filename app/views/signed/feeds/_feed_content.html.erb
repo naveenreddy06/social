@@ -1,12 +1,12 @@
 <div class="feeds" style="min-width:290px;">
       <% if feed.feed_type.post_type == "Videos" %>
-      <%= render "/signed/feeds/content/videos_feed", :feed => feed %>
+       <%= render "/signed/feeds/content/videos_feed", :feed => feed %>
       <% elsif feed.feed_type.post_type == "Photos" %>
-      <%= render "/signed/feeds/content/photos_feed", :feed => feed %>
+       <%= render "/signed/feeds/content/photos_feed", :feed => feed %>
       <% elsif feed.feed_type.post_type == "Events" %>
-      <%= render "/signed/feeds/content/events_feed", :feed => feed %>
+       <%= render "/signed/feeds/content/events_feed", :feed => feed %>
       <% elsif feed.feed_type.post_type == "Deals" %>
-      <%= render "/signed/feeds/content/deals_feed", :feed => feed %>
+       <%= render "/signed/feeds/content/deals_feed", :feed => feed %>
       <% else %>
       <% end %>
 </div>

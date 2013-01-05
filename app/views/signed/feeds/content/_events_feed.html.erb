@@ -1,5 +1,7 @@
 <% begin %>
-  <%= feed.event_image.nil? ? "" : (image_tag feed.event_images) %>
+  <a class="group1" href="<%= feed.event_zooms %>" >
+    <%= feed.event_image.nil? ? "" : (image_tag feed.event_images) %>
+  </a>
 <% rescue %>
   <span class="span_content"> Photo not found or removed at source.</span>
 <% end %><br>
