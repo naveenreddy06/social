@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  include Mongoid::Timestamps
   require 'stalker'
 
   embeds_one :account_setting, validate: false #disables validation of account_settings during initialization
