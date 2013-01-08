@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def account_setting_hash
-    {"Account Management" => ["General", "Status"],  "Edit Wall Profile" => ["Edit Wall Profile","Sort About me list", "Profile Photos"],  "Manage Connections" => ["Lists Update", "Manage Connections"],   "Manage Circles" => ["Manage Circles", "Other's Edit"],   "Manage Chronicles" => ["Manage Chronicles", "Other's Edit"] }
+    {"Account Management" => ["General", "Status"],  "Edit Wall Profile" => ["Edit Wall Profile","Sort About me list", "Profile Photos"],  "Manage My Friends" => ["Lists Update", "Manage My Friends"],   "Manage Social Circles" => ["Manage Social Circles", "Other's Edit"],   "Manage Fan Pages" => ["Manage Fan Pages", "Other's Edit"] }
   end
 
 end

@@ -17,14 +17,14 @@ class Signed::UsersController < Signed::BaseController
   def manage
    @wall_detail = WallDetail.new
    case params[:form_type]
-    when "manage_connections"
+    when "manage_my_friends"
      @connection = Connection.new
-    when "manage_circles"
+    when "manage_social_circles"
      @circle = Circle.new
     when "circle_info"
      @circle = Circle.where(:_id => params[:id].to_s).first
      @circle_detail = CircleDetail.new
-    when "manage_chronicles"
+    when "manage_fan_pages"
      @chronicle = Chronicle.new
    end
 
