@@ -2,7 +2,6 @@
 function reset_all_icons() {
 
    $("a[accord-main=accord]").each(function(){
-   $(this).find('i').attr('class', 'icon-chevron-right') ;
    $(this).attr('class', 'accordion-toggle collapsed') ;
 
  });
@@ -11,7 +10,6 @@ function reset_all_icons() {
 	//icon change
     $("a[accord-main=accord]").click(function() {
        reset_all_icons();
-       $(this).find('i').attr('class', 'icon-chevron-down');
        $(this).attr('class', 'disabled');
     });
 });
@@ -32,7 +30,7 @@ function reset_all_icons() {
         <div class="accordion-heading">
 	  <div>
             <a class="accordion-toggle collapsed" id="account" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" accord-main="accord">
-	    <h6><i class=" icon-chevron-right"></i>Connections </h6>
+	    <h6><%= image_tag("/img/leftpanel/friends.png") %> My Friends </h6>
 	    </a>
           </div>
 	</div>
@@ -52,7 +50,7 @@ function reset_all_icons() {
       <div class="accordion-group" style="border: 0px">
         <div class="accordion-heading">
 	  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" accord-main="accord">
-	  <h6> <i class=" icon-chevron-right"></i> Circles</h6>
+	  <h6> <%= image_tag("/img/leftpanel/circles.png") %> Social Circles </h6>
 	  </a>
 	</div>
 	<div id="collapseTwo" class="accordion-body collapse">
@@ -79,7 +77,7 @@ function reset_all_icons() {
       <div class="accordion-group" style="border: 0px">
        	<div class="accordion-heading">
 	  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" accord-main="accord">
-	  <h6> <i class=" icon-chevron-right"></i>Chronicles</h6>
+	  <h6> <%= image_tag("/img/leftpanel/pages.png") %> Fan Pages </h6>
 	  </a>
 	</div>
 	<div id="collapseThree" class="accordion-body collapse">

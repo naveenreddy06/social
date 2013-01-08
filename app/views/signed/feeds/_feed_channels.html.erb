@@ -1,13 +1,27 @@
-      <%= f.submit 'relay ', :class => "btn-primary" %> 
+<div class="row-fluid"> 
+ <div class="span15"> 
+   <div class="row-fluid">  
       <% if @circle.nil? and @chronicle.nil? %>
-        <%= f.input :public, :as => :boolean, label:false, :input_html => {:style => "margin-top:-15px;margin-left:40px;"}  %>
-       <div style= "margin-top:-55px;margin-left:80px;">
-          <span style= "color:#014F87;font-style:italic;font-size:13px;">share/public</span>
-         <img  src="/img/relayimg/add_connections.png" />
-         <a href="#myModal" data-toggle="modal" style = "color:#014F87;font-weight:500;font-style:italic;font-size:13px;">Custom</a><%= render "choose_connections" %>
+      <div class="span15">
+        <div class="span13">
+         <img  src="/img/coolpinshare/share.png" /> 
+         <span style= "color:#014F87;font-style:italic;font-size:13px;">share/public</span>
         </div>
+        <div class="span2">
+         <%= f.input :public, :as => :boolean, label:false %>
+        </div>
+      </div><br><br>
+      <div class="span10">
+         <img  src="/img/leftpanel/target_friends.png" />
+         <a href="#myModal" data-toggle="modal" style = "color:#014F87;font-weight:500;font-style:italic;font-size:13px;"> 'My Friends' </a><%= render "choose_connections" %>
+      </div>
       <% end %>
-
+   </div>
+ </div><br><br><br>
+   <div class="span8">
+     <%= f.submit 'relay ', :class => "btn-primary" %> 
+   </div>
+</div>
 
 <% channel_id = @circle.nil? ? nil : @circle.id.to_s %>
 <% channel_id = channel_id || (@chronicle.nil? ? nil : @chronicle.id.to_s) %>
