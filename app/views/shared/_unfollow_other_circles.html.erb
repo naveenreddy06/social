@@ -12,7 +12,7 @@
  </tr>
   <% current_user.others_circles.each do |circle| %>
     <tr id="row_<%= circle.id %>"  class="warning">
-       <td style="min-width:300px"><span class="span_content" ><%= image_tag circle.circle_profile_image_min_thumb %><%= link_to circle.name, "#" %></span></td>
+       <td style="min-width:300px"><span class="span_content" ><%= link_to image_tag(circle.circle_profile_image_min_thumb), get_circle_details_signed_users_path(:id => circle) %><%= link_to circle.name, get_circle_details_signed_users_path(:id => circle) %></span></td>
        <td><%= link_to "unjoin", unjoin_user_signed_users_path(:circle_id => circle.id,:type => "unjoin"), :remote => true, :onClick => "hide_circle('row_#{circle.id}')", :class => "common_link_font" %></td>
     </tr>
   <% end %>

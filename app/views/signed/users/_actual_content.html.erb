@@ -1,15 +1,19 @@
 <td> 
-   <div class="span3">
-       <%= link_to(image_tag(User.where(:_id => uf.friend_id).first.profile_image_thumb), signed_user_path(:id => uf.friend_id))  %>
+    <% friend = User.where(:_id => uf.friend_id).first %>
+ <div class="span14">
+  <div class="row-fluid"> 
+   <div class="span4">
+       <%= link_to(image_tag(friend.profile_image_thumb), signed_user_path(:id => uf.friend_id))  %>
    </div> 
-   <div class="span17">   
-       <%= link_to User.where(:_id => uf.friend_id).first.first_name, signed_user_path(:id => uf.friend_id), {:style=>'color:#005580;font-weight:bold'} %><br>
-     <div class="row-fluid"> 
-       <%= User.where(:_id => uf.friend_id).first.account_setting.state_name + "," unless User.where(:_id => uf.friend_id).first.account_setting.nil?  %>
-       <%= User.where(:_id => uf.friend_id).first.account_setting.city unless User.where(:_id => uf.friend_id).first.account_setting.nil?  %>
-      </div> 
-       <img src='/img/relayimg/cool_feed_page.png'/><%= UserFeed.where(:feed_id.in => User.where(:_id => uf.friend_id).first.feeds.collect(&:id), 'cool' => true).count %>
-       <img src='/img/relayimg/fan.png' /><%= UserFeed.where(:feed_id.in => User.where(:_id => uf.friend_id).first.feeds.collect(&:id), 'favourite' => true).count %>
-        
+   <div class="span17">  
+      <span class="span_content"> 
+       <%= link_to friend.first_name, signed_user_path(:id => uf.friend_id) %><br>
+       <%= friend.account_setting.state_name + "," unless friend.account_setting.nil?  %>
+       <%= friend.account_setting.city unless friend.account_setting.nil?  %><br>
+       <img src='/img/coolpinshare/wow.png'/> <%= UserFeed.where(:feed_id.in => friend.feeds.collect(&:id), :cool => true).count %>
+       <img src='/img/coolpinshare/pin.png' /> <%= UserFeed.where(:feed_id.in => friend.feeds.collect(&:id), :favorite => true).count %>
+       </span> 
    </div>
+  </div> 
+ </div> 
 </td>

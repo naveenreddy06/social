@@ -1,5 +1,5 @@
   <div class="hero-unit"  adjustTd=true >
-        <%= link_to(image_tag(@circle.circle_profile_image_left), signed_user_path(:id => @circle.user_id) ) %><br><br>
+        <%= link_to(image_tag(@circle.circle_profile_image_left), get_circle_details_signed_users_path(:id => @circle) ) %><br><br>
 	  <div>
 	    <span><img src="/img/relayimg/wall_profile.png" /></span><span style="margin-left:10px"><%= link_to "About Circle",   about_circle_signed_users_path(:id => @circle.id), :remote => true, :class => "common_link_font" %></span><br/>
 	    <span class="icon-user"></span><span style="margin-left:10px"><%= link_to "Circle Members(#{@circle.user_circles.count})",  circle_members_signed_users_path(:id => @circle.id), :remote => true, :class => "common_link_font" %></span>

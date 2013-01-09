@@ -12,7 +12,7 @@
  </tr>
   <% current_user.other_chronicles.each do |chronicle| %>
     <tr id="row_<%= chronicle.id %>" >
-       <td style="min-width:300px;"><span class="span_content" ><%= image_tag chronicle.user.profile_image_thumb_small_chronicle %><%= link_to chronicle.chronicle_title, "#" %></span></td>
+       <td style="min-width:300px;"><span class="span_content" ><%= link_to(image_tag(chronicle.user.profile_image_thumb_small_chronicle), signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id )) %><%= link_to chronicle.chronicle_title, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ) %></span></td>
        <td><%= link_to "unfollow", unfollow_chronicle_signed_users_path(:id => chronicle.id, :user_id => current_user.id, :type => "unfollow"), :remote => true, :onClick => "hide_chronicle('row_#{chronicle.id}')", :class => "common_link_font" %></td>
     </tr>
   <% end %>
