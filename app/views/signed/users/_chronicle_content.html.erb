@@ -15,9 +15,9 @@
 
 <% unless params[:repeate] == "repeate" %>
  <% if params[:type] == "user" %>
-<div class="well well-small" style="max-width:800px;"><h6>User Chronicles</h6></div></br>
+<div class="well well-small" style="max-width:800px;"><h6>User Chronicles</h6></div>
  <% else %>
-<div class="well well-small" style="max-width:800px;"><h6>Others Chronicles</h6></div></br>
+<div class="well well-small" style="max-width:800px;"><h6>Others Chronicles</h6></div>
  <% end %>
 <% end %>
 <% (@chronicles.empty? ? [] : @chronicles).each do |chronicle| %>

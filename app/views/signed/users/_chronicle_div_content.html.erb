@@ -1,5 +1,8 @@
 <div class="span21">   
-  <h6><%= link_to chronicle.chronicle_title, signed_user_path(:id => chronicle.user_id) %></h6>
+  <h6>
+     <% url = chronicle.permission ? signed_feeds_path(:feed_type => "chronicle", :chronicle_id => chronicle.id ) : "#" %>
+     <%= link_to chronicle.chronicle_title, url %>
+  </h6>
 </div>
 
 <div class="span18">                                                
@@ -13,3 +16,4 @@
    <% end %>
   </span>
 </div>  
+
