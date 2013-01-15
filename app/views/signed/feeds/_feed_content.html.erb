@@ -11,23 +11,27 @@
       <% end %>
 </div>
 <div style="word-wrap:break-word;width:360px;font-size:12px;"> <%= feed.feed %> </div><br>
- <% unless feed.add_link.blank? %>
-  <div class="span_content">
-    Go To : <a href="<%= feed.add_link %>" target="_blank"><%= feed.add_link %></a>
+ <% unless feed.add_link.blank? and feed.tags.blank? %>
+  <a href="#" id = "link_<%= feed.id %>" onclick="$('#display_content_<%= feed.id %>').show(); $(this).hide();">more</a>
+ <% end %>
+  <div id = "display_content_<%= feed.id %>" style="display:none;">
+   <% unless feed.add_link.blank? %>
+     <div class="span_content">
+       Go To : <a href="<%= feed.add_link %>" target="_blank"><%= feed.add_link %></a>
+     </div>
+   <% end %>
+   <% unless feed.tags.blank? %>
+    <div class="span_content">
+      Tag Users : 
+      <% cnt = 0 %>
+      <% feed.tags.each do |user_id| %>
+        <% user = User.where(:id => user_id).first %>
+        <% display_name = user.display_name.blank? ? user.first_name.capitalize + " "+ user.last_name.capitalize : user.display_name.capitalize %>
+        <%= cnt > 0 ? ", " : " " %><%= link_to display_name, signed_user_path(user) %>
+        <% cnt += 1 %>  
+      <% end %>  
+     </div> 
+   <% end %>
   </div>
- <% end %>
- <% unless feed.tags.blank? %>
-  <div class="span_content">
-   Tag Users : 
-   <% cnt = 0 %>
-   <% feed.tags.each do |user_id| %>
-     <% user = User.where(:id => user_id).first %>
-     <% display_name = user.display_name.blank? ? user.first_name.capitalize + " "+ user.last_name.capitalize : user.display_name.capitalize %>
-     <%= cnt > 0 ? ", " : " " %><%= link_to display_name, signed_user_path(user) %>
-     <% cnt += 1 %>  
-   <% end %>  
-  </div> 
- <% end %>
-
 
 
