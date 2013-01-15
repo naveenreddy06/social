@@ -4,7 +4,7 @@
 
 <div id= "title_detail">
 
-   <h5>$ For '<%= @circle.name %>' <h5>
+   <h5> For '<%= @circle.name %>' <h5>
   <%= simple_form_for @circle_detail,:html => { :class => "form-horizontal" }, :url =>  add_circle_details_signed_users_path, :remote => true do |fd| %>
     <%= hidden_field_tag :partial_name, '', :value => "circle_info" %>
     <%= fd.input :circle_id, :as => :hidden, :input_html => { :value => @circle.id } %>

@@ -10,7 +10,7 @@
 
 <%= simple_form_for @circle, :url => add_circle_photos_signed_users_path(:id => @circle), :remote => true do |circle| %>
    <div  style="background-color:#D3D3D3;min-width:800px;max-width:801px">
-      <h6>$ Add Wall Banner <h6>
+      <h6> Add Wall Banner <h6>
      <table class="noborder">
          <%= circle.fields_for :circle_images do |ci| %>
            <% if ci.object.new_record? %>
@@ -31,7 +31,7 @@
        </table>
       </div><br><br>
      <div  style="background-color:#D3D3D3;min-width:800px;max-width:801px;">
-        <h6>$ Add Wall Profile <h6>
+        <h6> Add Wall Profile <h6>
         <table class="noborder">
           <%= circle.fields_for :circle_profile_images do |cpi| %>
            <% if cpi.object.new_record? %>

@@ -8,7 +8,7 @@
 
 <div id= "title_detail">
   <span style="font-size:19px">Create Wall - About me list</span>
-  <h6>$ Create 'About me' information<h6>
+  <h6> Create 'About me' information<h6>
   <%= simple_form_for @wall_detail,:html => { :class => "form-horizontal" }, :url =>  add_walls_signed_users_path, :remote => true do |fd| %>
     <%= hidden_field_tag :partial_name, '', :value => "edit_wall_profile" %>
     <%= hidden_field_tag :id, '', :value => @wall_detail.id %>
