@@ -17,7 +17,7 @@ class Signed::UsersController < Signed::BaseController
   def manage
    @wall_detail = WallDetail.new
    case params[:form_type]
-    when "manage_my_friends"
+    when "create_list_names"
      @connection = Connection.new
     when "manage_social_circles"
      @circle = Circle.new
