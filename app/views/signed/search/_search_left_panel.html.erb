@@ -14,7 +14,7 @@
       <%= form_tag signed_search_index_path, :method => :get do %>
             Refine Search : <br><br>
         <% if params[:model_type] != "Chronicle" %>
-          <%= text_field_tag :name_filter, nil, :placeholder => "#{params[:model_type]} name" %>
+          <%= text_field_tag :name_filter, nil, :placeholder => "Circle owner" %>
           <div>or</div><br>
         <% end %>
         <%= text_field_tag :keyword_filter, nil, :placeholder => params[:model_type] == 'Circle' ? 'Keyword Tags' : 'Fan page owner' %>

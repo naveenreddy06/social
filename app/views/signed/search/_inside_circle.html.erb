@@ -21,7 +21,7 @@
             <% end %>
 
             <% display_name = result.user.display_name.blank? ? result.user.first_name.capitalize + " "+ result.user.last_name.capitalize : result.user.display_name.capitalize %>
-            <%= display_name %>
+            <%= link_to display_name, signed_user_path(result.user) %>
             <!-- ######### -->
           </div><br>
             <div>

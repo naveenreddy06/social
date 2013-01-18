@@ -12,7 +12,7 @@
             <%= link_to result.chronicle_title.capitalize, signed_feeds_path(:feed_type => "chronicle", :chronicle_id => result.id ), :class => "common_link_font" %></br>
             <div style="padding-top:5px;">
             <% display_name = result.user.display_name.blank? ? result.user.first_name.capitalize + " "+ result.user.last_name.capitalize : result.user.display_name.capitalize %>
-            <%= "By : "+display_name %>
+            By : <%= link_to display_name, signed_user_path(result.user) %>
           </div>
         </div>
         <div class="span5" id="chr_<%= result.id %>">
