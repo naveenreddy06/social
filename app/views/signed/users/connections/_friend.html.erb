@@ -1,18 +1,21 @@
 <% friendrequest = @friendrequest || UserFriend.where(:user_id => current_user.id , :friend_id => friend.id).first %>
 
   <td>
-    <div class="span6">
+    <div class="row-fluid">
+     <div class="span4">
       <%= image_tag friend.profile_image_thumb %>
-    </div>  
-    <div class="span6">
+     </div>  
+     <div class="span16">
       <span class="span_content" >
+       <% display_name = friend.display_name.blank? ? friend.first_name.capitalize + " "+ friend.last_name.capitalize : friend.display_name.capitalize %>
+            <%= link_to display_name, signed_user_path(friend) %>
         <a id="<%= friend.id %>" href="#myModal" data-toggle="modal" onclick="currentSelect = $(this).attr('id');">
-          <div style="color:green">
-            <%= friend.first_name.capitalize + " " + friend.last_name.capitalize %>
-          </div>
+         <div style="color:green">
+           <%= friendrequest.connection.blank? ? "Unlisted" : friendrequest.connection.capitalize %>
+         </div>
         </a>
-        <%= friendrequest.connection.capitalize %>
       </span>
+     </div>
     </div>
   </td>
   <td>
