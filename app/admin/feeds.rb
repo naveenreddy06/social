@@ -4,8 +4,15 @@ ActiveAdmin.register Feed do
 
  index do
    column :id
+   column "Feed owner" do |feed|
+    span link_to  feed.user.display_name.blank? ? feed.user.first_name.to_s + " " + feed.user.last_name.to_s : feed.user.display_name, admin_user_path(feed.user_id)
+   end
+   column "Post type" do |feed|
+    feed.feed_type.post_type
+   end
    column :public
    column "Abuse Count", :feed_count
+   column "Date", :created_at
    column "Actions" do |feed|
      span link_to "View", admin_feed_path(feed)
     if feed.feed_count.to_i > 5
@@ -18,8 +25,11 @@ ActiveAdmin.register Feed do
     panel "Feed details" do
      attributes_table_for  feed do
       row("Feed") {feed.feed}
+      row("Feed owner") { feed.user.display_name.blank? ? feed.user.first_name.to_s + " " + feed.user.last_name.to_s : feed.user.display_name}
+      row("Post type") { feed.feed_type.post_type}
       row("public") {feed.public}
-      row("Post Type") {feed.feed_type.post_type}  
+      row("Abuse Count") {feed.feed_count}
+      row("Date") {feed.created_at}
       case feed.feed_type.post_type
        when "Photos"      
           row("Feed Image") {feed.feed_image.nil? ? "" : (image_tag feed.feed_image.feedimage) }
