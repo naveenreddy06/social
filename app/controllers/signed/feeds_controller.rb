@@ -39,8 +39,9 @@ class Signed::FeedsController < Signed::BaseController
       @last_feed = @feeds.last.updated_at unless @feeds.empty?
     when "Favorites"
       @feeds = []
-      @feed_type = FeedType.find(params[:type_id])
-      user_feeds = UserFeed.limit(@limit).where(:feed_type_id => @feed_type.id, :favorite => true,:user_id => current_user.id, :updated_at.lt => latest)
+      emotion = Emotion.find(params[:type_id])
+      @feed_type = FeedType.first
+      user_feeds = UserFeed.limit(@limit).where(:emotion_id => emotion.id, :favorite => true,:user_id => current_user.id, :updated_at.lt => latest)
       @last_feed = user_feeds.last.updated_at unless user_feeds.empty?
       user_feeds.each do |feed|
         @feeds << feed.feed
@@ -48,7 +49,7 @@ class Signed::FeedsController < Signed::BaseController
       @title = "Favorites - #{@feed_type.post_type.capitalize}"
 
     else
-      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest, ).entries
+      @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest).entries
       @last_feed = @feeds.last.updated_at unless @feeds.empty?
       @title = "All Feeds"
     end
@@ -94,6 +95,23 @@ class Signed::FeedsController < Signed::BaseController
     end
   end
 
+  def emotions_tag
+    begin
+      @feed = Feed.find(params[:feed_id])
+    rescue
+      @feed = false
+    end
+    update_tag = params[:update_tag]
+    if @feed
+      feed_user = UserFeed.where("user_id" => current_user.id, "feed_id" => @feed.id).first
+      if !feed_user
+        @feed.user_feeds.create((update_tag.merge :user_id => current_user.id).merge :emotion_id => params[:type_id])
+      else
+        feed_user.update_attributes(update_tag.merge :emotion_id => params[:type_id])
+      end
+    end
+    render :action => :feed_tag
+  end
   def deletepost
     begin
       @feed = Feed.where("_id" => params[:feed_id]).first

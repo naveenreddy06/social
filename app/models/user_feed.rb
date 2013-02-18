@@ -3,7 +3,7 @@ class UserFeed
   include Mongoid::Timestamps
   belongs_to :user
   belongs_to :feed
-  belongs_to :feed_type
+  belongs_to :emotion
 
   field :cool, :type => Boolean
   field :favorite, :type => Boolean

@@ -20,10 +20,10 @@
       <img src="/img/relayimg/nav_pin.png" />
     </a>
     <ul class="dropdown-menu" style="margin-top: -13px">
-      <% FeedType.all.each do |ft| %>
+      <% Emotion.all.each do |emotion| %>
         <li class="mainitem">
-          <%= link_to "#{ft.post_type}",signed_feeds_path(:feed_type =>
-          "Favorites", :type_id => ft.id.to_s) %>
+          <%= link_to "#{emotion.name}",signed_feeds_path(:feed_type =>
+          "Favorites", :type_id => emotion.id) %>
         </li>
       <% end %>
     </ul>
