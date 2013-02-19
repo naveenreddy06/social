@@ -17,8 +17,7 @@ function createFavorite(emotId) {
    <div class="row-fluid">
      <% EmotionType.each do |et| %>
        <div class="span10">
-         <%= et.name %><br><br>
-         <% et.emotions.each do |emotion| %>
+         <% (et.emotions.order_by "order ASC").each do |emotion| %>
            <center><% img = image_tag("/img/Emotions/#{emotion.name.downcase}.png", :title => "#{emotion.name}") %>
     <a href="#" onClick="createFavorite($(this).attr('id'));" id=<%=emotion.id.to_s %>><%= img + " " + "#{emotion.name}" %></a>
     </center><br>
