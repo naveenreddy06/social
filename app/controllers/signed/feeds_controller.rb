@@ -46,7 +46,7 @@ class Signed::FeedsController < Signed::BaseController
       user_feeds.each do |feed|
         @feeds << feed.feed
       end
-      @title = "Favorites - #{@feed_type.post_type.capitalize}"
+      @title = "Favorites - #{emotion.name}"
 
     else
       @feeds = Feed.desc("updated_at").limit(@limit).where(:channels.in => session_all, :updated_at.lt => latest).entries
