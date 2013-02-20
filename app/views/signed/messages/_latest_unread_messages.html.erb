@@ -16,11 +16,10 @@
           </div>
           <div class=" span18">
             <% if msg.user.display_name.blank? %>
-              <%= link_to msg.user.first_name.capitalize + " " + msg.user.last_name.capitalize, signed_user_path(:id => msg.user.id) %>
+              <%= link_to msg.user.first_name.capitalize + " " + msg.user.last_name.capitalize, friend_message_signed_messages_path(:id => msg.user.id), :remote => true %>
             <% else %>
-              <%= link_to msg.user.display_name.capitalize , signed_user_path(:id =>msg.user.id) %>
+              <%= link_to msg.user.display_name.capitalize , friend_message_signed_messages_path(:id => msg.user.id), :remote => true  %>
             <% end %>
-
             <div class="span_content">
               <%= msg.message %>
             </div>

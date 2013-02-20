@@ -1,6 +1,7 @@
- $("#all_friends").replaceWith("<div id='all_friends'><%= escape_javascript(render 'all_friends_list', :friends =>  @connections_list ) %></div>");
+$("#friends_listing").show();
  
-  $("#new_message").replaceWith("<div id='new_message'><%= escape_javascript(render 'latest_unread_messages', :messages =>  @messages ) %></div>");
-
+$("#all_friends").replaceWith("<div id='all_friends'><%= escape_javascript(render 'all_friends_list', :friends =>  @connections_list ) %></div>");
+ 
+$("#td_latest_unread_messages").hide();               
 
 $("#td_reply_message").hide();

@@ -20,7 +20,7 @@ class Signed::MessagesController < Signed::BaseController
 
     else
       @connections_list = current_user.my_friends
-      @messages = Message.desc("created_at").limit(20).where(:friend_id => current_user.id , :read.in => [nil,false])
+      @messages = Message.desc("created_at").limit(30).where(:friend_id => current_user.id , :read.in => [nil,false])
       @title = "Messages"
     end
 

@@ -24,9 +24,10 @@ function enable_all() {
     <% else %>
       <%= link_to current_user.display_name.capitalize,  signed_user_path(:id => current_user.id) %>
     <% end %>
+ <br><br>
 
+ <%= link_to "Latest New  Messages", signed_messages_path %>
 
-  <h6>Messages </h6>
   <h6>My Connections </h6>
   <hr>
     <% current_user.connections.each do |con| %>

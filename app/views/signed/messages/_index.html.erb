@@ -1,4 +1,4 @@
-<td class="span5">
+<td class="span5" id="td_latest_unread_messages">
  <div class="hero-unit" adjustTd=true >
   <div id="new_message">
    <%= render "latest_unread_messages", :messages => @messages%>
@@ -6,7 +6,7 @@
  </div>
 </td>
 
-<td class="span5">
+<td class="span5" style="display: none" id="friends_listing">
  <div class="hero-unit" adjustTd=true>
   <div id="all_friends">
     <%= render "all_friends_list", :friends => current_user.my_friends %>
