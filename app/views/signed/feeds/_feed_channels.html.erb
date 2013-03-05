@@ -19,7 +19,12 @@
    </div>
  </div><br><br><br>
    <div class="span8">
-     <%= f.submit 'relay ', :class => "btn-primary" %> 
+     <% if current_user.suspend_till.blank? || ( current_user.suspend_till < Time.now ) %>
+        <%= f.submit 'relay ', :class => "btn-primary" %>
+     <% else %>        
+        <button class="btn-primary" type="button">relay</button>
+        <p style="color:red;font-size:14px;">The account is suspended for one week for not complying with site terms</p>
+     <% end %>   
    </div>
 </div>
 

@@ -41,6 +41,7 @@ class User
    field :first_name, :type => String
    field :last_name, :type => String
    field :birthday, :type => Date
+   field :suspend_till, :type => DateTime
    field :phone, :type => Integer
    field :verified, :type => Boolean
    field :verification_token, :type => String

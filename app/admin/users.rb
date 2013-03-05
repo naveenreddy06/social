@@ -6,6 +6,13 @@ ActiveAdmin.register User do
   filter :first_name, :as => :string
   filter :last_name, :as => :string
 
+  collection_action :suspend do
+    if params[:id]
+      User.find(params[:id]).update_attributes(:suspend_till => Time.now + 7.days )
+      redirect_to admin_users_path
+    end
+  end
+
   index do
     column :display_name
     column :first_name
@@ -13,6 +20,11 @@ ActiveAdmin.register User do
     column :verified
     column "Actions" do |user|
       span link_to "View", admin_user_path(user)
+      if user.suspend_till.blank? || ( user.suspend_till < Time.now )
+        span link_to "Suspend", suspend_admin_users_path(:id => user)
+      else
+       span "suspended"
+      end
     end
   end
 
@@ -53,5 +65,5 @@ ActiveAdmin.register User do
       end
      end
    end
-  
+
 end
