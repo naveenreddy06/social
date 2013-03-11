@@ -8,7 +8,7 @@
 <div class="span18">                                                
   <span class="span_content">
     <%= chronicle.permission ? "Public by" : "Private by" %>
-    <%= link_to(image_tag(chronicle.user.profile_image_thumb), signed_user_path(:id => chronicle.user_id)) %>
+    <%= link_to(image_tag(chronicle.user.profile_image_thumb_small_chronicle), signed_user_path(:id => chronicle.user_id)) %>
     <% if chronicle.user.display_name.blank? %>
       <%= link_to chronicle.user.first_name.capitalize + " " + chronicle.user.last_name.capitalize, signed_user_path(:id => chronicle.user_id), :class => "common_link_font" %><br>
     <% else %>

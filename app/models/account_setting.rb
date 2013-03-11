@@ -8,7 +8,7 @@ class AccountSetting
   field :about_me, :type => String
 
   #field :user_type, :type => String
-  field :about_me, :type => String
+  #field :about_me, :type => String
   field :address, :type => String
 
   field :country_name, :type => String
@@ -16,7 +16,7 @@ class AccountSetting
   field :city, :type => String
   field :postal_code, :type => String
 
-  field :address, :type => String
+  #field :address, :type => String
 
 
 

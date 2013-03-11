@@ -8,8 +8,7 @@
    <div class="span17">  
       <span class="span_content"> 
        <%= link_to friend.first_name, signed_user_path(:id => uf.friend_id) %><br>
-       <%= friend.account_setting.state_name + "," unless friend.account_setting.nil?  %>
-       <%= friend.account_setting.city unless friend.account_setting.nil?  %><br>
+       <%= friend.account_setting.about_me unless friend.account_setting.nil?  %><br>
        <img src='/img/coolpinshare/wow.png'/> <%= UserFeed.where(:feed_id.in => friend.feeds.collect(&:id), :cool => true).count %>
        <img src='/img/coolpinshare/pin.png' /> <%= UserFeed.where(:feed_id.in => friend.feeds.collect(&:id), :favorite => true).count %>
        </span> 
