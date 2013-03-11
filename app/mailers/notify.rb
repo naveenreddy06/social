@@ -1,5 +1,5 @@
 class Notify < ActionMailer::Base
-  default from: "donot-reply@relayoffers.com"
+  default from: "donot-reply@relaylife.com"
 
   def verify_registration(user)
     @user = user
