@@ -18,4 +18,6 @@ Emotion.create(:name => "Mad", :emotion_type_id => emtp2.id)
 Emotion.create(:name => "Sad", :emotion_type_id => emtp2.id)
 Emotion.create(:name => "Creepy", :emotion_type_id => emtp2.id)
 Emotion.create(:name => "Yucky", :emotion_type_id => emtp2.id)
-
+["Angry", "Awesome", "Creepy", "Funny", "Lovely", "OMG", "Sad", "Yukky"].each do |mood|
+CommentMood.create(:name => mood)
+end

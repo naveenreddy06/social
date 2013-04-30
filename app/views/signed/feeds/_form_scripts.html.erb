@@ -40,13 +40,11 @@
      $("#minTd").hide();
   }
 
-  function onComment(e,feed_id) {
-  var key = (window.event) ? e.which : e.keyCode;
-
-    if (key == 13 && $("#comment_empty" + feed_id).val() != '' ) {
+  function onComment(comment_mood_id,feed_id) {
+    if ($("#comment_empty_" + feed_id).val() != '' ) {
      $.ajax({
       url: "feeds/add_comment",
-      data: {feed_id:feed_id, comment:$("#comment_empty" + feed_id).val() },
+      data: {feed_id:feed_id, comment:$("#comment_empty_" + feed_id).val(), comment_mood_id:comment_mood_id },
       dataType: 'script'
      });
         return false;

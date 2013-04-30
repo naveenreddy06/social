@@ -4,7 +4,7 @@
       <%= link_to(image_tag(comment.user.profile_image_thumb), signed_user_path(:id => comment.user.id)) %>
     </div>
     <div class="span18">
-      <div class="span_content">
+      <div class="span15 span_content">
         <% if comment.user.display_name.blank? %>
           <%= link_to comment.user.first_name.capitalize + " "+ comment.user.last_name.capitalize , signed_user_path(:id => comment.user.id) %>
         <% else %>
@@ -19,6 +19,7 @@
           <%= comment.created_at.to_date.strftime("%b %d, %Y").to_s %>
         <% end %>
       </div>
+      <div class="span3"><%= image_tag comment.comment_mood.enabled_image unless comment.comment_mood.nil? %></div>
     </div>
   </td>
 </tr>

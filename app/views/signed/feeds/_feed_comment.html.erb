@@ -1,13 +1,11 @@
-
-  <div class="row-fluid">
-    <div class="span16">
-     <div class="row-fluid">
+<div class="row-fluid">
       <div class="span3">
         <%= image_tag current_user.profile_image_thumb %>
       </div>
-      <div class="span18">
-        <textarea rows="1" cols="1" placeholder="Comment here" onkeypress="onComment(event,'<%= feed.id %>');" id="comment_empty<%= feed.id %>" style = "resize: none;font-size:12px;max-width:270px;min-width:270px;max-height:35px;min-height:30px;"></textarea>
+      <div class="span15">
+        <textarea rows="1" cols="1" placeholder="Comment here"  id="comment_empty_<%= feed.id %>" style = "resize: none;font-size:12px;max-width:270px;min-width:270px;max-height:35px;min-height:30px;" ></textarea>
       </div>
-     </div>
-    </div>
+      <div class="span3"> 
+        <button class="btn btn-small btn-primary" type="button" , data-toggle = "modal", data-target = "#myCommentMoodModal-<%= feed.id %>">Post</button>
+      </div>
   </div>

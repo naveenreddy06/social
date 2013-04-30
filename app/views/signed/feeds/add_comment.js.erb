@@ -10,4 +10,5 @@ bootbox.alert("Post has been deleted at the source.", function() {
 });
 <% end %>
 
-$("#comment_empty<%= params[:feed_id] %>").attr('value', '');
+$("#comment_empty_<%= params[:feed_id] %>").attr('value', '');
+$("#myCommentMoodModal-<%= @feed.id %>").modal('hide');

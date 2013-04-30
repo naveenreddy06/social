@@ -3,6 +3,7 @@ class Comment
   include Mongoid::Timestamps
    embedded_in :feed
    belongs_to :user
+   belongs_to :comment_mood
 
    field :comment
    validates_presence_of :comment

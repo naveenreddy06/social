@@ -75,7 +75,7 @@ class Signed::FeedsController < Signed::BaseController
 
   def add_comment
    @feed = Feed.where("_id" => params[:feed_id]).first
-   @comment = @feed.comments.create(:user_id => current_user.id, :comment => params[:comment]) if @feed
+   @comment = @feed.comments.create(:user_id => current_user.id, :comment => params[:comment], :comment_mood_id => params[:comment_mood_id]) if @feed
   end
 
   def feed_tag
