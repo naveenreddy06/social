@@ -15,7 +15,7 @@
                     <tr id="new_comment_<%= feed.id %>">
                     </tr>
                     <% feed.comments.reverse.each do |comment| %>
-                    <%= render "comment", :comment => comment %>
+                    <%= render "comment", :comment => comment, :feed => feed %>
                     <% end %>
                   </table>
                 </div>

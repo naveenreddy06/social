@@ -1,14 +1,27 @@
+<script>
+function hide_comment(comment_mood_id, post_id){
+  $.each($("tr[comment_mood_post^=comment_mood_"+post_id +"]"),function(){
+    if(comment_mood_id == "All"){
+       $(this).show();
+       $("#comment_mood_count_"+post_id).html($("tr[comment_mood_post^=comment_mood_"+post_id + "]").length);
+     }
+     else{
+        if($(this).attr('comment_mood_post') == "comment_mood_"+post_id+"-"+comment_mood_id){
+           $(this).show();
+         } else{
+           $(this).hide();
+         }
+        $("#comment_mood_count_"+post_id).html($("tr[comment_mood_post^=comment_mood_"+post_id +"-"+comment_mood_id+"]").length);
+    }
+  });  
+}
+</script>
 <div class = "span18">   
 <div class ="span2">
-<%= link_to "All", "#"  %></div> 
+<%= link_to "All", "#", :onClick => "hide_comment('All', $(this).attr('post_id'));", :post_id => feed.id  %></div> 
   <div class =span16>
-  <img src="/img/Emotions/enabled_disabled/Angry_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/Awesome_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/Creepy_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/Funny_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/Lovely_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/OMG_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/Sad_E.png"/>
-  <img src="/img/Emotions/enabled_disabled/Yukky_E.png"/>
+  <% CommentMood.order_by("order ASC").each do |cm| %>
+      <%= image_tag  cm.enabled_image, :title => cm.name, :onclick => "hide_comment($(this).attr('comment_mood_id'),$(this).attr('post_id') );",:comment_mood_id => cm.id, :post_id => feed.id %>
+    <% end %>
 </div>
 </div>

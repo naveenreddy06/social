@@ -1,5 +1,6 @@
-<tr>
+<tr comment_mood_post="comment_mood_<%= feed.id %>-<%= comment.comment_mood_id %>">
   <td>
+   <div class="row-fluid">
     <div class="span2">
       <%= link_to(image_tag(comment.user.profile_image_thumb), signed_user_path(:id => comment.user.id)) %>
     </div>
@@ -21,15 +22,13 @@
       </div>
       <div class="span3"><%= image_tag comment.comment_mood.enabled_image unless comment.comment_mood.nil? %></div>
     </div>
-  </td>
-</tr>
-<tr>
-  <td>
-    <div class="span_content span21" style="word-wrap:break-word;width:280px;" >
+   </div>
+    <div class="span_content row-fluid" style="word-wrap:break-word;width:280px;" >
       <%= comment.comment %>
       <hr/>
     </div>
   </td>
 </tr>
+
 
 

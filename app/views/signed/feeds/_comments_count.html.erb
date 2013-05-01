@@ -1,6 +1,6 @@
 <div class="span_content">
 <% if feed.comments.count > 0 %>
-     <img src="/img/relayimg/comments_feed_page.png" /><%=feed.comments.count %>
+     <img src="/img/relayimg/comments_feed_page.png" /><div id="comment_mood_count_<%= feed.id  %>"><%=feed.comments.count %></div>
      <p style= "color:#014F87;font-weight:500;display:inline;font-size:12px;">comment(s)</p>
 <% end %>
 </div>

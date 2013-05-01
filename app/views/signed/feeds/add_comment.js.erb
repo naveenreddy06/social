@@ -1,5 +1,5 @@
 <% if @feed %>
- $("#new_comment_<%= @comment.feed.id %>").replaceWith("<tr id='new_comment_<%= @comment.feed.id %>'></td><td><%= escape_javascript(render 'comment', :comment => @comment ) %></tr>");
+ $("#new_comment_<%= @comment.feed.id %>").replaceWith("<tr id='new_comment_<%= @comment.feed.id %>'></td><td><%= escape_javascript(render 'comment', :comment => @comment, :feed => @feed ) %></tr>");
 
  $("#comments_count_<%= @feed.id %>").replaceWith("<div id='comments_count_<%= @feed.id %>'><%= escape_javascript(render('comments_count', :feed => @feed)) %></div>");
  $("#comment_<%= @comment.feed.id %>").css({"background-color":"rgb(231,235,242)", "height":"auto","width":"auto"});
