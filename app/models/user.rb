@@ -68,6 +68,7 @@ class User
         boolean do
           must { string params[:keyword], default_operator: "OR" } if params[:keyword].present?
           must { term :user_type_id, params[:filter] } if params[:filter].present?
+          must {term :verified, true}
         end
       end
     end

@@ -3,9 +3,9 @@
         <%= image_tag current_user.profile_image_thumb %>
       </div>
       <div class="span15">
-        <textarea rows="1" cols="1" placeholder="Comment here"  id="comment_empty_<%= feed.id %>" style = "resize: none;font-size:12px;max-width:270px;min-width:270px;max-height:35px;min-height:30px;" ></textarea>
+        <textarea rows="1" cols="1" placeholder="Comment here"  id="comment_empty_<%= feed.id %>" style = "resize: none;font-size:12px;width:90%;max-height:35px;min-height:30px;" ></textarea>
       </div>
-      <div class="span3"> 
+      <div class="span3">
         <button class="btn btn-small btn-primary" type="button" , data-toggle = "modal", data-target = "#myCommentMoodModal-<%= feed.id %>">Post</button>
       </div>
   </div>
