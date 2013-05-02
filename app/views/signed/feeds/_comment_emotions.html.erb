@@ -7,13 +7,13 @@ function hide_comment(comment_mood_id, post_id){
  <!--This is for image mood change logic-->
   $.each($("img[id^=comment_mood_imag_"+post_id+"]"), function(){
     if(comment_mood_id == "All"){
-      document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['enabled_image'];
+      document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
      }
      else{
         if($(this).attr('id') == "comment_mood_imag_"+post_id+"-"+comment_mood_id){
-           document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
-         } else{
            document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['enabled_image'];
+         } else{
+           document.getElementById($(this).attr('id')).src = image_path_hash[$(this).attr('id').split("-")[1]]['disabled_image'];
          }
     }
   });
@@ -39,7 +39,7 @@ function hide_comment(comment_mood_id, post_id){
 <%= link_to "All", "#", :onClick => "hide_comment('All', $(this).attr('post_id'));", :post_id => feed.id  %></div> 
   <div class =span16>
   <% CommentMood.order_by("order ASC").each do |cm| %>
-      <%= image_tag  cm.enabled_image, :title => cm.name, :onclick => "hide_comment($(this).attr('comment_mood_id'),$(this).attr('post_id') );",:comment_mood_id => cm.id, :post_id => feed.id, :id => "comment_mood_imag_#{feed.id}-#{cm.id}" %>
+      <%= image_tag  cm.disabled_image, :title => cm.name, :onclick => "hide_comment($(this).attr('comment_mood_id'),$(this).attr('post_id') );",:comment_mood_id => cm.id, :post_id => feed.id, :id => "comment_mood_imag_#{feed.id}-#{cm.id}" %>
     <% end %>
 </div>
 </div>
