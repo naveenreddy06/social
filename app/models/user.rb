@@ -60,6 +60,7 @@ class User
     indexes :last_name, type: 'string'
     indexes :first_name, type: 'string'
     indexes :user_type_id, type: 'string'
+    indexes :verified, type: 'boolean'
   end
 
   def self.search(params)
