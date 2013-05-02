@@ -1,5 +1,6 @@
 ActiveAdmin.register Emotion do
 
+  config.clear_action_items!
 
   index do
     column :name
@@ -12,9 +13,7 @@ ActiveAdmin.register Emotion do
   form do |f|                         
     f.inputs "Emotion Details" do       
       f.input :emotion_type                  
-      f.input :name 
-      f.input :enabled_image 
-      f.input :disabled_image            
+      f.input :name               
       f.input :order 
     end                               
     f.actions                         

@@ -5,8 +5,6 @@ class Emotion
   has_many :user_feeds
 
   field :name, :type => String
-  field :enabled_image
-  field :disabled_image
   field :order, :type => Integer
 
   validates_uniqueness_of :name
