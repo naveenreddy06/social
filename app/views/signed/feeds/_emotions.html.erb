@@ -20,7 +20,24 @@ function createFavorite(emotId) {
        <div class="span10">
          <% (et.emotions.order_by "order ASC").each do |emotion| %>
            <center><% img = image_tag("/img/Emotions/Enabled/#{emotion.name}_E.png", :title => "#{emotion.name}") %>
-    <a href="#" onClick="createFavorite($(this).attr('id'));" id=<%=emotion.id.to_s %>><%= img + " " + "#{emotion.name}" %></a>
+    <a href="#" onClick="createFavorite($(this).attr('id'));" id=<%=emotion.id.to_s %>><%= img %><% if emotion.name == "Lovely" %>
+      MustHave
+        <% elsif emotion.name == "Angry" %>
+        Dispute
+        <% elsif emotion.name == "Funny" %>
+        Quality
+        <% elsif emotion.name == "Creepy" %>
+        UnSafe
+        <% elsif emotion.name == "OMG" %>
+        Awesome
+        <% elsif emotion.name == "Sad" %>
+        Scan
+        <% elsif emotion.name == "Awesome" %>
+        Value
+        <% else %>
+        Horrible
+      <% end %></a>
+      
     </center><br>
          <% end %>
       </div>
