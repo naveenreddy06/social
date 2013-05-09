@@ -17,7 +17,7 @@
           <%= text_field_tag :name_filter, nil, :placeholder => "Circle owner" %>
           <div>or</div><br>
         <% end %>
-        <%= text_field_tag :keyword_filter, nil, :placeholder => params[:model_type] == 'Circle' ? 'Keyword Tags' : 'Fan page owner' %>
+        <%= text_field_tag :keyword_filter, nil, :placeholder => params[:model_type] == 'Circle' ? 'Keyword Tags' : 'Catalog owner' %>
         <%= hidden_field_tag :model_type, params[:model_type] %>
         <%= hidden_field_tag :keyword, params[:keyword] %>
         <%= submit_tag "Go", :class => "btn btn-small btn-primary"%>
