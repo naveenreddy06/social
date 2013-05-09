@@ -1,10 +1,10 @@
 <%= form_tag unsigned_search_index_path, :method => :get do %>
-      <div class="input-append">
-       	<select style="width:80px;" name="model_type">
-            <option value="Feed" >Posts</option>
-            <option value="User">Friends</option>
-        </select>
-   	   <input class="span5" id="appendedInput" name="keyword" type="text">
-	   <span class="add-on"><input type="image" src="/img/relayimg/search_icon.png" /></span>
-	  </div>
+  <div class="input-append">
+   	<select style="width:80px;" name="model_type">
+      <option value="Feed" >Posts</option>
+      <option value="User">Friends</option>
+    </select>
+	    <input class="span7" id="appendedInput" name="keyword" type="text" placeholder="Search public posts or profiles...">
+    <span class="add-on"><input type="image" src="/img/relayimg/search_icon.png" /></span>
+  </div>
 <% end %>

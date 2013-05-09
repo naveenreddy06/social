@@ -89,15 +89,25 @@ $(document).ready(function(){
               <% case ky.to_s + " " + val.to_s %>
                 <% when "Account Management General" %>
                 <small><a href="?form_type=general" class="current-link"  link_id="clickable" gen_id="gen_click" id="<%= cnt %>" ><%= val %></a></small><br/>
-                <% when "Manage Social Circles Other's Edit" %>
+                <% when "Manage Circles Other's Edit" %>
                 <small><a href="?form_type=Others_Circle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
                 <% current_user.circles.each do |c| %>
 	          <small><a href="?form_type=circle_info&id=<%= c.id %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= c.name %></a></small><br>
                 <% end %>
-                <% when "Manage Fan Pages Other's Edit" %>
+                <% when "Manage Catalogs Other's Edit" %>
                   <small><a href="?form_type=Others_Chronicle_Edit" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
               <% else %>
-                <small><a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable" id="<%= cnt %>"><%= val %></a></small><br/>
+                <small>
+                  <a href="?form_type=<%= val.downcase.gsub(' ', '_') %>" class="current-link"  link_id="clickable" id="<%= cnt %>">
+                    <% if val == "Manage Social Circles" %>
+                            Manage Circles
+                    <% elsif val == "Manage Fan Pages" %>
+                            Manage Catalogs
+                    <% else %>
+                      <%= val %>
+                    <% end %>
+                  </a>
+                </small><br/>
               <% end %>
             <% end %>
           </div>
