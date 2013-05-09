@@ -1,7 +1,7 @@
 
 <div id = "create_circles_form">
-  <h3> Create & Edit Social Circles<h3>
-  <h5> Create New Social Circle <h5>
+  <h3> Create & Edit Circles<h3>
+  <h5> Create New Circle <h5>
     <%= simple_form_for @circle,:html => { :class => "form-horizontal" }, :url =>  add_circles_title_signed_users_path, :remote => true do |f| %>
        <%= hidden_field_tag :partial_name, '', :value => "manage_circles" %>
        <%= f.input :name, :class => "field" %>
