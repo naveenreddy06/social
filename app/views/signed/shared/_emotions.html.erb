@@ -16,8 +16,7 @@ function createFavorite(emotId) {
   </div>
   <div class="modal-body">
     <div class="row-fluid">
-      <% EmotionType.each do |et| %>
-        <% (et.emotions.order_by "order ASC").each do |emotion| %>
+        <% (Emotion.order_by "order ASC").each do |emotion| %>
           <div class="span10">
             <div class="row-fluid">
               <% img = image_tag(emotion.emotion_image, :title => "#{emotion.name}") %>
@@ -26,7 +25,6 @@ function createFavorite(emotId) {
             <br>
           </div>
         <% end %>
-      <% end %>
     </div>
   </div>
 </div>
