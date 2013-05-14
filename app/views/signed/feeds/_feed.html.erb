@@ -31,7 +31,10 @@
   </div>
   <div class="modal-body">
     <% CommentMood.order_by("order ASC").each do |cm| %>
-      <%= image_tag  cm.enabled_image, :title => cm.name, :onclick => "onComment($(this).attr('comment_mood_id'), $(this).attr('feed_id'));", :feed_id => feed.id, :comment_mood_id => cm.id %>
+      <div class="span10">
+        <% img = image_tag(cm.enabled_image, :title => cm.name)  %>
+        <a href="#", onclick = "onComment($(this).attr('comment_mood_id'), $(this).attr('feed_id'));", feed_id = "<%= feed.id %>", comment_mood_id = "<%= cm.id %>"><%= img + " " + "#{cm.name}" %></a>
+      </div><br>
     <% end %>
   </div>
 </div>
